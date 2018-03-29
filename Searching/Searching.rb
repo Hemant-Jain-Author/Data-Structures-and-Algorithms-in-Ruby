@@ -31,7 +31,7 @@ def Binarysearch(arr, value)
   low = 0
   high = arr.size - 1
   while low <= high
-    mid = low + (high - low) / 2 # To avoid the overflow
+    mid =(low + high) / 2
     if arr[mid] == value
       return true
     elsif arr[mid] < value
@@ -52,7 +52,7 @@ def BinarySearchRecursiveUtil(arr, low, high, value)
   if low > high
     return false
   end
-  mid = low + (high - low) / 2 # To avoid the overflow
+  mid = (low + high) / 2
   if arr[mid] == value
     return true
   elsif arr[mid] < value
