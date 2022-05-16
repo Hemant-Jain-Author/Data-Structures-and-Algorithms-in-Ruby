@@ -101,20 +101,21 @@ def HeapSort(array)
     i += 1
   end
 end
-#
-#a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
-#pq = PriorityQueue.new(a)
-#pq.add(2);
-#pq.add(3);
-#count = pq.size()
-#i = 0
-#while i < count
-#  print "value is :: " , pq.remove(), "\n"
-#  i += 1
-#end
-#a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
-#HeapSort(a)
-#print a
+
+
+# a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
+# pq = PriorityQueue.new(a)
+# pq.add(2);
+# pq.add(3);
+# count = pq.size()
+# i = 0
+# while i < count
+#   print "value is :: " , pq.remove(), "\n"
+#   i += 1
+# end
+# a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
+# HeapSort(a)
+# print a
 
 #class MedianHeap
 #  def initialize()

@@ -1,4 +1,4 @@
-require "PQ"
+require_relative "PQ"
 
 class AdjNode
   attr_accessor :source, :destination, :cost, :next

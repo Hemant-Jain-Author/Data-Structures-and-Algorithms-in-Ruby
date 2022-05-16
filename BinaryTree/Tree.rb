@@ -15,7 +15,7 @@ class Tree
   end
 
   # Other methods.
-end
+
 
 def levelOrderBinaryTree(arr)
   @root = self.levelOrderBinaryTreeUtil(arr, 0)
@@ -400,10 +400,10 @@ def isBST3(curr = @root)
   if curr == nil
     return true
   end
-  if curr.lChild != nil and self.FindMax(curr.lChild).value > curr.value
+  if curr.lChild != nil and self.FindMax(curr.lChild) > curr.value
     return false
   end
-  if curr.rChild != nil and self.FindMin(curr.rChild).value < curr.value
+  if curr.rChild != nil and self.FindMin(curr.rChild) < curr.value
     return false
   end
   return (self.isBST3(curr.lChild) and self.isBST3(curr.rChild))
@@ -625,19 +625,20 @@ def CreateBinaryTreeUtil(arr, start, end2)
   curr.rChild = self.CreateBinaryTreeUtil(arr, mid + 1, end2)
   return curr
 end
+end
 
 t = Tree.new()
 arr =[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 t.CreateBinaryTree(arr)
 t.InsertNode(11)
 t.PrintInOrder()
-#puts t.Find(5)
-#puts t.Find2(5)
-#puts t.FindMin()
-#puts t.FindMax()
+puts t.Find(5)
+puts t.Find2(5)
+puts t.FindMin()
+puts t.FindMax()
 #
 #t.DeleteNode(5)
-#puts ""
+puts ""
 t.PrintInOrder()
 puts t.isBST3()
 puts t.isBst()
