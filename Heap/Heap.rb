@@ -1,167 +1,160 @@
 class Heap
-  # Number of elements in Heap
-  # The Heap array
-  def initialize(array, isMinHeap = true)
-    @size = array.size
-    @arr = array.clone
-    @arr.unshift(1) #we do not use 0 index
-    @isMinHeap = isMinHeap
-    #Build Heap operation over array
-    i = (@size / 2)
-    while i > 0
-      self.proclateDown(i)
-      i -= 1
+    # Define the accessor and reader of class Heap
+    attr_accessor :CAPACITY,:size,:arr,:isMinHeap
+    # Number of elements in Heap
+    # The Heap array
+    
+    def initialize(isMin = true)
+        self.arr = Array.new(100){0}
+        self.size = 0
+        self.isMinHeap = isMin
     end
-  end
 
-  def comp(first, second)
-    if @isMinHeap then
-      return (@arr[first] > @arr[second])
-    else
-      return (@arr[second]  > @arr[first])
+    def set(array)
+        self.size = array.size
+        self.arr = array.clone
+        i = (self.size / 2)
+        # Build Heap operation over array
+        while (i >= 0)
+            self.percolateDown(i)
+            i -= 1
+        end
     end
-  end
-  #Other Methods.
 
-  def proclateDown(position)
-    lChild = 2 * position
-    rChild = lChild + 1
-    small = -1
-    if lChild <= @size then
-      small = lChild
+    def compare( arr,  first,  second)
+        if (self.isMinHeap)
+            return (arr[first] - arr[second]) > 0
+        else
+            return (arr[first] - arr[second]) < 0
+        end
     end
-    if rChild <= @size and (self.comp(rChild, lChild)== false) then
-      small = rChild
-    end
-    if small != -1 and (self.comp(small, position)== false) then
-      temp = @arr[position]
-      @arr[position] = @arr[small]
-      @arr[small] = temp
-      self.proclateDown(small)
-    end
-  end
 
-  def proclateUp(position)
-    parent = position / 2
-    if parent == 0 then
-      return
+    # Other Methods.
+    def percolateDown( parent)
+        lChild = 2 * parent + 1
+        rChild = lChild + 1
+        child = -1
+        if (lChild < self.size)
+            child = lChild
+        end
+        if (rChild < self.size && self.compare(self.arr, lChild, rChild))
+            child = rChild
+        end
+        if (child != -1 && self.compare(self.arr, parent, child))
+            temp = self.arr[parent]
+            self.arr[parent] = self.arr[child]
+            self.arr[child] = temp
+            self.percolateDown(child)
+        end
     end
-    if self.comp(parent, position) == true then #parent grater then child.
-      temp = @arr[position]
-      @arr[position] = @arr[parent]
-      @arr[parent] = temp
-      self.proclateUp(parent)
+
+    def percolateUp( child)
+        parent = (child - 1) / 2
+        if (parent >= 0 && self.compare(self.arr, parent, child))
+            temp = self.arr[child]
+            self.arr[child] = self.arr[parent]
+            self.arr[parent] = temp
+            self.percolateUp(parent)
+        end
     end
-  end
 
-  def add(value)
-    @size += 1
-    @arr[@size] = value
-    self.proclateUp(@size)
-  end
-
-  def remove()
-    if self.isEmpty() then
-      raise StandardError, "HeapEmptyException"
+    def isEmpty()
+        return (self.size == 0)
     end
-    value = @arr[1]
-    @arr[1] = @arr[size]
-    @size -= 1
-    self.proclateDown(1)
-    return value
-  end
 
-  def display()
-    i = 1
-    while i <= size + 1
-      print "value is :: " , arr[i]
-      i += 1
+    def length()
+        return self.size
     end
-  end
 
-  def isEmpty()
-    return (@size == 0)
-  end
-
-  def peek()
-    if self.isEmpty() then
-      raise StandardError, "HeapEmptyException"
+    def peek()
+        if (self.isEmpty())
+            raise StandardError, "HeapEmptyException"
+        end
+        return self.arr[0]
     end
-    return @arr[1]
-  end
 
-  def size()
-    return @size
-  end
+    def add( value)
+        if (self.size == self.arr.length)
+            raise StandardError, "HeapFullException"
+        end
+        self.arr[self.size] = value
+        self.size += 1
+        self.percolateUp(self.size - 1)
+    end
+
+    def remove()
+      if (self.isEmpty())
+          raise StandardError, "HeapEmptyException"
+      end
+      value = self.arr[0]
+      self.arr[0] = self.arr[self.size - 1]
+      self.size -= 1
+      self.percolateDown(0)
+      return value
+    end
+
+    def display()
+        print("Heap : ")
+        i = 0
+        while (i < self.size)
+            print(self.arr[i].to_s + " ")
+            i += 1
+        end
+        print("\n")
+    end
+
+    def delete( value)
+        i = 0
+        while (i < self.size)
+            if (self.arr[i] == value)
+                self.arr[i] = self.arr[self.size - 1]
+                self.size -= 1
+                self.percolateUp(i)
+                self.percolateDown(i)
+                return true
+            end
+            i += 1
+        end
+        return false
+    end
 end
 
-def HeapSort(array)
-  hp = Heap.new(array)
-  i = 0
-  while i < array.size
-    array[i] = hp.remove()
-    i += 1
-  end
+def main1()
+    hp = Heap.new(true)
+    hp.add(1)
+    hp.add(6)
+    hp.add(5)
+    hp.add(7)
+    hp.add(3)
+    hp.add(4)
+    hp.add(2)
+    hp.display()
+    while (!hp.isEmpty()) 
+      print(hp.remove().to_s + " ")
+    end
+end
+# 	1 3 2 7 6 5 4 
+# 	1 2 3 4 5 6 7
+
+def heapSort(array,  inc)
+    # Create max heap for increasing order sorting.
+    hp = Heap.new(!inc)
+    hp.set(array)
+    i = 0
+    while (i < array.length)
+        array[array.length - i - 1] = hp.remove()
+        i += 1
+    end
 end
 
-# Testing code
-a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
-pq = Heap.new(a, true)
-pq.add(2);
-pq.add(3);
-count = pq.size()
-i = 0
-while i < count
-  print "value is :: " , pq.remove(), "\n"
-  i += 1
-end
-a = [9, 8, 10, 7, 6, 1, 4, 2, 5, 3]
-HeapSort(a)
-print a
-
-class MedianHeap
-  def initialize()
-    @minHeap = Heap.new([])
-    @maxHeap = Heap.new([],false)
-  end
-
-  def insert(value)
-    if @maxHeap.size() == 0 or @maxHeap.peek() >= value then
-      @maxHeap.add(value)
-    else
-      @minHeap.add(value)
-    end
-    #size balancing
-    if @maxHeap.size() > @minHeap.size() + 1 then
-      value = @maxHeap.remove()
-      @minHeap.add(value)
-    end
-    if @minHeap.size() > @maxHeap.size() + 1 then
-      value = @minHeap.remove()
-      @maxHeap.add(value)
-    end
-  end
-
-  def median()
-    if @maxHeap.size() == 0 and @minHeap.size() == 0 then
-      raise StandardError, "EmptyException"
-    end
-    if @maxHeap.size() == @minHeap.size() then
-      return (@maxHeap.peek() + @minHeap.peek()) / 2
-    elsif @maxHeap.size() > @minHeap.size() then
-      return @maxHeap.peek()
-    else
-      return @minHeap.peek()
-    end
-  end
+def main2()
+    s = [1, 5, 9, 3, 2, 6, 8, 7, 4]
+    heapSort(s,  true)
+    print(s)
+    s = [1, 5, 9, 3, 2, 6, 8, 7, 4]
+    heapSort(s,  false)
+    print(s)
 end
 
-# Testing code
-arr = [1, 9, 2, 8, 3, 7, 4, 6, 5, 1]
-hp = MedianHeap.new()
-i = 0
-while i < 10
-  hp.insert(arr[i])
-  print "\n Median after insertion of " , arr[i] , " is  " , hp.median()
-  i += 1
-end
+main1()
+main2()

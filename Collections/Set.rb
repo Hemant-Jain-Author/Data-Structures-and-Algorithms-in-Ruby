@@ -1,9 +1,12 @@
 require 'set'
 
 # Create a hash set.
-hs = Set.new[]
+hs = Set.new
 
 # add elements to the hash set.
+hs.add("India")
+hs.add("USA")
+hs.add("UK")
 hs.add("India")
 hs.add("USA")
 hs.add("UK")

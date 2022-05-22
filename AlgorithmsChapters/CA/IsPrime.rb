@@ -1,22 +1,15 @@
-public class IsPrime {
-	public static boolean isPrime(int n) {
-		boolean answer = (n > 1) ? true : false;
-		for (int i = 2; i * i <= n; ++i) {
-			if (n % i == 0) {
-				answer = false;
-				break;
-			}
-		}
-		return answer;
-	}
+def isPrime( n)
+	answer = (n > 1) ? true : false
+	i = 2
+	while (i * i <= n)
+		if (n % i == 0)
+			answer = false
+			break
+		end
+		i += 1
+	end
+	return answer
+end
 
-	public static void main(String[] args) {
-		System.out.println(IsPrime.isPrime(8));
-		System.out.println(IsPrime.isPrime(11));
-	}
-}
-
-/*
-false
-true
-*/
+print(isPrime(8),"\n")
+print(isPrime(11),"\n")

@@ -1,70 +1,60 @@
-public class Fibo {
-	public static int fibonacci(int n) {
-		if (n < 2) {
-			return n;
-		}
-		return fibonacci(n - 1) + fibonacci(n - 2);
-	}
+def fibonacci( n)
+	if (n < 2)
+		return n
+	end
+	return fibonacci(n - 1) + fibonacci(n - 2)
+end
 
-	public static int fibonacciBU(int n) {
-		if (n < 2)
-			return n;
+def fibonacciBU( n)
+	if (n < 2)
+		return n
+	end
+	dp = Array.new(n + 1){0}
+	dp[0] = 0
+	dp[1] = 1
+	i = 2
+	while (i <= n)
+		dp[i] = dp[i - 2] + dp[i - 1]
+		i += 1
+	end
+	return dp[n]
+end
 
-		int[] dp = new int[n + 1];
-		dp[0] = 0;
-		dp[1] = 1;
+def fibonacciBU2( n)
+	if (n < 2)
+		return n
+	end
+	first = 0
+	second = 1
+	temp = 0
+	i = 2
+	while (i <= n)
+		temp = first + second
+		first = second
+		second = temp
+		i += 1
+	end
+	return temp
+end
 
-		for (int i = 2; i <= n; i++) {
-			dp[i] = dp[i - 2] + dp[i - 1];
-		}
+def fibonacciTD( n)
+	dp = Array.new(n + 1){0}
+	fibonacciTDUtil(n, dp)
+	return dp[n]
+end
 
-		return dp[n];
-	}
+def fibonacciTDUtil( n,  dp)
+	if (n < 2)
+		return dp[n] = n
+	end
+	if (dp[n] != 0)
+		return dp[n]
+	end
+	dp[n] = fibonacciTDUtil(n - 1, dp) + fibonacciTDUtil(n - 2, dp)
+	return dp[n]
+end
 
-	public static int fibonacciBU2(int n) {
-		if (n < 2)
-			return n;
-
-		int first = 0, second = 1;
-		int temp = 0;
-
-		for (int i = 2; i <= n; i++) {
-			temp = first + second;
-			first = second;
-			second = temp;
-		}
-		return temp;
-	}
-
-	public static int fibonacciTD(int n) {
-		int[] dp = new int[n + 1];
-		fibonacciTD(n, dp);
-		return dp[n];
-	}
-
-	public static int fibonacciTD(int n, int[] dp) {
-		if (n < 2)
-			return dp[n] = n;
-
-		if (dp[n] != 0)
-			return dp[n];
-
-		dp[n] = fibonacciTD(n - 1, dp) + fibonacciTD(n - 2, dp);
-		return dp[n];
-	}
-
-	public static void main(String[] args) {
-		System.out.println(fibonacci(10));
-		System.out.println(fibonacciBU(10));
-		System.out.println(fibonacciBU2(10));
-		System.out.println(fibonacciTD(10));
-
-	}
-}
-
-/*
-55
-55
-55
-55
-*/
+print(fibonacci(10),"\n")
+print(fibonacciBU(10),"\n")
+print(fibonacciBU2(10),"\n")
+print(fibonacciTD(10),"\n")

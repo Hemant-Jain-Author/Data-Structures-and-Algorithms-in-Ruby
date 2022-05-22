@@ -1,42 +1,43 @@
-import java.util.Arrays;
+def max( *arr)
+	return arr.max()
+end
 
-public class LargestBitonicSubseq {
-	static int lbs(int[] arr) {
-		int n = arr.length;
-		int[] lis = new int[n];
-		Arrays.fill(lis, 1); // Initialize LIS values for all indexes as 1.
-		int[] lds = new int[n];
-		Arrays.fill(lds, 1); // Initialize LDS values for all indexes as 1.
-		int max = 0;
+def self.lbs( arr)
+	n = arr.length
+	lis = Array.new(n){1} # Initialize LIS values for all indexes as 1.
+	lds = Array.new(n){1} # Initialize LDS values for all indexes as 1.
+	max = 0
+	i = 0
+	# Populating LIS values in bottom up manner.
+	while (i < n)
+		j = 0
+		while (j < i)
+			if (arr[j] < arr[i] && lis[i] < lis[j] + 1)
+				lis[i] = lis[j] + 1
+			end
+			j += 1
+		end
+		i += 1
+	end
+	i = n - 1
+	# Populating LDS values in bottom up manner.
+	while (i > 0)
+		j = n - 1
+		while (j > i)
+			if (arr[j] < arr[i] && lds[i] < lds[j] + 1)
+				lds[i] = lds[j] + 1
+			end
+			j -= 1
+		end
+		i -= 1
+	end
+	i = 0
+	while (i < n)
+		max = max(max,lis[i] + lds[i] - 1)
+		i += 1
+	end
+	return max
+end
 
-		// Populating LIS values in bottom up manner.
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < i; j++) {
-				if (arr[j] < arr[i] && lis[i] < lis[j] + 1)
-					lis[i] = lis[j] + 1;
-			}
-		}
-
-		// Populating LDS values in bottom up manner.
-		for (int i = n - 1; i > 0; i--) {
-			for (int j = n - 1; j > i; j--) {
-				if (arr[j] < arr[i] && lds[i] < lds[j] + 1)
-					lds[i] = lds[j] + 1;
-			}
-		}
-		for (int i = 0; i < n; i++) {
-			max = Math.max(max, lis[i] + lds[i] - 1);
-		}
-
-		return max;
-	}
-
-	public static void main(String args[]) {
-		int arr[] = { 1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19 };
-		System.out.println("Length of lbs is " + lbs(arr));
-	}
-}
-
-/*
-Length of lbs is 8
-*/
+arr = [1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19]
+print("Length of lbs is " + self.lbs(arr).to_s,"\n")

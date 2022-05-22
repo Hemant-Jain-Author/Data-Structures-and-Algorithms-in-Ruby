@@ -1,43 +1,48 @@
-def QuickSelect(arr, k)
-  quickSelectUtil(arr, 0, arr.size - 1, k)
-  return arr[k]
-end
+public class QuickSelect {
+	public static void quickSelect(int arr[], int lower, int upper, int k) {
+		if (upper <= lower)
+			return;
 
-def quickSelectUtil(arr, lower, upper, k)
-  if upper <= lower
-    return
-  end
-  pivot = arr[lower]
-  start = lower
-  stop = upper
-  while lower < upper
-    while arr[lower] <= pivot and lower < upper
-      lower += 1
-    end
-    while arr[upper] > pivot and lower <= upper
-      upper -= 1
-    end
-    if lower < upper
-      swap(arr, upper, lower)
-    end
-  end
-  swap(arr, upper, start) #upper is the pivot position
-  if k < upper
-    quickSelectUtil(arr, start, upper - 1, k)
-  end #pivot -1 is the upper for left sub array.
-  if k > upper
-    quickSelectUtil(arr, upper + 1, stop, k)
-  end
-end
+		int pivot = arr[lower];
+		int start = lower;
+		int stop = upper;
 
-# pivot + 1 is the lower for right sub array.
-def swap(arr, first, second)
-  temp = arr[first]
-  arr[first] = arr[second]
-  arr[second] = temp
-end
+		while (lower < upper) {
+			while (arr[lower] <= pivot && lower < upper) {
+				lower++;
+			}
+			while (arr[upper] > pivot && lower <= upper) {
+				upper--;
+			}
+			if (lower < upper) {
+				swap(arr, upper, lower);
+			}
+		}
 
-# Testing code
-array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
-val = QuickSelect(array, 5)
-print "value at index 5 is : " , val
+		swap(arr, upper, start); // upper is the pivot position
+		if (k < upper)
+			quickSelect(arr, start, upper - 1, k); // pivot -1 is the upper for
+													// left sub array.
+		if (k > upper)
+			quickSelect(arr, upper + 1, stop, k); // pivot + 1 is the lower for
+													// right sub array.
+	}
+
+	public static void swap(int arr[], int first, int second) {
+		int temp = arr[first];
+		arr[first] = arr[second];
+		arr[second] = temp;
+	}
+
+	public static int get(int arr[], int k) {
+		quickSelect(arr, 0, arr.length - 1, k);
+		return arr[k - 1];
+	}
+
+	public static void main(String[] args) {
+		int[] array = { 3, 4, 2, 1, 6, 5, 7, 8 };
+		System.out.print("value at index 5 is : " + QuickSelect.get(array, 5));
+	}
+}
+
+// value at index 5 is : 5

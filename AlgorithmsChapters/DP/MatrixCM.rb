@@ -1,133 +1,141 @@
-import java.util.Arrays;
+def min( *arr)
+	return arr.min()
+end
 
-public class MatrixCM {
+def MatrixChainMulBruteForceUtil( p,  i,  j)
+	if (i == j)
+		return 0
+	end
+	min = 99999
+	k = i
+	# place parenthesis at different places between
+	# first and last matrix, recursively calculate
+	# count of multiplications for each parenthesis
+	# placement and return the minimum count
+	while (k < j)
+		count = MatrixChainMulBruteForceUtil(p, i, k) + 
+		MatrixChainMulBruteForceUtil(p, k + 1, j) + p[i-1]*p[k]*p[j]
+		if (count < min)
+			min = count
+		end
+		k += 1
+	end
+	# Return minimum count
+	return min
+end
 
-	static int MatrixChainMulBruteForce(int[] p, int i, int j) {
-		if (i == j)
-			return 0;
+def MatrixChainMulBruteForce( p,  n)
+	i = 1
+	j = n - 1
+	return MatrixChainMulBruteForceUtil(p, i, j)
+end
 
-		int min = Integer.MAX_VALUE;
+def MatrixChainMulTD( p,  n)
+	dp = Array.new(n){Array.new(n){99999}}
+	i = 1
+	while (i < n)
+		dp[i][i] = 0
+		i += 1
+	end
+	return MatrixChainMulTDUtil(dp, p, 1, n - 1)
+end
 
-		// place parenthesis at different places between
-		// first and last matrix, recursively calculate
-		// count of multiplications for each parenthesis
-		// placement and return the minimum count
-		for (int k = i; k < j; k++) {
-			int count = MatrixChainMulBruteForce(p, i, k) + MatrixChainMulBruteForce(p, k + 1, j)
-					+ p[i - 1] * p[k] * p[j];
+# Function for matrix chain multiplication
+def MatrixChainMulTDUtil( dp,  p,  i,  j)
+	# Base Case
+	if (dp[i][j] != 99999)
+		return dp[i][j]
+	end
+	k = i
+	while (k < j)
+		dp[i][j] = min(dp[i][j],MatrixChainMulTDUtil(dp, p, i, k) + 
+			MatrixChainMulTDUtil(dp, p, k + 1, j) + p[i-1]*p[k]*p[j])
+		k += 1
+	end
+	return dp[i][j]
+end
 
-			if (count < min)
-				min = count;
-		}
+def MatrixChainMulBU( p,  n)
+	dp = Array.new(n){Array.new(n){99999}}
 
-		// Return minimum count
-		return min;
-	}
+	i = 1
+	while (i < n)
+		dp[i][i] = 0
+		i += 1
+	end
+	
+	l = 1
+	while (l < n)
+		i = 1
+		j = i + l
+		# l is length of range.
+		while (j < n)
+			k = i
+			while (k < j)
+				dp[i][j] = min(dp[i][j],dp[i][k] + p[i - 1] * p[k] * p[j] + dp[k + 1][j])
+				k += 1
+			end
+			i += 1
+			j += 1
+		end
+		l += 1
+	end
+	return dp[1][n - 1]
+end
 
-	static int MatrixChainMulBruteForce(int[] p, int n) {
-		int i = 1, j = n - 1;
-		return MatrixChainMulBruteForce(p, i, j);
-	}
+def PrintOptPar( n,  pos,  i,  j)
+	if (i == j)
+		print("M" + pos[i][i].to_s + " ")
+	else
+		print("( ")
+		PrintOptPar(n, pos, i, pos[i][j])
+		PrintOptPar(n, pos, pos[i][j] + 1, j)
+		print(") ")
+	end
+end
 
-	static int MatrixChainMulTD(int[] p, int n) {
-		int[][] dp = new int[n][n];
-		for (int[] row : dp)
-			Arrays.fill(row, Integer.MAX_VALUE);
+def PrintOptimalParenthesis( n,  pos)
+	print("OptimalParenthesis : ")
+	PrintOptPar(n, pos, 1, n - 1)
+	print("","\n")
+end
 
-		for (int i = 1; i < n; i++)
-			dp[i][i] = 0;
+def MatrixChainMulBU2( p,  n)
+	dp = Array.new(n){Array.new(n){99999}}
+	pos = Array.new(n){Array.new(n){0}}
 
-		return MatrixChainMulTD(dp, p, 1, n - 1);
-	}
+	i = 1
+	while (i < n)
+		dp[i][i] = 0
+		pos[i][i] = i
+		i += 1
+	end
 
-	// Function for matrix chain multiplication
-	static int MatrixChainMulTD(int[][] dp, int[] p, int i, int j) {
-		// Base Case
-		if (dp[i][j] != Integer.MAX_VALUE) {
-			return dp[i][j];
-		}
+	l = 1
+	while (l < n)
+		i = 1
+		j = i + l
+		# l is length of range.
+		while (j < n)
+			k = i
+			while (k < j)
+				dp[i][j] = min(dp[i][j],dp[i][k] + p[i - 1] * p[k] * p[j] + dp[k + 1][j])
+				pos[i][j] = k
+				k += 1
+			end
+			i += 1
+			j += 1
+		end
+		l += 1
+	end
+	PrintOptimalParenthesis(n, pos)
+	return dp[1][n - 1]
+end
 
-		for (int k = i; k < j; k++) {
-			dp[i][j] = Math.min(dp[i][j],
-					MatrixChainMulTD(dp, p, i, k) + MatrixChainMulTD(dp, p, k + 1, j) + p[i - 1] * p[k] * p[j]);
-		}
-		return dp[i][j];
-	}
-
-	static int MatrixChainMulBU(int[] p, int n) {
-		int[][] dp = new int[n][n];
-		for (int[] row : dp)
-			Arrays.fill(row, Integer.MAX_VALUE);
-
-		for (int i = 1; i < n; i++)
-			dp[i][i] = 0;
-
-		for (int l = 1; l < n; l++) { // l is length of range.
-			for (int i = 1, j = i + l; j < n; i++, j++) {
-				for (int k = i; k < j; k++) {
-					dp[i][j] = Math.min(dp[i][j], dp[i][k] + p[i - 1] * p[k] * p[j] + dp[k + 1][j]);
-				}
-			}
-		}
-		return dp[1][n - 1];
-	}
-
-	static void PrintOptPar(int n, int[][] pos, int i, int j) {
-		if (i == j)
-			System.out.print("M" + pos[i][i] + " ");
-		else {
-			System.out.print("( ");
-			PrintOptPar(n, pos, i, pos[i][j]);
-			PrintOptPar(n, pos, pos[i][j] + 1, j);
-			System.out.print(") ");
-		}
-	}
-
-	static void PrintOptimalParenthesis(int n, int[][] pos) {
-		System.out.print("OptimalParenthesis : ");
-		PrintOptPar(n, pos, 1, n - 1);
-		System.out.println("");
-	}
-
-	static int MatrixChainMulBU2(int[] p, int n) {
-		int[][] dp = new int[n][n];
-		int[][] pos = new int[n][n];
-
-		for (int[] row : dp)
-			Arrays.fill(row, Integer.MAX_VALUE);
-
-		for (int i = 1; i < n; i++) {
-			dp[i][i] = 0;
-			pos[i][i] = i;
-		}
-
-		for (int l = 1; l < n; l++) { // l is length of range.
-			for (int i = 1, j = i + l; j < n; i++, j++) {
-				for (int k = i; k < j; k++) {
-					dp[i][j] = Math.min(dp[i][j], dp[i][k] + p[i - 1] * p[k] * p[j] + dp[k + 1][j]);
-					pos[i][j] = k;
-				}
-			}
-		}
-		PrintOptimalParenthesis(n, pos);
-		return dp[1][n - 1];
-	}
-
-	// Driver Code
-	public static void main(String[] args) {
-		int arr[] = { 1, 2, 3, 4 };
-		int n = arr.length;
-		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBruteForce(arr, n));
-		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulTD(arr, n));
-		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBU(arr, n));
-		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBU2(arr, n));
-	}
-}
-
-/*
-Matrix Chain Multiplication is: 18
-Matrix Chain Multiplication is: 18
-Matrix Chain Multiplication is: 18
-OptimalParenthesis : ( ( M1 M2 ) M3 ) 
-Matrix Chain Multiplication is: 18
- */
+# Driver Code
+arr = [1, 2, 3, 4]
+n = arr.length
+print("Matrix Chain Multiplication is: " + MatrixChainMulBruteForce(arr, n).to_s,"\n")
+print("Matrix Chain Multiplication is: " + MatrixChainMulTD(arr, n).to_s,"\n")
+print("Matrix Chain Multiplication is: " + MatrixChainMulBU(arr, n).to_s,"\n")
+print("Matrix Chain Multiplication is: " + MatrixChainMulBU2(arr, n).to_s,"\n")

@@ -1,26 +1,27 @@
-class LargestIncreasingSubseq {
-	static int lis(int[] arr) {
-		int n = arr.length;
-		int[] lis = new int[n];
-		int max = 0;
+def lis( arr)
+	n = arr.length
+	lis = Array.new(n){0}
+	max = 0
+	i = 0
+	# Populating LIS values in bottom up manner.
+	while (i < n)
+		lis[i] = 1
+		j = 0
+		# Initialize LIS values for all indexes as 1.
+		while (j < i)
+			if (arr[j] < arr[i] && lis[i] < lis[j] + 1)
+				lis[i] = lis[j] + 1
+			end
+			j += 1
+		end
+		if (max < lis[i])
+			# Max LIS values.
+			max = lis[i]
+		end
+		i += 1
+	end
+	return max
+end
 
-		// Populating LIS values in bottom up manner.
-		for (int i = 0; i < n; i++) {
-			lis[i] = 1; // Initialize LIS values for all indexes as 1.
-			for (int j = 0; j < i; j++) {
-				if (arr[j] < arr[i] && lis[i] < lis[j] + 1)
-					lis[i] = lis[j] + 1;
-			}
-			if (max < lis[i]) // Max LIS values.
-				max = lis[i];
-		}
-		return max;
-	}
-
-	public static void main(String args[]) {
-		int arr[] = { 10, 12, 9, 23, 25, 55, 49, 70 };
-		System.out.println("Length of lis is " + lis(arr));
-	}
-}
-
-// Length of lis is 6
+arr = [10, 12, 9, 23, 25, 55, 49, 70]
+print("Length of lis is " + lis(arr).to_s,"\n")

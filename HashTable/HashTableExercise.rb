@@ -1,128 +1,135 @@
-require "CounterMap"
-require "set"
+def isAnagram( str1,  str2)
+	if (str1.length != str2.length)
+		return false
+	end
 
-def isAnagram(str1, str2)
-  size1 = str1.size
-  size2 = str2.size
-  if size1 != size2
-    return false
-  end
-  cm = Counter.new()
-  index = 0
-  while index < size1
-    ch = str1[index]
-    cm.add(ch)
-    index += 1
-  end
+	hm =  Hash.new
+	for ch in str1 do
+		if (hm.key?(ch))
+			hm[ch] = hm[ch] + 1
+		else
+			hm[ch] = 1
+		end
+	end
 
-  index = 0
-  while index < size2
-    ch = str2[index]
-    if cm.containsKey(ch) then
-      cm.remove(ch)
-    else
-      return false
-    end
-    index += 1
-  end
-  return (cm.size() == 0)
+	for ch in str2 do
+		if (hm.key?(ch) == false || hm[ch] == 0)
+			return false
+		else
+			hm[ch] = hm[ch] - 1
+		end
+	end
+	return true
 end
 
-def removeDuplicate(str)
-  hs = Set.new
-  out = ""
-  index = 0
-  size = str.size
-  while index < size
-    ch = str[index]
-    if hs.include?(ch) == false then
-      out = out + ch
-      hs.add(ch)
-    end
-    index += 1
-  end
-  return out
+# Testing code.
+def main1()
+	first = "hello".chars
+	second = "elloh".chars
+	third = "world".chars
+	print("isAnagram : " + isAnagram(first, second).to_s,"\n")
+	print("isAnagram : " + isAnagram(first, third).to_s,"\n")
 end
 
-def findMissing(arr, start, end2)
-  hs = Set.new
-  index = 0
-  size = arr.size
-  while index < size
-    i = arr[index]
-    hs.add(i)
-    index += 1
-  end
-  curr = start
-  while curr <= end2
-    if hs.include?(curr) == false then
-      return curr
-    end
-    curr += 1
-  end
-  return start - 1
+# 	isAnagram : true
+# 	isAnagram : false
+
+def removeDuplicate( str)
+	hs =  []
+	out =  ""
+	for ch in str do
+		if (hs.include?(ch) == false)
+			out += ch
+			hs.push(ch)
+		end
+	end
+	return out
 end
 
-def printRepeating(arr)
-  hs = Set.new
-  print "\n Repeating elements are:"
-  index = 0
-  size = arr.size
-  while index < size
-    val = arr[index]
-    if hs.include?(val)
-      print "  " , val
-    end
-    hs.add(val)
-    index += 1
-  end
+# Testing code.
+def main2()
+	first = "hello".chars
+	print(removeDuplicate(first),"\n")
+end
+# 	helo
+
+def findMissing( arr,  start,  ed)
+	hs =  []
+	for i in arr do
+		hs.push(i)
+	end
+	curr = start
+	while (curr <= ed)
+		if (hs.include?(curr) == false)
+			return curr
+		end
+		curr += 1
+	end
+	return 99999
 end
 
-def printFirstRepeating(arr)
-  size = arr.size
-  hs = Counter.new()
-  i = 0
-  while i < size
-    hs.add(arr[i])
-    i += 1
-  end
-  i = 0
-  while i < size
-    hs.remove(arr[i])
-    if hs.containsKey(arr[i]) then
-      print "\n First Repeating number is : " , arr[i]
-      return
-    end
-    i += 1
-  end
+# Testing code.
+def main3()
+	arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
+	print(findMissing(arr, 1, 10),"\n")
+end
+# 	4
+
+def printRepeating( arr)
+	hs =  []
+	out = "Repeating elements are : "
+	for val in arr do
+		if (hs.include?(val))
+			out += val.to_s + " "
+		else
+			hs.push(val)
+		end
+	end
+	print(out,"\n")
 end
 
-def hornerHash(key, tableSize)
-  size = key.size
-  h = 0
-  i = 0
-  while i < size
-    h = (32 * h + key[i]) % tableSize
-    i += 1
-  end
-  return h
+# Testing code.
+def main4()
+	arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
+	printRepeating(arr1)
+end
+# 	Repeating elements are : 4 1 
+
+def printFirstRepeating( arr)
+	size = arr.length
+	hs =  []
+	firstRepeating = 99999
+	i = size - 1
+	while (i >= 0)
+		if (hs.include?(arr[i]))
+			firstRepeating = arr[i]
+		end
+		hs.push(arr[i])
+		i -= 1
+	end
+	print("First Repeating number is : " + firstRepeating.to_s,"\n")
 end
 
+# Testing code.
+def main5()
+	arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
+	printFirstRepeating(arr1)
+end
+# First Repeating number is : 1
 
-# Testing code
-first = "hello"
-second = "elloh"
-third = "world"
+def hornerHash( key,  tableSize)
+	size = key.length
+	h = 0
+	i = 0
+	while (i < size)
+		h = (32 * h + key[i].ord) % tableSize
+		i += 1
+	end
+	return h
+end
 
-print "\n isAnagram : " , isAnagram(first, second)
-print "\n isAnagram : " , isAnagram(first, third)
-
-print "\n", first
-first = removeDuplicate(first)
-print "\n ", first
-
-arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
-print "\n missing number : ", findMissing(arr, 1, 10)
-arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
-printRepeating(arr1)
-printFirstRepeating(arr1)
+main1()
+main2()
+main3()
+main4()
+main5()

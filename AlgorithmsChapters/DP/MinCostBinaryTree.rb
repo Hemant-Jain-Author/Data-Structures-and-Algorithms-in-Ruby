@@ -1,75 +1,83 @@
-import java.util.Arrays;
+def min( *arr)
+	return arr.min()
+end
 
-public class MinCostBinaryTree {
+def max( *arr)
+	return arr.max()
+end
 
-	static int maxVal(int[][] max, int i, int j) {
-		if (max[i][j] != Integer.MIN_VALUE)
-			return max[i][j];
+def mxVal( mx,  i,  j)
+	if (mx[i][j] != -99999)
+		return mx[i][j]
+	end
+	k = i
+	while (k < j)
+		mx[i][j] = [mx[i][j], mxVal(mx, i, k), mxVal(mx, k + 1, j)].max()
+		k += 1
+	end
+	return mx[i][j]
+end
 
-		for (int k = i; k < j; k++) {
-			max[i][j] = Integer.max(max[i][j], Integer.max(maxVal(max, i, k), maxVal(max, k + 1, j)));
-		}
-		return max[i][j];
-	}
+def minCostBstTDUtil( dp,  mx,  i,  j,  arr)
+	if (j <= i)
+		return 0
+	end
+	if (dp[i][j] != 99999)
+		return dp[i][j]
+	end
+	k = i
+	while (k < j)
+		dp[i][j] = min(dp[i][j],minCostBstTDUtil(dp, mx, i, k, arr) + 
+							minCostBstTDUtil(dp, mx, k + 1, j, arr) + 
+							mxVal(mx, i, k) * mxVal(mx, k + 1, j))
+		k += 1
+	end
+	return dp[i][j]
+end
 
-	static int minCostBstTD(int[][] dp, int[][] max, int i, int j, int[] arr) {
-		if (j <= i)
-			return 0;
+def minCostBstTD( arr)
+	n = arr.length
+	dp = Array.new(n){Array.new(n){99999}}
+	mx = Array.new(n){Array.new(n){-99999}}
 
-		if (dp[i][j] != Integer.MAX_VALUE)
-			return dp[i][j];
+	i = 0
+	while (i < n)
+		mx[i][i] = arr[i]
+		i += 1
+	end
+	return minCostBstTDUtil(dp, mx, 0, n - 1, arr)
+end
 
-		for (int k = i; k < j; k++) {
-			dp[i][j] = Math.min(dp[i][j], minCostBstTD(dp, max, i, k, arr) + minCostBstTD(dp, max, k + 1, j, arr)
-					+ maxVal(max, i, k) * maxVal(max, k + 1, j));
-		}
-		return dp[i][j];
-	}
+def minCostBstBU( arr)
+	n = arr.length
+	dp = Array.new(n){Array.new(n){0}}
+	mx = Array.new(n){Array.new(n){0}}
+	i = 0
+	while (i < n)
+		mx[i][i] = arr[i]
+		i += 1
+	end
+	l = 1
+	while (l < n)
+		i = 0
+		j = i + l
+		# l is length of range.
+		while (j < n)
+			dp[i][j] = 99999
+			k = i
+			while (k < j)
+				dp[i][j] = min(dp[i][j],dp[i][k] + dp[k + 1][j] + mx[i][k] * mx[k + 1][j])
+				mx[i][j] = max(mx[i][k],mx[k + 1][j])
+				k += 1
+			end
+			i += 1
+			j += 1
+		end
+		l += 1
+	end
+	return dp[0][n - 1]
+end
 
-	static int minCostBstTD(int[] arr) {
-		int n = arr.length;
-		int[][] dp = new int[n][n];
-		for (int[] row : dp)
-			Arrays.fill(row, Integer.MAX_VALUE);
-
-		int[][] max = new int[n][n];
-		for (int[] row : max)
-			Arrays.fill(row, Integer.MIN_VALUE);
-
-		for (int i = 0; i < n; i++)
-			max[i][i] = arr[i];
-
-		return minCostBstTD(dp, max, 0, n - 1, arr);
-	}
-
-	static int minCostBstBU(int[] arr) {
-		int n = arr.length;
-		int[][] dp = new int[n][n];
-
-		int[][] max = new int[n][n];
-		for (int i = 0; i < n; i++)
-			max[i][i] = arr[i];
-
-		for (int l = 1; l < n; l++) { // l is length of range.
-			for (int i = 0, j = i + l; j < n; i++, j++) {
-				dp[i][j] = Integer.MAX_VALUE;
-				for (int k = i; k < j; k++) {
-					dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k + 1][j] + max[i][k] * max[k + 1][j]);
-					max[i][j] = Math.max(max[i][k], max[k + 1][j]);
-				}
-			}
-		}
-		return dp[0][n - 1];
-	}
-
-	public static void main(String args[]) {
-		int arr[] = { 6, 2, 4 };
-		System.out.println("Total cost: " + minCostBstTD(arr));
-		System.out.println("Total cost: " + minCostBstBU(arr));
-	}
-}
-
-/*
- * Total cost: 32 
- * Total cost: 32
- */
+arr = [6, 2, 4]
+print("Total cost: " + minCostBstTD(arr).to_s,"\n")
+print("Total cost: " + minCostBstBU(arr).to_s,"\n")

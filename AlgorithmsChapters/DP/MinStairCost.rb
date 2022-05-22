@@ -1,26 +1,25 @@
-public class MinStairCost {
-	static int minStairCost(int cost[], int n) {
-		// base case
-		if (n == 1)
-			return cost[0];
+def min( *arr)
+	return arr.min()
+end
 
-		int dp[] = new int[n];
-		dp[0] = cost[0];
-		dp[1] = cost[1];
+def minStairCost( cost,  n)
+	# base case
+	if (n == 1)
+		return cost[0]
+	end
 
-		for (int i = 2; i < n; i++) {
-			dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
-		}
+	dp = Array.new(n){0}
+	dp[0] = cost[0]
+	dp[1] = cost[1]
 
-		return Math.min(dp[n - 2], dp[n - 1]);
-	}
+	i = 2
+	while (i < n)
+		dp[i] = min(dp[i - 1],dp[i - 2]) + cost[i]
+		i += 1
+	end
+	return min(dp[n - 2],dp[n - 1])
+end
 
-	public static void main(String args[]) {
-		int a[] = { 1, 5, 6, 3, 4, 7, 9, 1, 2, 11 };
-		int n = a.length;
-		System.out.print("minStairCost : " + minStairCost(a, n));
-	}
-}
-/*
-minStairCost : 18
-*/
+a = [1, 5, 6, 3, 4, 7, 9, 1, 2, 11]
+n = a.length
+print("minStairCost : " + minStairCost(a, n).to_s)

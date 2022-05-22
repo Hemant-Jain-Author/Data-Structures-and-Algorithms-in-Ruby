@@ -1,53 +1,57 @@
-public class GridUniqueWays {
+def self.gridUniqueWays( m,  n)
+	dp = Array.new(m){Array.new(n){0}}
+	dp[0][0] = 1
+	i = 1
+	# Initialize first column.
+	while (i < m)
+		dp[i][0] = dp[i - 1][0]
+		i += 1
+	end
+	j = 1
+	# Initialize first row.
+	while (j < n)
+		dp[0][j] = dp[0][j - 1]
+		j += 1
+	end
+	i = 1
+	while (i < m)
+		j = 1
+		while (j < n)
+			dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+			j += 1
+		end
+		i += 1
+	end
+	return dp[m - 1][n - 1]
+end
 
-	private static int gridUniqueWays(int m, int n) {
-		int[][] dp = new int[m][n];
-		dp[0][0] = 1;
+# Diagonal movement allowed.
+def self.gridUnique3Ways( m,  n)
+	dp = Array.new(m){Array.new(n){0}}
+	dp[0][0] = 1
+	i = 1
+	# Initialize first column.
+	while (i < m)
+		dp[i][0] = dp[i - 1][0]
+		i += 1
+	end
+	j = 1
+	# Initialize first row.
+	while (j < n)
+		dp[0][j] = dp[0][j - 1]
+		j += 1
+	end
+	i = 1
+	while (i < m)
+		j = 1
+		while (j < n)
+			dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + dp[i][j - 1]
+			j += 1
+		end
+		i += 1
+	end
+	return dp[m - 1][n - 1]
+end
 
-		// Initialize first column.
-		for (int i = 1; i < m; i++) {
-			dp[i][0] = dp[i - 1][0];
-		}
-		// Initialize first row.
-		for (int j = 1; j < n; j++) {
-			dp[0][j] = dp[0][j - 1];
-		}
-
-		for (int i = 1; i < m; i++) {
-			for (int j = 1; j < n; j++)
-				dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-		}
-		return dp[m - 1][n - 1];
-	}
-
-	// Diagonal movement allowed.
-	private static int gridUnique3Ways(int m, int n) {
-		int[][] dp = new int[m][n];
-		dp[0][0] = 1;
-
-		// Initialize first column.
-		for (int i = 1; i < m; i++) {
-			dp[i][0] = dp[i - 1][0];
-		}
-		// Initialize first row.
-		for (int j = 1; j < n; j++) {
-			dp[0][j] = dp[0][j - 1];
-		}
-
-		for (int i = 1; i < m; i++) {
-			for (int j = 1; j < n; j++)
-				dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + dp[i][j - 1];
-		}
-		return dp[m - 1][n - 1];
-	}
-
-	public static void main(String args[]) {
-		System.out.println(gridUniqueWays(3, 3));
-		System.out.println(gridUnique3Ways(3, 3));
-	}
-}
-
-/*
- * 6
- * 13
- */
+print(self.gridUniqueWays(3, 3),"\n")
+print(self.gridUnique3Ways(3, 3),"\n")

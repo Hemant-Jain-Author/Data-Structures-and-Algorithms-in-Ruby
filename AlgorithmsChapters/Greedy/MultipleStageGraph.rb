@@ -1,52 +1,51 @@
-import java.util.Arrays;
 
-public class MultipleStageGraph {
-	static int INF = Integer.MAX_VALUE;
+INF = 99999
 
-	// Returns shortest distance from 0 to N-1.
-	public static int shortestDist(int[][] graph, int n) {
-		// dist[i] is going to store shortest
-		// distance from node i to node n-1.
-		int[] dist = new int[n];
-		Arrays.fill(dist, INF);
-		int[] path = new int[n];
-		int value;
-		dist[0] = 0;
-		path[0] = -1;
+def shortestDist( graph,  n)
+	# dist[i] is going to store shortest
+	# distance from node i to node n-1.
+	dist = Array.new(n){INF}
+	path = Array.new(n){0}
+	dist[0] = 0
+	path[0] = -1
+	i = 0
+	# Calculating shortest path for the nodes
+	while (i < n)
+		j = i
+		# Check all nodes of next
+		while (j < n)
+			# Reject if no edge exists
+			if (graph[i][j] == INF)
+				j += 1
+				next
+			end
+			value = graph[i][j] + dist[i]
+			if (dist[j] > value)
+				dist[j] = value
+				path[j] = i
+			end
+			j += 1
+		end
+		i += 1
+	end
+	value = n - 1
+	while (value != -1)
+		print(value.to_s + " ")
+		value = path[value]
+	end
+	print("\n")
+	return dist[n - 1]
+end
 
-		// Calculating shortest path for the nodes
-		for (int i = 0; i < n; i++) {
-			// Check all nodes of next
-			for (int j = i; j < n; j++) {
-				// Reject if no edge exists
-				if (graph[i][j] == INF)
-					continue;
-				value = graph[i][j] + dist[i];
-				if (dist[j] > value) {
-					dist[j] = value;
-					path[j] = i;
-				}
-			}
-		}
-		value = n - 1;
-		while (value != -1) {
-			System.out.print(" " + value);
-			value = path[value];
-		}
-		System.out.println();
-
-		return dist[n - 1];
-	}
-
-	// Testing code.
-	public static void main(String[] args) {
-		// Graph stored in the form of an
-		// adjacency Matrix
-		int[][] graph = new int[][] { { INF, 1, 2, 5, INF, INF, INF, INF }, { INF, INF, INF, INF, 4, 11, INF, INF },
-				{ INF, INF, INF, INF, 9, 5, 16, INF }, { INF, INF, INF, INF, INF, INF, 2, INF },
-				{ INF, INF, INF, INF, INF, INF, INF, 18 }, { INF, INF, INF, INF, INF, INF, INF, 13 },
-				{ INF, INF, INF, INF, INF, INF, INF, 2 }, { INF, INF, INF, INF, INF, INF, INF, INF } };
-
-		System.out.println(shortestDist(graph, 8));
-	}
-}
+# Testing code.
+# Graph stored in the form of an adjacency Matrix
+graph = [
+[INF, 1, 2, 5, INF, INF, INF, INF],
+[INF, INF, INF, INF, 4, 11, INF, INF],
+[INF, INF, INF, INF, 9, 5, 16, INF],
+[INF, INF, INF, INF, INF, INF, 2, INF],
+[INF, INF, INF, INF, INF, INF, INF, 18],
+[INF, INF, INF, INF, INF, INF, INF, 13],
+[INF, INF, INF, INF, INF, INF, INF, 2],
+[INF, INF, INF, INF, INF, INF, INF, INF]]
+print(shortestDist(graph, 8),"\n")

@@ -1,29 +1,33 @@
-public class Vacation {
-	// days are must travel days, costs are cost of tickets.
-	public static int minCostTravel(int[] days, int[] costs) {
-		int n = days.length;
-		int max = days[n - 1];
-		int[] dp = new int[max + 1];
+def min( *arr)
+	return arr.min()
+end
 
-		int j = 0;
-		for (int i = 1; i <= max; i++) {
-			if (days[j] == i) {// That days is definitely travelled.
-				j++;
-				dp[i] = dp[i - 1] + costs[0];
-				dp[i] = Math.min(dp[i], dp[Math.max(0, i - 7)] + costs[1]);
-				dp[i] = Math.min(dp[i], dp[Math.max(0, i - 30)] + costs[2]);
-			} else
-				dp[i] = dp[i - 1]; // day may be ignored.
-		}
-		return dp[max];
-	}
+def max( *arr)
+	return arr.max()
+end
 
-	public static void main(String[] args) {
-		int[] days = { 1, 3, 5, 7, 12, 20, 30 };
-		int[] costs = { 2, 7, 20 };
-		System.out.println("Min cost is:" + minCostTravel(days, costs));
-	}
-}
-/*
- * Min cost is:13
- */
+# days are must travel days, costs are cost of tickets.
+def self.minCostTravel( days,  costs)
+	n = days.length
+	max = days[n - 1]
+	dp = Array.new(max + 1){0}
+	j = 0
+	i = 1
+	while (i <= max)
+		if (days[j] == i)
+			# That days is definitely travelled.
+			j += 1
+			dp[i] = dp[i - 1] + costs[0]
+			dp[i] = min(dp[i],dp[max(0,i - 7)] + costs[1])
+			dp[i] = min(dp[i],dp[max(0,i - 30)] + costs[2])
+		else
+			dp[i] = dp[i - 1]
+		end
+		i += 1
+	end
+	return dp[max]
+end
+
+days = [1, 3, 5, 7, 12, 20, 30]
+costs = [2, 7, 20]
+print("Min cost is:" + self.minCostTravel(days, costs).to_s,"\n")

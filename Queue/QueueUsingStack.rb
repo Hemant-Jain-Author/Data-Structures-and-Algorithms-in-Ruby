@@ -1,34 +1,32 @@
 class QueueUsingStack
+  attr_accessor :stk1, :stk2
+
   def initialize()
-    @stk1 = []
-    @stk2 = []
+    self.stk1 = []
+    self.stk2 = []
   end
 
   def add(value)
-    @stk1.push(value)
+    self.stk1.push(value)
   end
 
   def remove()
-    if @stk2.size != 0 then
-      return @stk2.pop()
+    if self.stk2.size != 0 then
+      return self.stk2.pop()
     end
-    while @stk1.size != 0
-      value = @stk1.pop()
-      @stk2.push(value)
+    while self.stk1.size != 0
+      value = self.stk1.pop()
+      self.stk2.push(value)
     end
-    return @stk2.pop()
+    return self.stk2.pop()
   end
 end
 
 # Testing code
 que = QueueUsingStack.new()
 que.add(1)
-puts que.remove()
 que.add(2)
-que.add(21)
-que.add(211)
-puts que.remove()
-puts que.remove()
+que.add(3)
 puts que.remove()
 puts que.remove()
 puts que.remove()

@@ -1,158 +1,141 @@
-import java.util.Arrays;
+def minCoins( coins,  n,  val)
+	# Greedy may be wrong.
+	if (val <= 0)
+		return 0
+	end
+	count = 0
+	coins.sort()
+	i = n - 1
+	while (i >= 0 && val > 0)
+		if (coins[i] <= val)
+			count += 1
+			val -= coins[i]
+		else
+			i -= 1
+		end
+	end
+	return (val == 0) ? count : -1
+end
 
-public class CoinChange {
-	static int minCoins(int[] coins, int n, int val) { // Greedy may be wrong.
-		if (val <= 0)
-			return 0;
+def minCoins2( coins,  n,  val)
+	# Brute force.
+	if (val == 0)
+		return 0
+	end
+	count = 99999
+	i = 0
+	while (i < n)
+		if (coins[i] <= val)
+			subCount = minCoins2(coins, n, val - coins[i])
+			if (subCount >= 0)
+				count = [count,subCount + 1].min()
+			end
+		end
+		i += 1
+	end
+	return (count != 99999) ? count : -1
+end
 
-		int count = 0;
-		Arrays.sort(coins);
+def minCoinsTD( coins,  n,  val)
+	count = Array.new(val + 1){99999}
+	count[0] = 0
+	# zero val need zero coins.
+	return minCoinsTDUtil(count, coins, n, val)
+end
 
-		for (int i = n - 1; i >= 0 && val > 0;) {
-			if (coins[i] <= val) {
-				count++;
-				val -= coins[i];
-			} else {
-				i--;
-			}
-		}
-		return (val == 0) ? count : -1;
-	}
+def minCoinsTDUtil( count,  coins,  n,  val)
+	# Base Case
+	if (count[val] != 99999)
+		return count[val]
+	end
+	i = 0
+	# Recursion
+	while (i < n)
+		# For all possible coins
+		if (coins[i] <= val)
+			# check validity of a sub-problem
+			subCount = minCoinsTDUtil(count, coins, n, val - coins[i])
+			if (subCount != 99999 && count[val] > (subCount + 1))
+				count[val] = subCount + 1
+			end
+		end
+		i += 1
+	end
+	return count[val]
+end
 
-	static int minCoins2(int[] coins, int n, int val) { // Brute force.
-		if (val == 0)
-			return 0;
+def minCoinsBU( coins,  n,  val)
+	# DP bottom up approach.
+	count = Array.new(val + 1){99999}
+	count[0] = 0
+	i = 1
+	# Base value.
+	while (i <= val)
+		j = 0
+		while (j < n)
+			# For all coins smaller than or equal to i.
+			if (coins[j] <= i && count[i - coins[j]] != 99999 && count[i] > count[i - coins[j]] + 1)
+				count[i] = count[i - coins[j]] + 1
+			end
+			j += 1
+		end
+		i += 1
+	end
+	return (count[val] != 99999) ? count[val] : -1
+end
 
-		int count = Integer.MAX_VALUE;
-		for (int i = 0; i < n; i++) {
-			if (coins[i] <= val) {
-				int subCount = minCoins2(coins, n, val - coins[i]);
-				if (subCount >= 0)
-					count = Math.min(count, subCount + 1);
-			}
-		}
-		return (count != Integer.MAX_VALUE) ? count : -1;
-	}
+def printCoinsUtil( cvalue,  val)
+	if (val > 0)
+		printCoinsUtil(cvalue, val - cvalue[val])
+		print(cvalue[val].to_s + " ")
+	end
+end
 
-	static int minCoinsTD(int[] coins, int n, int val) {
-		int[] count = new int[val + 1];
-		Arrays.fill(count, Integer.MAX_VALUE);
-		count[0] = 0; // zero val need zero coins.
-		return minCoinsTD(count, coins, n, val);
-	}
+def printCoins( cvalue,  val)
+	print("Coins are : ")
+	printCoinsUtil(cvalue, val)
+	print("\n")
+end
 
-	static int minCoinsTD(int[] count, int[] coins, int n, int val) {
-		// Base Case
-		if (count[val] != Integer.MAX_VALUE) {
-			return count[val];
-		}
+def minCoinsBU2( coins,  n,  val)
+	# DP bottom up approach.
+	count = Array.new(val + 1){99999}
+	cvalue = Array.new(val + 1){99999}
 
-		// Recursion
-		for (int i = 0; i < n; i++) { // For all possible coins
-			if (coins[i] <= val) { // check validity of a sub-problem
-				int subCount = minCoinsTD(count, coins, n, val - coins[i]);
-				if (subCount != Integer.MAX_VALUE && count[val] > (subCount + 1))
-					count[val] = subCount + 1;
-			}
-		}
-		return count[val];
-	}
+	count[0] = 0
+	i = 1
+	# Base value.
+	while (i <= val)
+		j = 0
+		while (j < n)
+			# For all coins smaller than or equal to i.
+			if (coins[j] <= i && count[i - coins[j]] != 99999 && count[i] > count[i - coins[j]] + 1)
+				count[i] = count[i - coins[j]] + 1
+				cvalue[i] = coins[j]
+			end
+			j += 1
+		end
+		i += 1
+	end
+	if (count[val] == 99999)
+		return -1
+	end
+	printCoins(cvalue, val)
+	return count[val]
+end
 
-	static int minCoinsBU(int[] coins, int n, int val) { // DP bottom up approach.
-		int[] count = new int[val + 1];
-		Arrays.fill(count, Integer.MAX_VALUE);
-		count[0] = 0; // Base value.
+coins = [5, 6]
+value = 16
+n = coins.length
+print("Count is : " + minCoins(coins, n, value).to_s,"\n")
+print("Count is : " + minCoins2(coins, n, value).to_s,"\n")
+print("Count is : " + minCoinsTD(coins, n, value).to_s,"\n")
+print("Count is : " + minCoinsBU(coins, n, value).to_s,"\n")
+print("Count is : " + minCoinsBU2(coins, n, value).to_s,"\n")
 
-		for (int i = 1; i <= val; i++) {
-			for (int j = 0; j < n; j++) {
-				// For all coins smaller than or equal to i.
-				if (coins[j] <= i && count[i - coins[j]] != Integer.MAX_VALUE && count[i] > count[i - coins[j]] + 1) {
-					count[i] = count[i - coins[j]] + 1;
-				}
-			}
-		}
-		return (count[val] != Integer.MAX_VALUE) ? count[val] : -1;
-	}
-
-	static void printCoinsUtil(int cvalue[], int val) {
-		if (val > 0) {
-			printCoinsUtil(cvalue, val - cvalue[val]);
-			System.out.print(cvalue[val] + " ");
-		}
-	}
-
-	static void printCoins(int cvalue[], int val) {
-		System.out.print("Coins are : ");
-		printCoinsUtil(cvalue, val);
-		System.out.println();
-	}
-
-	static int minCoinsBU2(int[] coins, int n, int val) { // DP bottom up approach.
-		int[] count = new int[val + 1];
-		int[] cvalue = new int[val + 1];
-
-		Arrays.fill(count, Integer.MAX_VALUE);
-		Arrays.fill(cvalue, Integer.MAX_VALUE);
-		count[0] = 0; // Base value.
-
-		for (int i = 1; i <= val; i++) {
-			for (int j = 0; j < n; j++) {
-				// For all coins smaller than or equal to i.
-				if (coins[j] <= i && count[i - coins[j]] != Integer.MAX_VALUE && count[i] > count[i - coins[j]] + 1) {
-					count[i] = count[i - coins[j]] + 1;
-					cvalue[i] = coins[j];
-				}
-			}
-		}
-		if (count[val] == Integer.MAX_VALUE)
-			return -1;
-
-		printCoins(cvalue, val);
-		return count[val];
-	}
-
-	public static void main(String[] args) {
-		int[] coins = { 5, 6 };
-		int value = 16;
-		int n = coins.length;
-		System.out.println("Count is : " + minCoins(coins, n, value));
-		System.out.println("Count is : " + minCoins2(coins, n, value));
-		System.out.println("Count is : " + minCoinsTD(coins, n, value));
-		System.out.println("Count is : " + minCoinsBU(coins, n, value));
-		System.out.println("Count is : " + minCoinsBU2(coins, n, value));
-	}
-	/*
-	Count is : -1
-	Count is : 3
-	Count is : 3
-	Count is : 3
-	Coins are : 6 5 5 
-	Count is : 3
-	*/
-
-	public static void main1(String[] args) {
-		int[] coins = { 1, 5, 6, 9, 12 };
-		int value = 15;
-		int n = coins.length;
-		//System.out.println("Count is:" + minCoins(coins, n, value));
-		//System.out.println("Count is:" + minCoins2(coins, n, value));
-		System.out.println("Count is:" + minCoinsBU(coins, n, value));
-		//System.out.println("Count is:" + minCoinsTD(coins, n, value));
-	}
-
-	public static void main2(String[] args) {
-		int[] coins = { 1, 5, 6, 9, 11 };
-		int v = 15;
-		int n = coins.length;
-		long first, second, third, fourth;
-		// After removing sort functions performance can be compared.
-		first = System.nanoTime();
-		minCoins(coins, n, v);
-		second = System.nanoTime();
-		minCoins2(coins, n, v);
-		third = System.nanoTime();
-		minCoinsBU(coins, n, v);
-		fourth = System.nanoTime();
-		System.out.println((second - first) + " : " + (third - second) + " : " + (fourth - third));
-	}
-}
+# 	Count is : -1
+# 	Count is : 3
+# 	Count is : 3
+# 	Count is : 3
+# 	Coins are : 6 5 5 
+# 	Count is : 3

@@ -1,91 +1,116 @@
-public class GraphColouring {
-	static void printSolution(int[] colour, int V) {
-		System.out.print("Assigned colours are::");
-		for (int i = 0; i < V; i++)
-			System.out.print(" " + colour[i]);
-		System.out.println();
-	}
+def printSolution( colour,  vCount)
+	print("Assigned colours are::")
+	i = 0
+	while (i < vCount)
+		print(" " + colour[i].to_s)
+		i += 1
+	end
+	print("\n")
+end
 
-	// Check if the whole graph is coloured properly.
-	static boolean isSafe2(boolean[][] graph, int[] colour, int V) {
-		for (int i = 0; i < V; i++)
-			for (int j = i + 1; j < V; j++)
-				if (graph[i][j] && colour[j] == colour[i])
-					return false;
-		return true;
-	}
+# Check if the whole graph is coloured properly.
+def isSafe2( graph,  colour,  vCount)
+	i = 0
+	while (i < vCount)
+		j = i + 1
+		while (j < vCount)
+			if (graph[i][j] && colour[j] == colour[i])
+				return false
+			end
+			j += 1
+		end
+		i += 1
+	end
+	return true
+end
 
-	static boolean graphColouring2(boolean[][] graph, int V, int m, int[] colour, int i) {
-		if (i == V) {
-			if (isSafe2(graph, colour, V)) {
-				printSolution(colour, V);
-				return true;
-			}
-			return false;
-		}
+def graphColouring2Util( graph,  vCount,  m,  colour,  i)
+	if (i == vCount)
+		if (isSafe2(graph, colour, vCount))
+			printSolution(colour, vCount)
+			return true
+		end
+		return false
+	end
+	j = 1
+	# Assign each colour from 1 to m
+	while (j <= m)
+		colour[i] = j
+		if (graphColouring2Util(graph, vCount, m, colour, i + 1))
+			return true
+		end
+		j += 1
+	end
+	return false
+end
 
-		// Assign each colour from 1 to m
-		for (int j = 1; j <= m; j++) {
-			colour[i] = j;
-			if (graphColouring2(graph, V, m, colour, i + 1))
-				return true;
-		}
-		return false;
-	}
+def graphColouring2( graph,  vCount,  m)
+	colour = Array.new(vCount){0}
+	if (graphColouring2Util(graph, vCount, m, colour, 0))
+		return true
+	end
+	return false
+end
 
-	static boolean graphColouring2(boolean[][] graph, int V, int m) {
-		int[] colour = new int[V];
-		if (graphColouring2(graph, V, m, colour, 0))
-			return true;
-		return false;
-	}
+# Is it safe to colour vth vertice with c colour.
+def isSafe( graph,  vCount,  colour,  v,  c)
+	i = 0
+	while (i < vCount)
+		if (graph[v][i] == true && c == colour[i])
+			return false
+		end
+		i += 1
+	end
+	return true
+end
 
-	public static void main(String[] args) {
-		boolean[][] graph = { { false, true, false, false, true }, { true, false, true, false, true },
-				{ false, true, false, true, true }, { false, false, true, false, true },
-				{ true, true, true, true, false } };
-		int V = 5; // Number of vertices
-		int m = 4; // Number of colours
-		if (!graphColouring2(graph, V, m))
-			System.out.println("Solution does not exist");
-		if (!graphColouring(graph, V, m))
-			System.out.println("Solution does not exist");
-	}
+def graphColouringUtil( graph,  vCount,  m,  colour,  i)
+	if (i == vCount)
+		printSolution(colour, vCount)
+		return true
+	end
+	j = 1
+	while (j <= m)
+		if (isSafe(graph, vCount, colour, i, j))
+			colour[i] = j
+			if (graphColouringUtil(graph, vCount, m, colour, i + 1))
+				return true
+			end
+		end
+		j += 1
+	end
+	return false
+end
 
-	// Is it safe to colour vth vertice with c colour.
-	static boolean isSafe(boolean graph[][], int V, int colour[], int v, int c) {
-		for (int i = 0; i < V; i++)
-			if (graph[v][i] == true && c == colour[i])
-				return false;
-		return true;
-	}
+def graphColouring( graph,  vCount,  m)
+	colour = Array.new(vCount){0}
+	if (graphColouringUtil(graph, vCount, m, colour, 0))
+		return true
+	end
+	return false
+end
 
-	static boolean graphColouringUtil(boolean graph[][], int V, int m, int colour[], int i) {
-		if (i == V) {
-			printSolution(colour, V);
-			return true;
-		}
 
-		for (int j = 1; j <= m; j++) {
-			if (isSafe(graph, V, colour, i, j)) {
-				colour[i] = j;
-				if (graphColouringUtil(graph, V, m, colour, i + 1))
-					return true;
-			}
-		}
-		return false;
-	}
+graph =[
+[false, true, false, false, true],
+[true, false, true, false, true],
+[false, true, false, true, true],
+[false, false, true, false, true],
+[true, true, true, true, false]]
 
-	static boolean graphColouring(boolean[][] graph, int V, int m) {
-		int[] colour = new int[V];
-		if (graphColouringUtil(graph, V, m, colour, 0)) {
-			return true;
-		}
-		return false;
-	}
-}
+v = 5
+# Number of vertices
+m = 4
+# Number of colours
+if (!graphColouring2(graph,v, m))
+	print("Solution does not exist","\n")
+end
 
-/*
- * Assigned colours are:: 1 2 1 2 3 
- * Assigned colours are:: 1 2 1 2 3
- */
+if (!graphColouring(graph, v, m))
+	print("Solution does not exist","\n")
+end
+    
+"""
+Assigned colours are:: 1 2 1 2 3
+Assigned colours are:: 1 2 1 2 3
+"""

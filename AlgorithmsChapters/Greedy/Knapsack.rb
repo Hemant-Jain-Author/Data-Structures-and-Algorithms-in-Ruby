@@ -1,56 +1,40 @@
-import java.util.Arrays;
-import java.util.Comparator;
+class Items
+	# Define the accessor and reader of class Items
+	attr_reader :wt,:cost,:density
+	attr_accessor :wt,:cost,:density
+	def initialize( w,  v)
+		self.wt = w
+		self.cost = v
+		self.density = self.cost / self.wt
+	end
+end
 
-public class Knapsack {
-	private class Items {
-		int wt;
-		int cost;
-		double density;
+# Approximate solution.
+def getMaxCostGreedy( wt,  cost,  capacity)
+	totalCost = 0
+	n = wt.length
+	itemList = Array.new(n){nil}
+	i = 0
+	while (i < n)
+		itemList[i] = Items.new(wt[i], cost[i])
+		i += 1
+	end
+	itemList.sort! {|x, y| -x.density <=> -y.density}
 
-		Items(int w, int v) {
-			wt = w;
-			cost = v;
-			density = (double) cost / wt;
-		}
-	}
+	i = 0
+	while (i < n && capacity > 0)
+		if (capacity - itemList[i].wt >= 0)
+			capacity -= itemList[i].wt
+			totalCost += itemList[i].cost
+		end
+		i += 1
+	end
+	return totalCost
+end
 
-	class decDensity implements Comparator<Items> {
-		@Override
-		public int compare(Items a, Items b) {
-			return (int) (b.density - a.density);
-		}
-	}
-
-	// Approximate solution.
-	public int getMaxCostGreedy(int[] wt, int[] cost, int capacity) {
-		int totalCost = 0;
-		int n = wt.length;
-		Items[] itemList = new Items[n];
-		for (int i = 0; i < n; i++)
-			itemList[i] = new Items(wt[i], cost[i]);
-
-		Arrays.sort(itemList, new decDensity());
-		for (int i = 0; i < n && capacity > 0; i++) {
-			if (capacity - itemList[i].wt >= 0) {
-				capacity -= itemList[i].wt;
-				totalCost += itemList[i].cost;
-			}
-		}
-		return totalCost;
-	}
-
-	// Testing code.
-	public static void main(String[] args) {
-		int[] wt = { 10, 40, 20, 30 };
-		int[] cost = { 60, 40, 90, 120 };
-		int capacity = 50;
-
-		Knapsack kp = new Knapsack();
-		int maxCost = kp.getMaxCostGreedy(wt, cost, capacity);
-		System.out.println("Maximum cost obtained = " + maxCost);
-	}
-}
-
-/*
- * Maximum cost obtained = 150
- */
+# Testing code.
+wt = [10, 40, 20, 30]
+cost = [60, 40, 90, 120]
+capacity = 50
+maxCost = getMaxCostGreedy(wt, cost, capacity)
+print("Maximum cost obtained = " + maxCost.to_s,"\n")

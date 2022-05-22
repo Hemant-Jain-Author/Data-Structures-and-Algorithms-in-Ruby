@@ -1,70 +1,74 @@
-import java.util.Arrays;
+class JobSequencing
+    # Define the accessor and reader of class JobSequencing
+    attr_reader :jobs,:n,:maxDL
+    attr_accessor :jobs,:n,:maxDL
 
-public class JobSequencing {
-	Job jobs[];
-	int n;
-	int maxDL;
+    class Job
+        # Define the accessor and reader of class Job
+        attr_reader :id,:deadline,:profit
+        attr_accessor :id,:deadline,:profit
 
-	static class Job {
-		char id;
-		int deadline, profit;
+        def initialize( id,  deadline,  profit)
+            self.id = id
+            self.deadline = deadline
+            self.profit = profit
+        end
+    end
 
-		public Job(char id, int deadline, int profit) {
-			this.id = id;
-			this.deadline = deadline;
-			this.profit = profit;
-		}
-	}
+    def initialize( ids,  deadlines,  profits,  n)
+        self.jobs = Array.new(n){nil}
+        self.n = n
+        self.maxDL = deadlines[0]
+        i = 1
+        while (i < n)
+            if (deadlines[i] > self.maxDL)
+                self.maxDL = deadlines[i]
+            end
+            i += 1
+        end
+        i = 0
+        while (i < n)
+            self.jobs[i] = Job.new(ids[i], deadlines[i], profits[i])
+            i += 1
+        end
+    end
 
-	public JobSequencing(char[] ids, int[] deadlines, int[] profits, int n) {
-		this.jobs = new Job[n];
-		this.n = n;
-		this.maxDL = deadlines[0];
-		for (int i = 1; i < n; i++) {
-			if (deadlines[i] > this.maxDL)
-				this.maxDL = deadlines[i];
-		}
+    def display()
+		self.jobs.sort! {|x, y| -x.profit <=> -y.profit}
 
-		for (int i = 0; i < n; i++) {
-			this.jobs[i] = new Job(ids[i], deadlines[i], profits[i]);
-		}
-	}
+        result = Array.new(self.maxDL){false}
+        job = Array.new(self.maxDL){' '}
+        profit = 0
+        i = 0
+        # Iterate through all given jobs
+        while (i < self.n)
+            j = self.jobs[i].deadline - 1
+            while (j >= 0)
+                if (result[j] == false)
+                    result[j] = true
+                    job[j] = self.jobs[i].id
+                    profit += self.jobs[i].profit
+                    break
+                end
+                j -= 1
+            end
+            i += 1
+        end
+        print("Profit is :: " + profit.to_s,"\n")
+        print("Jobs selected are::")
+        i = 0
+        while (i < self.maxDL)
+            if (job[i] != '�')
+                print(" " + job[i].to_s)
+            end
+            i += 1
+        end
+    end
+end
 
-	void print() {
-		Arrays.sort(this.jobs, (a, b) -> b.profit - a.profit);
-		boolean result[] = new boolean[this.maxDL];
-		char job[] = new char[this.maxDL];
-		int profit = 0;
-
-		// Iterate through all given jobs
-		for (int i = 0; i < n; i++) {
-			for (int j = this.jobs[i].deadline - 1; j >= 0; j--) {
-				if (result[j] == false) {
-					result[j] = true;
-					job[j] = this.jobs[i].id;
-					profit += this.jobs[i].profit;
-					break;
-				}
-			}
-		}
-		System.out.println("Profit is :: " + profit);
-		System.out.print("Jobs selected are::");
-		for (int i = 0; i < this.maxDL; i++)
-			if (job[i] != '\u0000')
-				System.out.print(" " + job[i]);
-	}
-
-	// Testing code.
-	public static void main(String args[]) {
-		char id[] = { 'a', 'b', 'c', 'd', 'e' };
-		int deadline[] = { 3, 1, 2, 4, 4 };
-		int profit[] = { 50, 40, 27, 31, 30 };
-		JobSequencing js = new JobSequencing(id, deadline, profit, 5);
-		js.print();
-	}
-}
-
-/*
- * Profit is :: 151 
- * Jobs selected are:: b e a d
- */
+# Testing code.
+id = ['a', 'b', 'c', 'd', 'e']
+deadline = [3, 1, 2, 4, 4]
+profit = [50, 40, 27, 31, 30]
+js = JobSequencing.new(id, deadline, profit, 5)
+js.display()

@@ -1,94 +1,123 @@
-class Permutations {
-	private static void printArray(int[] arr, int n) {
-		for (int i = 0; i < n; i++)
-			System.out.print(arr[i] + " ");
-		System.out.println();
-	}
+def printArray( arr,  n)
+	i = 0
+	while (i < n)
+		print(arr[i].to_s + " ")
+		i += 1
+	end
+	print("\n")
+end
 
-	private static void swap(int[] arr, int i, int j) {
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
-	}
+def swap( arr,  i,  j)
+	temp = arr[i]
+	arr[i] = arr[j]
+	arr[j] = temp
+end
 
-	public static void permutation(int[] arr, int i, int length) {
-		if (length == i) {
-			printArray(arr, length);
-			return;
-		}
+def permutation( arr,  i,  length)
+	if (length == i)
+		printArray(arr, length)
+		return
+	end
+	j = i
+	while (j < length)
+		swap(arr, i, j)
+		permutation(arr, i + 1, length)
+		swap(arr, i, j)
+		j += 1
+	end
+	return
+end
 
-		for (int j = i; j < length; j++) {
-			swap(arr, i, j);
-			permutation(arr, i + 1, length);
-			swap(arr, i, j);
-		}
-		return;
-	}
+def isValid( arr,  n)
+	j = 1
+	while (j < n)
+		if ((arr[j] - arr[j - 1]).abs < 2)
+			return false
+		end
+		j += 1
+	end
+	return true
+end
 
-	/*
-	1 2 3 4 
-	1 2 4 3 
-	.....
-	4 1 3 2 
-	4 1 2 3 
-	*/
+def permutation2( arr,  i,  length)
+	if (length == i)
+		if (isValid(arr, length))
+			printArray(arr, length)
+		end
+		return
+	end
+	j = i
+	while (j < length)
+		swap(arr, i, j)
+		permutation2(arr, i + 1, length)
+		swap(arr, i, j)
+		j += 1
+	end
+	return
+end
 
-	private static boolean isValid(int[] arr, int n) {
-		for (int j = 1; j < n; j++) {
-			if (Math.abs(arr[j] - arr[j - 1]) < 2)
-				return false;
-		}
-		return true;
-	}
+def isValid2( arr,  i)
+	if (i < 1 || (arr[i] - arr[i - 1]).abs >= 2)
+		return true
+	end
+	return false
+end
 
-	public static void permutation2(int[] arr, int i, int length) {
-		if (length == i) {
-			if (isValid(arr, length))
-				printArray(arr, length);
-			return;
-		}
+def permutation3( arr,  i,  length)
+	if (length == i)
+		printArray(arr, length)
+		return
+	end
+	j = i
+	while (j < length)
+		swap(arr, i, j)
+		if (isValid2(arr, i))
+			permutation3(arr, i + 1, length)
+		end
+		swap(arr, i, j)
+		j += 1
+	end
+	return
+end
 
-		for (int j = i; j < length; j++) {
-			swap(arr, i, j);
-			permutation2(arr, i + 1, length);
-			swap(arr, i, j);
-		}
-		return;
-	}
+# Testing code
 
-	private static boolean isValid2(int[] arr, int i) {
-		if (i < 1 || Math.abs(arr[i] - arr[i - 1]) >= 2)
-			return true;
-		return false;
-	}
-
-	public static void permutation3(int[] arr, int i, int length) {
-		if (length == i) {
-			printArray(arr, length);
-			return;
-		}
-
-		for (int j = i; j < length; j++) {
-			swap(arr, i, j);
-			if (isValid2(arr, i))
-				permutation3(arr, i + 1, length);
-			swap(arr, i, j);
-		}
-		return;
-	}
-
-	/* Testing code */
-	public static void main(String[] args) {
-		int[] arr = { 1, 2, 3, 4 };
-		permutation(arr, 0, 4);
-		System.out.println();
-		permutation2(arr, 0, 4);
-		System.out.println();
-		permutation3(arr, 0, 4);
-	}
-}
+arr = [1, 2, 3, 4]
+permutation(arr, 0, 4)
+print("\n")
+permutation2(arr, 0, 4)
+print("\n")
+permutation3(arr, 0, 4)
 
 /*
+1 2 3 4 
+1 2 4 3 
+1 3 2 4 
+1 3 4 2 
+1 4 3 2 
+1 4 2 3 
+2 1 3 4 
+2 1 4 3 
+2 3 1 4 
+2 3 4 1 
+2 4 3 1 
 2 4 1 3 
-3 1 4 2
+3 2 1 4 
+3 2 4 1 
+3 1 2 4 
+3 1 4 2 
+3 4 1 2 
+3 4 2 1 
+4 2 3 1 
+4 2 1 3 
+4 3 2 1 
+4 3 1 2 
+4 1 3 2 
+4 1 2 3 
+
+2 4 1 3 
+3 1 4 2 
+
+2 4 1 3 
+3 1 4 2 
 */

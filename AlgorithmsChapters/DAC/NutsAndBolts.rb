@@ -1,63 +1,45 @@
-public class NutsAndBolts {
-	public static void makePairs(int[] nuts, int[] bolts) {
-		makePairs(nuts, bolts, 0, nuts.length - 1);
-		System.out.println("Matched nuts and bolts are : ");
-		printArray(nuts);
-		printArray(bolts);
-	}
+def makePairs( nuts,  bolts)
+	makePairsUtil(nuts, bolts, 0, nuts.length - 1)
+	print("Matched nuts and bolts are : ",nuts,bolts)
+end
 
-	// Quick sort kind of approach.
-	private static void makePairs(int[] nuts, int[] bolts, int low, int high) {
-		if (low < high) {
-			// Choose first element of bolts array as pivot to partition nuts.
-			int pivot = partition(nuts, low, high, bolts[low]);
+# Quick sort kind of approach.
+def makePairsUtil( nuts,  bolts,  low,  high)
+	if (low < high)
+		# Choose first element of bolts array as pivot to partition nuts.
+		pivot = partition(nuts, low, high, bolts[low])
+		# Using nuts[pivot] as pivot to partition bolts.
+		partition(bolts, low, high, nuts[pivot])
+		# Recursively lower and upper half of nuts and bolts are matched.
+		makePairsUtil(nuts, bolts, low, pivot - 1)
+		makePairsUtil(nuts, bolts, pivot + 1, high)
+	end
+end
 
-			// Using nuts[pivot] as pivot to partition bolts.
-			partition(bolts, low, high, nuts[pivot]);
+def swap( arr,  first,  second)
+	temp = arr[first]
+	arr[first] = arr[second]
+	arr[second] = temp
+end
 
-			// Recursively lower and upper half of nuts and bolts are matched.
-			makePairs(nuts, bolts, low, pivot - 1);
-			makePairs(nuts, bolts, pivot + 1, high);
-		}
-	}
+# Partition method similar to quick sort algorithm.
+def partition( arr,  low,  high,  pivot)
+	i = low
+	j = low
+	while (j < high)
+		if (arr[j] < pivot)
+			swap(arr, i, j)
+			i += 1
+		elsif (arr[j] == pivot)
+			swap(arr, high, j)
+			j -= 1
+		end
+		j += 1
+	end
+	swap(arr, i, high)
+	return i
+end
 
-	private static void swap(int[] arr, int first, int second) {
-		int temp = arr[first];
-		arr[first] = arr[second];
-		arr[second] = temp;
-	}
-
-	// Partition method similar to quick sort algorithm.
-	private static int partition(int[] arr, int low, int high, int pivot) {
-		int i = low;
-		for (int j = low; j < high; j++) {
-			if (arr[j] < pivot) {
-				swap(arr, i, j);
-				i++;
-			} else if (arr[j] == pivot) {
-				swap(arr, high, j);
-				j--;
-			}
-		}
-		swap(arr, i, high);
-		return i;
-	}
-
-	private static void printArray(int[] arr) {
-		for (int i : arr)
-			System.out.print(i + " ");
-		System.out.println();
-	}
-
-	public static void main(String[] args) {
-		int nuts[] = { 1, 2, 6, 5, 4, 3 };
-		int bolts[] = { 6, 4, 5, 1, 3, 2 };
-		makePairs(nuts, bolts);
-	}
-}
-
-/*
-Matched nuts and bolts are : 
-1 2 3 4 5 6 
-1 2 3 4 5 6 
-*/
+nuts = [1, 2, 6, 5, 4, 3]
+bolts = [6, 4, 5, 1, 3, 2]
+makePairs(nuts, bolts)

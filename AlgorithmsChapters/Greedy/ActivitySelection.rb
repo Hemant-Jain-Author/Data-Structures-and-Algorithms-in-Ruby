@@ -1,55 +1,40 @@
+class Activity # Define the accessor and reader of class Activity
+	attr_reader :start,:stop
+	attr_accessor :start,:stop
+	def initialize( s,  f)
+		self.start = s
+		self.stop = f
+	end
+end
 
-// Activities selection problem.
-import java.util.*;
+def maxActivities( s,  f,  n)
+	act = Array.new(n){nil}
+	i = 0
+	while (i < n)
+		act[i] = Activity.new(s[i], f[i])
+		i += 1
+	end
 
-// Prints a maximum set of activities that can be done by a 
-// single person performing one task at a time.
-// s[] is an array that contains start time of all activities
-// f[] is an array that contains finish time of all activities
+	act = act.sort_by(&:stop) # sort according to finish time.
+	
+	i = 0
+	# The first activity at index 0 is always gets selected.
+	print("Activities are : (" + act[i].start.to_s + "," + act[i].stop.to_s + ")")
+	j = 1
+	while (j < n)
+		# Find next activity whose start time is greater than or equal
+		# to the finish time of previous activity.
+		if (act[j].start >= act[i].stop)
+			print(", (" + act[j].start.to_s + "," + act[j].stop.to_s + ")")
+			i = j
+		end
+		j += 1
+	end
+end
 
-class ActivitySelection {
-	class Activity implements Comparable<Activity> {
-		int start, stop;
+# Testing code.
 
-		Activity(int s, int f) {
-			start = s;
-			stop = f;
-		}
-
-		public int compareTo(Activity s2) {
-			return this.stop - s2.stop;
-		}
-	}
-
-	public void maxActivities(int s[], int f[], int n) {
-		Activity[] act = new Activity[n];
-		for (int i = 0; i < n; i++)
-			act[i] = new Activity(s[i], f[i]);
-		Arrays.sort(act); // sort according to finish time.
-
-		int i = 0; // The first activity at index 0 is always gets selected.
-		System.out.print("Activities are : (" + act[i].start + "," + act[i].stop + ")");
-
-		for (int j = 1; j < n; j++) {
-			// Find next activity whose start time is greater than or equal
-			// to the finish time of previous activity.
-			if (act[j].start >= act[i].stop) {
-				System.out.print(", (" + act[j].start + "," + act[j].stop + ")");
-				i = j;
-			}
-		}
-	}
-
-	// Testing code.
-	public static void main(String[] args) {
-		int s[] = { 1, 5, 0, 3, 5, 6, 8 };
-		int f[] = { 2, 6, 5, 4, 9, 7, 9 };
-		int n = s.length;
-		ActivitySelection as = new ActivitySelection();
-		as.maxActivities(s, f, n);
-	}
-}
-
-/*
- * Activities are : (1,2), (3,4), (5,6), (6,7), (8,9)
- */
+s = [1, 5, 0, 3, 5, 6, 8]
+f = [2, 6, 5, 4, 9, 7, 9]
+n = s.length
+maxActivities(s, f, n)

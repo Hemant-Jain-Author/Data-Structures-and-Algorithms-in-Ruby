@@ -1,54 +1,40 @@
-import java.util.Arrays;
+# Define the accessor and reader of class Items
+class Items
+	attr_reader :wt,:cost,:density
+	attr_accessor :wt,:cost,:density
+	def initialize( w,  v)
+		self.wt = w
+		self.cost = v
+		self.density = self.cost / self.wt
+	end
+end
 
-public class FractionalKnapsack {
-	private class Items implements Comparable<Items> {
-		int wt;
-		int cost;
-		double density;
-
-		Items(int w, int v) {
-			wt = w;
-			cost = v;
-			density = (double) cost / wt;
-		}
-
-		public int compareTo(Items s2) { // decreasing order.
-			return (int) (s2.density - this.density);
-		}
-	}
-
-	public double getMaxCostFractional(int[] wt, int[] cost, int capacity) {
-		double totalCost = 0;
-		int n = wt.length;
-		Items[] itemList = new Items[n];
-		for (int i = 0; i < n; i++)
-			itemList[i] = new Items(wt[i], cost[i]);
-
-		Arrays.sort(itemList);
-		for (int i = 0; i < n; i++) {
-			if (capacity - itemList[i].wt >= 0) {
-				capacity -= itemList[i].wt;
-				totalCost += itemList[i].cost;
-			} else {
-				totalCost += (itemList[i].density * capacity);
-				break;
-			}
-		}
-		return totalCost;
-	}
-
-	// Testing code.
-	public static void main(String[] args) {
-		int[] wt = { 10, 40, 20, 30 };
-		int[] cost = { 60, 40, 90, 120 };
-		int capacity = 50;
-
-		FractionalKnapsack kp = new FractionalKnapsack();
-		double maxCost = kp.getMaxCostFractional(wt, cost, capacity);
-		System.out.println("Maximum cost obtained = " + maxCost);
-	}
-}
-
-/*
- * Maximum cost obtained = 230.0
- */
+def getMaxCostFractional( wt,  cost,  capacity)
+	totalCost = 0
+	n = wt.length
+	itemList = Array.new(n){nil}
+	i = 0
+	while (i < n)
+		itemList[i] = Items.new(wt[i], cost[i])
+		i += 1
+	end
+	itemList.sort! {|x, y| -x.density <=> -y.density}
+	i = 0
+	while (i < n)
+		if (capacity - itemList[i].wt >= 0)
+			capacity -= itemList[i].wt
+			totalCost += itemList[i].cost
+		else
+			totalCost += (itemList[i].density * capacity)
+			break
+		end
+		i += 1
+	end
+	return totalCost
+end
+# Testing code.
+wt = [10, 40, 20, 30]
+cost = [60, 40, 90, 120]
+capacity = 50
+maxCost = getMaxCostFractional(wt, cost, capacity)
+print("Maximum cost obtained = " + maxCost.to_s,"\n")
