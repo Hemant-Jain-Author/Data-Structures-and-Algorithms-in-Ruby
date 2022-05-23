@@ -1,6 +1,5 @@
 class SPLAYTree
     # Define the accessor and reader of class SPLAYTree
-    attr_reader :root
     attr_accessor :root
 
     class Node
@@ -103,20 +102,16 @@ class SPLAYTree
                 else
                     node = self.leftRotate(parent)
                 end
-            elsif (grand.left == parent && parent.left == node)
-                # Zig Zig case.
+            elsif (grand.left == parent && parent.left == node)  # Zig Zig case.
                 self.rightRotate(grand)
                 node = self.rightRotate(parent)
-            elsif (grand.right == parent && parent.right == node)
-                # Zag Zag case.
+            elsif (grand.right == parent && parent.right == node) # Zag Zag case.
                 self.leftRotate(grand)
                 node = self.leftRotate(parent)
-            elsif (grand.left == parent && parent.right == node)
-                # Zig Zag case.
+            elsif (grand.left == parent && parent.right == node)  # Zig Zag case.
                 self.leftRotate(parent)
                 node = self.rightRotate(grand)
-            elsif (grand.right == parent && parent.left == node)
-                # Zag Zig case.
+            elsif (grand.right == parent && parent.left == node)  # Zag Zig case.
                 self.rightRotate(parent)
                 node = self.leftRotate(grand)
             end
@@ -154,7 +149,6 @@ class SPLAYTree
                 node = node.right
             else
                 self.splay(node)
-                # duplicate insertion not allowed but splaying for it.
                 return
             end
         end
@@ -226,28 +220,26 @@ class SPLAYTree
         self.printInOrder(self.root)
         print("\n")
     end
-    def printInOrder( node)
-        # In order
+    def printInOrder( node) # In order
         if (node != nil)
             self.printInOrder(node.left)
             print(node.data.to_s + " ")
             self.printInOrder(node.right)
         end
     end
-    def self.main()
-        tree = SPLAYTree.new()
-        tree.insert(5)
-        tree.insert(4)
-        tree.insert(6)
-        tree.insert(3)
-        tree.insert(2)
-        tree.insert(1)
-        tree.insert(3)
-        tree.printTree()
-        print("Value 2 found: " + tree.find(2).to_s,"\n")
-        tree.delete(2)
-        tree.delete(5)
-        tree.printTree()
-    end
 end
-SPLAYTree.main()
+
+
+tree = SPLAYTree.new()
+tree.insert(5)
+tree.insert(4)
+tree.insert(6)
+tree.insert(3)
+tree.insert(2)
+tree.insert(1)
+tree.insert(3)
+tree.printTree()
+print("Value 2 found: " + tree.find(2).to_s,"\n")
+tree.delete(2)
+tree.delete(5)
+tree.printTree()

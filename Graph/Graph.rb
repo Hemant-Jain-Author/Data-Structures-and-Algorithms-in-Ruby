@@ -1,12 +1,9 @@
 class Heap
     # Define the accessor and reader of class Heap
-    attr_reader :CAPACITY,:size,:arr,:isMinHeap
     attr_accessor :CAPACITY,:size,:arr,:isMinHeap
-    # Number of elements in Heap
-    # The Heap array
     
     def initialize(isMin = true)
-        self.arr = Array.new(100){0}
+        self.arr = Array.new(100){0} # The Heap array
         self.size = 0
         self.isMinHeap = isMin
     end
@@ -107,8 +104,8 @@ end
 
 class Graph	
 	class Edge
-        attr_reader :src,:dest,:cost
         attr_accessor :src,:dest,:cost
+
         def initialize( s,  d,  c)
             self.src = s
             self.dest = d
@@ -121,14 +118,10 @@ class Graph
     end
 
 	attr_accessor :count, :Adj
+
     def initialize( cnt)
         self.count = cnt
-        self.Adj =  Array.new(cnt, nil)
-        i = 0
-        while (i < cnt)
-            self.Adj[i] = Array.new()
-            i += 1
-        end
+        self.Adj =  Array.new(cnt){Array.new()}
     end
 	
     def addEdge( source,  dest,  cost = 1)
@@ -245,6 +238,7 @@ class Graph
     # Path between 0 & 6 : true
     # Path between 0 & 6 : true
     # Path between 0 & 6 : true
+
     def topologicalSort()
         stk =  []
         visited = Array.new(self.count){false}
@@ -349,8 +343,10 @@ class Graph
     # Vertex 2 is connected to : 3(cost: 1) 
     # Vertex 3 is connected to : 4(cost: 1) 
     # Vertex 4 is connected to : 
+
     # PathExist :: true
     # Path Count :: 3
+
     # [0, 1, 3, 4]
     # [0, 1, 4]
     # [0, 2, 3, 4]
@@ -384,6 +380,7 @@ class Graph
         gph.rootVertex()
     end
     # Root vertex is :: 5
+
     def transitiveClosureUtil( source,  dest,  tc)
         tc[source][dest] = 1
         adl = self.Adj[dest]
@@ -867,7 +864,7 @@ class Graph
         node = Edge.new(source, source, 0)
         queue.add(node)
         while (queue.isEmpty() != true)
-            node = queue.queue.remove()
+            node = queue.remove()
             visited[source] = true
             source = node.dest
             adl = self.Adj[source]
@@ -1001,11 +998,13 @@ class Graph
     end
     # Edges are (0->1 @ 4) (5->2 @ 4) (2->3 @ 7) (3->4 @ 9) (6->5 @ 2) (7->6 @ 1) (0->7 @ 8) (2->8 @ 2) 
     # Total MST cost: 37
+
     # Edges are (6->7 @ 1) (2->8 @ 2) (5->6 @ 2) (0->1 @ 4) (2->5 @ 4) (2->3 @ 7) (0->7 @ 8) (3->4 @ 9) 
     # Total MST cost: 37
-    # Shortest Paths: (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14)
-    # Unweighed graph
 
+    # Shortest Paths: (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14)
+    
+    # Unweighed graph
     def shortestPath( source)
         distance = Array.new(self.count){0}
         path = Array.new(self.count){0}
@@ -1071,7 +1070,7 @@ class Graph
         edge = Edge.new(source, source, 0)
         queue.add(edge)
         while (queue.isEmpty() != true)
-            edge = queue.queue.remove()
+            edge = queue.remove()
             curr = edge.dest
             visited[curr] = true
             adl = self.Adj[curr]
@@ -1130,7 +1129,7 @@ class Graph
     end
     # Shortest Paths: (0->4->1 @ 0) (0->4->1->2 @ 1) (0->4->1->2->3 @ 2) (0->4 @ 2)
 
-    def self.heightTreeParentArr( arr)
+    def heightTreeParentArr( arr)
         count = arr.length
         heightArr = Array.new(count){0}
         gph = Graph.new(count)
@@ -1168,7 +1167,7 @@ class Graph
         return maxHight
     end
 	
-    def self.getHeight( arr,  height,  index)
+    def getHeight( arr,  height,  index)
         if (arr[index] == -1)
             return 0
         else
@@ -1176,7 +1175,7 @@ class Graph
         end
     end
 	
-    def self.heightTreeParentArr2( arr)
+    def heightTreeParentArr2( arr)
         count = arr.length
         height = Array.new(count){0}
         maxHeight = -1

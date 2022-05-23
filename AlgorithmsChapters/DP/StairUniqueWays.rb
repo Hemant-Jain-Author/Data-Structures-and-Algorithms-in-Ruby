@@ -32,3 +32,8 @@ end
 
 print("Unique way to reach top:: " + stairUniqueWaysBU(4).to_s,"\n")
 print("Unique way to reach top:: " + stairUniqueWaysBU2(4).to_s,"\n")
+
+"""
+Unique way to reach top:: 5
+Unique way to reach top:: 5
+"""

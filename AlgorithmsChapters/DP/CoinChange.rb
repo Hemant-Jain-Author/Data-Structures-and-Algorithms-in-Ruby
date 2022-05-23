@@ -1,5 +1,4 @@
-def minCoins( coins,  n,  val)
-	# Greedy may be wrong.
+def minCoins( coins,  n,  val) # Greedy may be wrong.
 	if (val <= 0)
 		return 0
 	end
@@ -17,8 +16,7 @@ def minCoins( coins,  n,  val)
 	return (val == 0) ? count : -1
 end
 
-def minCoins2( coins,  n,  val)
-	# Brute force.
+def minCoins2( coins,  n,  val) # Brute force.
 	if (val == 0)
 		return 0
 	end
@@ -38,8 +36,7 @@ end
 
 def minCoinsTD( coins,  n,  val)
 	count = Array.new(val + 1){99999}
-	count[0] = 0
-	# zero val need zero coins.
+	count[0] = 0 # zero val need zero coins.
 	return minCoinsTDUtil(count, coins, n, val)
 end
 
@@ -50,9 +47,8 @@ def minCoinsTDUtil( count,  coins,  n,  val)
 	end
 	i = 0
 	# Recursion
-	while (i < n)
-		# For all possible coins
-		if (coins[i] <= val)
+	while (i < n) # For all possible coins
+		if (coins[i] <= val) 
 			# check validity of a sub-problem
 			subCount = minCoinsTDUtil(count, coins, n, val - coins[i])
 			if (subCount != 99999 && count[val] > (subCount + 1))
@@ -64,15 +60,14 @@ def minCoinsTDUtil( count,  coins,  n,  val)
 	return count[val]
 end
 
-def minCoinsBU( coins,  n,  val)
-	# DP bottom up approach.
+def minCoinsBU( coins,  n,  val) # DP bottom up approach.
 	count = Array.new(val + 1){99999}
 	count[0] = 0
 	i = 1
 	# Base value.
 	while (i <= val)
 		j = 0
-		while (j < n)
+		while (j < n) 
 			# For all coins smaller than or equal to i.
 			if (coins[j] <= i && count[i - coins[j]] != 99999 && count[i] > count[i - coins[j]] + 1)
 				count[i] = count[i - coins[j]] + 1
@@ -97,17 +92,14 @@ def printCoins( cvalue,  val)
 	print("\n")
 end
 
-def minCoinsBU2( coins,  n,  val)
-	# DP bottom up approach.
+def minCoinsBU2( coins,  n,  val) # DP bottom up approach.
 	count = Array.new(val + 1){99999}
 	cvalue = Array.new(val + 1){99999}
-
-	count[0] = 0
+	count[0] = 0 # Base value.
 	i = 1
-	# Base value.
 	while (i <= val)
 		j = 0
-		while (j < n)
+		while (j < n) 
 			# For all coins smaller than or equal to i.
 			if (coins[j] <= i && count[i - coins[j]] != 99999 && count[i] > count[i - coins[j]] + 1)
 				count[i] = count[i - coins[j]] + 1

@@ -1,64 +1,50 @@
 class HashTableSC
     # Define the accessor and reader of class HashTableSC
-    attr_accessor :tableSize,:listArray
+    attr_accessor :tableSize,:arrayList
 
     class Node
         # Define the accessor and reader of class Node
-        attr_accessor :key,:value,:next
-        def initialize( k,  v,  n)
+        attr_accessor :key,:value
+        def initialize( k,  v)
             self.key = k
             self.value = v
-            self.next = n
         end
     end
 
     def initialize()
         self.tableSize = 512
-        self.listArray = Array.new(self.tableSize){nil}
+        self.arrayList = Array.new(self.tableSize){Array.new()}
     end
 
-    def computeHash( key)
-        # division method
-        hashValue = key
-        return hashValue % self.tableSize
+    def computeHash( key) # division method
+        return key % self.tableSize
     end
 
     def add( key,  value)
-        index = self.computeHash(key)
-        self.listArray[index] = Node.new(key, value, self.listArray[index])
+        arrIndex = self.computeHash(key)
+        self.arrayList[arrIndex].append(Node.new(key, value))
     end
 
     def add2( value)
         self.add(value, value)
     end
 
-    def remove( key)
+    def remove(key)
         index = self.computeHash(key)
-        head = self.listArray[index]
-        if (head != nil && head.key == key)
-            self.listArray[index] = head.next
-            return true
-        end
-        while (head != nil)
-            nextNode = head.next
-            if (nextNode != nil && nextNode.key == key)
-                head.next = nextNode.next
-                return true
-            else
-                head = nextNode
+        for nd in self.arrayList[index] 
+            if nd.key == key
+                self.arrayList[index].delete(nd)
+                return
             end
         end
-        return false
-    end
+    end 
 
     def printHash()
         print("Hash Table contains ::")
         i = 0
         while (i < self.tableSize)
-            head = self.listArray[i]
-            while (head != nil)
-                print("(" + head.key.to_s + "=>" + head.value.to_s + ") ")
-                head = head.next
+            for nd in self.arrayList[i] 
+                print("(" + nd.key.to_s + "=>" + nd.value.to_s + ") ")
             end
             i += 1
         end
@@ -67,24 +53,20 @@ class HashTableSC
 
     def find( key)
         index = self.computeHash(key)
-        head = self.listArray[index]
-        while (head != nil)
-            if (head.key == key)
+        for nd in self.arrayList[index] 
+            if nd.key == key
                 return true
             end
-            head = head.next
         end
         return false
     end
 
     def get( key)
         index = self.computeHash(key)
-        head = self.listArray[index]
-        while (head != nil)
-            if (head.key == key)
-                return head.value
+        for nd in self.arrayList[index] 
+            if nd.key == key
+                return nd.value
             end
-            head = head.next
         end
         return -1
     end

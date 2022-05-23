@@ -89,3 +89,30 @@ while (i < 10)
     print(i.to_s + " bit count : " + countBits(i).to_s,"\n")
     i += 1
 end
+
+"""
+0
+12
+12
+8
+2
+-5
+-4
+true
+6
+0
+0
+4
+0
+true
+0 bit count : 0
+1 bit count : 1
+2 bit count : 1
+3 bit count : 2
+4 bit count : 1
+5 bit count : 2
+6 bit count : 2
+7 bit count : 3
+8 bit count : 1
+9 bit count : 2
+"""

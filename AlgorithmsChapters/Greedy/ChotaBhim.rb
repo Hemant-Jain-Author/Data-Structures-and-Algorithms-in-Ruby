@@ -131,7 +131,6 @@ def chotaBhim2( cups)
 	time = 60
 	pq = Heap.new(false)
 	i = 0
-	i = 0
 	while (i < size)
 		pq.add(cups[i])
 		i += 1
@@ -149,11 +148,13 @@ def chotaBhim2( cups)
 	return total
 end
 
-
 # Testing code.
-
 cups = [2, 1, 7, 4, 2]
 chotaBhim(cups)
 cups = [2, 1, 7, 4, 2]
 chotaBhim2(cups)
 
+"""
+Total : 76
+Total : 76
+"""

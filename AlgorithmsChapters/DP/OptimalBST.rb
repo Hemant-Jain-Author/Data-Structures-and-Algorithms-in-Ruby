@@ -6,8 +6,7 @@ def optBstCostUtil( freq,  i,  j)
 	if (i > j)
 		return 0
 	end
-	if (j == i)
-		# one element in this subarray
+	if (j == i) # one element in this subarray
 		return freq[i]
 	end
 	min = 99999
@@ -113,7 +112,6 @@ end
 def optBstCostBU2( keys,  freq)
 	n = freq.length
 	cost = Array.new(n){Array.new(n){99999}}
-
 	sumArr = sumInit(freq, n)
 	i = 0
 	while (i < n)
@@ -147,3 +145,10 @@ print("OBST cost:" + optBstCost(keys, freq).to_s,"\n")
 print("OBST cost:" + optBstCostTD(keys, freq).to_s,"\n")
 print("OBST cost:" + optBstCostBU(keys, freq).to_s,"\n")
 print("OBST cost:" + optBstCostBU2(keys, freq).to_s,"\n")
+
+"""
+OBST cost:130
+OBST cost:130
+OBST cost:130
+OBST cost:130
+"""

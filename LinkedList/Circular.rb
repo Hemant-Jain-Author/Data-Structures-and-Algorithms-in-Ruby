@@ -5,6 +5,7 @@ class CircularLinkedList
     class Node
         # Define the accessor and reader of class Node
         attr_accessor :value,:next
+        
         def initialize( v,  n)
             self.value = v
             self.next = n
@@ -78,13 +79,10 @@ class CircularLinkedList
         prev = self.tail
         curr = self.tail.next
         head = self.tail.next
-        if (curr.value == key)
-            # head and single node case.
-            if (curr == curr.next)
-                # single node case
+        if (curr.value == key) # head and single node case.
+            if (curr == curr.next) # single node case
                 self.tail = nil
-            else
-                # head case
+            else # head case
                 self.tail.next = self.tail.next.next
             end
             return true
@@ -188,6 +186,7 @@ class CircularLinkedList
     # false
     # 3
     # true
+
     def self.main2()
         ll = CircularLinkedList.new()
         ll.addTail(1)
@@ -196,6 +195,7 @@ class CircularLinkedList
         ll.printList()
     end
     # 1 2 3
+
     def self.main3()
         ll = CircularLinkedList.new()
         ll.addHead(1)
@@ -213,6 +213,7 @@ class CircularLinkedList
     # 2 1
     # 1
     # Empty List.
+
     def self.main4()
         ll = CircularLinkedList.new()
         ll.addHead(1)
@@ -227,6 +228,7 @@ class CircularLinkedList
     # 3 2 1
     # 3 2 1
     # 1 2 3
+
     def self.main5()
         ll = CircularLinkedList.new()
         ll.addHead(1)
@@ -238,6 +240,7 @@ class CircularLinkedList
     end
     # 3 2 1
     # 3 1
+
     def self.main()
         self.main1()
         self.main2()

@@ -117,3 +117,9 @@ n = start.length
 print(maxValueJobs(start, finish, value, n),"\n")
 print(maxValueJobsTD(start, finish, value, n),"\n")
 print(maxValueJobsBU(start, finish, value, n),"\n")
+
+"""
+17
+17
+17
+"""

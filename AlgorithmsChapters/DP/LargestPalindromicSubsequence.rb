@@ -32,3 +32,5 @@ end
 
 str = "ABCAUCBCxxCBA"
 print("Largest Palindromic Subseq: " + largestPalindromicSubseq(str).to_s,"\n")
+
+# Largest Palindromic Subseq: 9

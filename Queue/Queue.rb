@@ -45,5 +45,9 @@ q = Queue.new()
 q.add(1)
 q.add(2)
 q.add(3)
-print q.remove(), " "
-print q.remove()
+size = q.size()
+i = 0
+while i < size
+  print "Dequeue : " , q.remove(), "\n"
+  i += 1
+end

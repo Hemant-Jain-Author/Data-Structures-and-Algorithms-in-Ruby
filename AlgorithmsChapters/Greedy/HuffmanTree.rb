@@ -163,3 +163,12 @@ ar = ['A', 'B', 'C', 'D', 'E']
 fr = [30, 25, 21, 14, 10]
 hf = HuffmanTree.new(ar, fr)
 hf.display()
+
+"""
+Char = Huffman code
+C = 00
+E = 010
+D = 011
+B = 10
+A = 11
+"""

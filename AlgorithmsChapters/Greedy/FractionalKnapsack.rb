@@ -18,7 +18,9 @@ def getMaxCostFractional( wt,  cost,  capacity)
 		itemList[i] = Items.new(wt[i], cost[i])
 		i += 1
 	end
+
 	itemList.sort! {|x, y| -x.density <=> -y.density}
+
 	i = 0
 	while (i < n)
 		if (capacity - itemList[i].wt >= 0)
@@ -32,9 +34,12 @@ def getMaxCostFractional( wt,  cost,  capacity)
 	end
 	return totalCost
 end
+
 # Testing code.
 wt = [10, 40, 20, 30]
 cost = [60, 40, 90, 120]
 capacity = 50
 maxCost = getMaxCostFractional(wt, cost, capacity)
 print("Maximum cost obtained = " + maxCost.to_s,"\n")
+
+# Maximum cost obtained = 230

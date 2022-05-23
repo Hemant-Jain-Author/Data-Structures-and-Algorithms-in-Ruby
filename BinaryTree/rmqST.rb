@@ -39,7 +39,7 @@ class RmqST
         # Check for error conditions.
         if (start > ed || start < 0 || ed > self.n - 1)
             print("Invalid Input.","\n")
-            return (2**(0.size*8-2))
+            return 99999
         end
         return self.getMinUtil(0, self.n - 1, start, ed, 0)
     end
@@ -51,7 +51,7 @@ class RmqST
         end
         if (segEnd < queryStart || queryEnd < segStart)
             # no overlapping case.
-            return (2**(0.size*8-2))
+            return 99999
         end
         # Segment tree is partly overlaps with the query range.
         mid = (segStart + segEnd) / 2
@@ -113,4 +113,4 @@ Min value in the range(1, 5): -1
 Min value of all the elements: -1
 Min value in the range(0, 4): -1
 Min value of all the elements: -2
- =end
+=end

@@ -81,3 +81,8 @@ end
 arr = [6, 2, 4]
 print("Total cost: " + minCostBstTD(arr).to_s,"\n")
 print("Total cost: " + minCostBstBU(arr).to_s,"\n")
+
+"""
+Total cost: 32
+Total cost: 32
+"""

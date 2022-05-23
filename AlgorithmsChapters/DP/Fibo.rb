@@ -58,3 +58,10 @@ print(fibonacci(10),"\n")
 print(fibonacciBU(10),"\n")
 print(fibonacciBU2(10),"\n")
 print(fibonacciTD(10),"\n")
+
+"""
+55
+55
+55
+55
+"""

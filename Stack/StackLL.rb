@@ -1,5 +1,6 @@
 class Stack
     attr_accessor :head, :count
+
     def initialize()
         self.head = nil
         self.count = 0
@@ -7,6 +8,7 @@ class Stack
 
     class Node
         attr_accessor :value, :next
+        
         def initialize(v, n = nil)
             self.value = v
             self.next = n

@@ -1,18 +1,16 @@
-def LCSubStr( st1,  st2)
-	_X = st1.chars
-	_Y = st2.chars
-	m = st1.length
-	n = st2.length
+def LCSubStr( str1,  str2)
+	m = str1.length
+	n = str2.length
 	dp = Array.new(m + 1){Array.new(n + 1){0}} # Dynamic programming array.
 	p = Array.new(m + 1){Array.new(n + 1){0}}
 	
-	i = 1
 	# For printing the substring.
 	# Fill dp array in bottom up fashion.
+	i = 1
 	while (i <= m)
 		j = 1
 		while (j <= n)
-			if (_X[i - 1] == _Y[j - 1])
+			if (str1[i - 1] == str2[j - 1])
 				dp[i][j] = dp[i - 1][j - 1] + 1
 				p[i][j] = 0
 			else
@@ -23,24 +21,26 @@ def LCSubStr( st1,  st2)
 		end
 		i += 1
 	end
-	PrintLCS(p, _X, m, n)
+	PrintLCS(p, str1, m, n)
 	return dp[m][n]
 end
 
-def PrintLCS( p,  _X,  i,  j)
+def PrintLCS( p,  str1,  i,  j)
 	if (i == 0 || j == 0)
 		return
 	end
 	if (p[i][j] == 0)
-		PrintLCS(p, _X, i - 1, j - 1)
-		print(_X[i - 1])
+		PrintLCS(p, str1, i - 1, j - 1)
+		print(str1[i - 1])
 	elsif (p[i][j] == 1)
-		PrintLCS(p, _X, i - 1, j)
+		PrintLCS(p, str1, i - 1, j)
 	else
-		PrintLCS(p, _X, i, j - 1)
+		PrintLCS(p, str1, i, j - 1)
 	end
 end
 
-_X = "carpenter"
-_Y = "sharpener"
-print(LCSubStr(_X, _Y),"\n")
+str1 = "carpenter"
+str2 = "sharpener"
+print(LCSubStr(str1, str2),"\n")
+
+# arpener7

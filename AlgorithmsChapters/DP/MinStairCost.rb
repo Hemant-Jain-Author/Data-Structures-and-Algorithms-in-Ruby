@@ -23,3 +23,5 @@ end
 a = [1, 5, 6, 3, 4, 7, 9, 1, 2, 11]
 n = a.length
 print("minStairCost : " + minStairCost(a, n).to_s)
+
+# minStairCost : 18

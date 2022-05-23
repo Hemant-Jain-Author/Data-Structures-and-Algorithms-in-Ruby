@@ -1,11 +1,11 @@
-def swap( arr,  x,  y)
+def swap( arr, x, y)
 	temp = arr[x]
 	arr[x] = arr[y]
 	arr[y] = temp
 	return
 end
 
-def partition01( arr,  size)
+def partition01( arr, size)
 	left = 0
 	right = size - 1
 	count = 0
@@ -24,7 +24,7 @@ def partition01( arr,  size)
 	return count
 end
 
-def partition012_( arr,  size)
+def partition012_( arr, size)
 	zero = 0
 	one = 0
 	two = 0
@@ -54,7 +54,7 @@ def partition012_( arr,  size)
 	end
 end
 
-def partition012( arr,  size)
+def partition012( arr, size)
 	left = 0
 	right = size - 1
 	i = 0
@@ -85,7 +85,7 @@ def main1()
 end
 # 	[ 0 0 0 0 0 0 1 1 1 1 1 1 ]
 # 	[ 0 0 0 0 0 1 1 1 1 1 2 2 ]
-def rangePartition( arr,  size,  lower,  higher)
+def rangePartition( arr, size, lower, higher)
 	start = 0
 	ed = size - 1
 	i = 0
@@ -112,7 +112,7 @@ end
 
 # 	[ 1 2 3 4 5 6 7 8 10 12 9 11 14 13 15 16 17 18 ]
 
-def minSwaps( arr,  size,  val)
+def minSwaps( arr, size, val)
 	swapCount = 0
 	first = 0
 	second = size - 1
@@ -139,7 +139,7 @@ end
 
 # minSwaps 3
 
-def separateEvenAndOdd( data,  size)
+def separateEvenAndOdd( data, size)
 	left = 0
 	right = size - 1
 	aux = Array.new(size){0}
@@ -161,7 +161,7 @@ def separateEvenAndOdd( data,  size)
 	end
 end
 
-def separateEvenAndOdd2( data,  size)
+def separateEvenAndOdd2( data, size)
 	left = 0
 	right = size - 1
 	while (left < right)
@@ -189,11 +189,11 @@ end
 
 # [ 4 6 8 2 7 3 1 9 5 ]
 
-def absGreater( value1,  value2,  ref)
+def absGreater( value1, value2, ref)
 	return ((value1 - ref).abs > (value2 - ref).abs)
 end
 
-def absBubbleSort( arr,  size,  ref)
+def absBubbleSort( arr, size, ref)
 	i = 0
 	while (i < (size - 1))
 		j = 0
@@ -217,13 +217,13 @@ end
 
 # 	[ 5 6 4 7 3 8 2 9 1 ]
 
-def eqGreater( value1,  value2,  _A)
+def eqGreater( value1, value2, _A)
 	value1 = _A * value1 * value1
 	value2 = _A * value2 * value2
 	return value1 > value2
 end
 
-def arrayReduction( arr,  size)
+def arrayReduction( arr, size)
 	arr = arr.sort()
 	count = 1
 	reduction = arr[0]
@@ -246,8 +246,8 @@ end
 
 # Total number of reductions: 4
 
-def sortByOrder( arr,  size,  arr2,  size2)
-	ht =  Hash.new
+def sortByOrder( arr, size, arr2, size2)
+	ht = Hash.new
 	i = 0
 	while (i < size)
 		if (ht.key?(arr[i]))
@@ -296,7 +296,7 @@ end
 
 # 	2 2 1 1 8 8 3 5 7 9 6
 
-def merge( arr1,  size1,  arr2,  size2)
+def merge( arr1, size1, arr2, size2)
 	index = 0
 	while (index < size1)
 		if (arr1[index] <= arr2[0])
@@ -335,7 +335,7 @@ end
 # 	[ 1 2 3 5 8 9 ]
 # 	[ 10 13 15 20 ]
 
-def checkReverse( arr,  size)
+def checkReverse( arr, size)
 	start = -1
 	stop = -1
 	i = 0
@@ -382,14 +382,14 @@ end
 
 # true
 
-def min( _X,  _Y)
+def min( _X, _Y)
 	if (_X < _Y)
 		return _X
 	end
 	return _Y
 end
 
-def unionIntersectionSorted( arr1,  size1,  arr2,  size2)
+def unionIntersectionSorted( arr1, size1, arr2, size2)
 	first = 0
 	second = 0
 	unionArr = Array.new(size1 + size2){0}
@@ -428,7 +428,7 @@ def unionIntersectionSorted( arr1,  size1,  arr2,  size2)
 	print interArr[0..iIndex-1]
 end
 
-def unionIntersectionUnsorted( arr1,  size1,  arr2,  size2)
+def unionIntersectionUnsorted( arr1, size1, arr2, size2)
 	arr1 = arr1.sort()
 	arr2 = arr2.sort()
 	unionIntersectionSorted(arr1, size1, arr2, size2)

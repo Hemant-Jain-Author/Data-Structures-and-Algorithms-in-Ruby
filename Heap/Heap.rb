@@ -1,11 +1,9 @@
 class Heap
     # Define the accessor and reader of class Heap
-    attr_accessor :CAPACITY,:size,:arr,:isMinHeap
-    # Number of elements in Heap
-    # The Heap array
+    attr_accessor :CAPACITY,:size,:arr,:isMinHeap   
     
     def initialize(isMin = true)
-        self.arr = Array.new(100){0}
+        self.arr = Array.new(100){0} # The Heap array
         self.size = 0
         self.isMinHeap = isMin
     end
@@ -13,8 +11,9 @@ class Heap
     def set(array)
         self.size = array.size
         self.arr = array.clone
-        i = (self.size / 2)
+        
         # Build Heap operation over array
+        i = (self.size / 2)
         while (i >= 0)
             self.percolateDown(i)
             i -= 1
@@ -132,6 +131,7 @@ def main1()
     while (!hp.isEmpty()) 
       print(hp.remove().to_s + " ")
     end
+    print "\n"
 end
 # 	1 3 2 7 6 5 4 
 # 	1 2 3 4 5 6 7
@@ -150,10 +150,10 @@ end
 def main2()
     s = [1, 5, 9, 3, 2, 6, 8, 7, 4]
     heapSort(s,  true)
-    print(s)
+    print(s, "\n")
     s = [1, 5, 9, 3, 2, 6, 8, 7, 4]
     heapSort(s,  false)
-    print(s)
+    print(s, "\n")
 end
 
 main1()

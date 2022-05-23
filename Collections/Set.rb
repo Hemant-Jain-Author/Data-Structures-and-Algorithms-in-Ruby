@@ -1,23 +1,28 @@
 require 'set'
 
 # Create a hash set.
-hs = Set.new
+hs = Set.new()
 
 # add elements to the hash set.
-hs.add("India")
-hs.add("USA")
-hs.add("UK")
-hs.add("India")
-hs.add("USA")
-hs.add("UK")
+hs.add("Banana")
+hs.add("Apple")
+hs.add("Mango")
+
 #traverse
 hs.each do |key|
   puts "#{key} "
 end
+print hs
+print "Apple present : " , hs.include?("Apple"), "\n"
+print "Grapes present : " , hs.include?("Grapes"), "\n"
+hs.delete("Apple")
+print "Apple present : " , hs.include?("Apple"), "\n"
 
-print "Set contains USA : " , hs.include?("USA")
-puts ""
-print "Set contains Russia : " , hs.include?("Russia")
-puts ""
-hs.delete("USA")
-print "Set contains USA : " , hs.include?("USA")
+=begin 
+Banana 
+Apple 
+Mango 
+Apple present : true
+Grapes present : false
+Apple present : false 
+=end

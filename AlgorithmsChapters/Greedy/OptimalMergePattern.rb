@@ -129,3 +129,5 @@ end
 # Testing code.
 lists =  [4, 3, 2, 6]
 merge(lists, lists.length)
+
+# Total : 29

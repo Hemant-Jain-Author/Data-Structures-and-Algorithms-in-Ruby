@@ -105,7 +105,6 @@ class Heap
     end
 end
 
-
 def joinRopes(ropes,  size)
 	ropes.sort! {|x, y| -x <=> -y}
 	total = 0
@@ -151,3 +150,8 @@ ropes = [4, 3, 2, 6]
 joinRopes(ropes, ropes.length)
 rope2 = [4, 3, 2, 6]
 joinRopes2(rope2, rope2.length)
+
+"""
+Total : 29
+Total : 29
+"""

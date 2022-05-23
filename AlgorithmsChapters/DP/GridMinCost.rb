@@ -10,8 +10,8 @@ def minCost( cost,  m,  n)
 		return cost[0][0]
 	end
 	return cost[m - 1][n - 1] + min(minCost(cost, m - 1, n - 1), 
-								minCost(cost, m - 1, n), 
-								minCost(cost, m, n - 1))
+									minCost(cost, m - 1, n), 
+									minCost(cost, m, n - 1))
 end
 
 def minCostBU( cost,  m,  n)
@@ -49,3 +49,8 @@ cost = [
 [1, 5, 3]]
 print(minCost(cost, 3, 3),"\n")
 print(minCostBU(cost, 3, 3),"\n")
+
+"""
+11
+11
+"""

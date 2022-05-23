@@ -63,3 +63,10 @@ print("Total profit: " + maxProfit(arr).to_s,"\n")
 print("Total profit: " + maxProfit2(arr).to_s,"\n")
 print("Total profit: " + maxProfitTC(arr, 2).to_s,"\n")
 print("Total profit: " + maxProfitTC2(arr, 2).to_s,"\n")
+
+"""
+Total profit: 69
+Total profit: 69
+Total profit: 63
+Total profit: 63
+"""

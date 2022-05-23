@@ -17,8 +17,8 @@ def maxActivities( s,  f,  n)
 
 	act = act.sort_by(&:stop) # sort according to finish time.
 	
-	i = 0
 	# The first activity at index 0 is always gets selected.
+	i = 0
 	print("Activities are : (" + act[i].start.to_s + "," + act[i].stop.to_s + ")")
 	j = 1
 	while (j < n)
@@ -38,3 +38,5 @@ s = [1, 5, 0, 3, 5, 6, 8]
 f = [2, 6, 5, 4, 9, 7, 9]
 n = s.length
 maxActivities(s, f, n)
+
+# Activities are : (1,2), (3,4), (5,6), (6,7), (8,9)

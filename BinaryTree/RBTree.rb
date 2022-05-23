@@ -36,6 +36,7 @@ class RBTree
         if (node == self.NullNode)
             return
         end
+
         if (isLeft)
             print(indent + "L:")
             indent += "|  "
@@ -52,14 +53,14 @@ class RBTree
     # Function to right rotate subtree rooted with x
     def rightRotate( x)
         y = x.left
-        _T = y.right
+        t = y.right
         # Rotation
         y.parent = x.parent
         y.right = x
         x.parent = y
-        x.left = _T
-        if (_T != self.NullNode)
-            _T.parent = x
+        x.left = t
+        if (t != self.NullNode)
+            t.parent = x
         end
         if (x == self.root)
             self.root = y
@@ -77,14 +78,14 @@ class RBTree
     # Function to left rotate subtree rooted with x
     def leftRotate( x)
         y = x.right
-        _T = y.left
+        t = y.left
         # Rotation
         y.parent = x.parent
         y.left = x
         x.parent = y
-        x.right = _T
-        if (_T != self.NullNode)
-            _T.parent = x
+        x.right = t
+        if (t != self.NullNode)
+            t.parent = x
         end
         if (x == self.root)
             self.root = y
@@ -188,11 +189,11 @@ class RBTree
         if (node.parent == self.NullNode || node.parent.parent == self.NullNode)
             return nil
         end
+
         if (node.parent == node.parent.parent.left)  # uncle on right
             return node.parent.parent.right
-        else
-            # uncle on left
-            return node.parent.parent.left
+        else # uncle on left
+            return node.parent.parent.left 
         end
     end
 	
@@ -250,15 +251,12 @@ class RBTree
         if (sib == self.NullNode)  # No sibling double black shifted to parent.
             self.fixDoubleBlack(parent)
         else
-            if (sib.colour == true)
-                # Sibling colour is red.
+            if (sib.colour == true)  # Sibling colour is red.
                 parent.colour = true
                 sib.colour = false
-                if (sib.parent.left == sib)
-                    # Sibling is left child.
+                if (sib.parent.left == sib) # Sibling is left child.
                     self.rightRotate(parent)
-                else
-                    # Sibling is right child.
+                else # Sibling is right child.
                     self.leftRotate(parent)
                 end
                 self.fixDoubleBlack(x)
@@ -266,28 +264,23 @@ class RBTree
                 # Sibling colour is black
                 # At least one child is red.
                 if (sib.left.colour == true || sib.right.colour == true)
-                    if (sib.parent.left == sib)
-                        # Sibling is left child.
-                        if (sib.left != self.NullNode && sib.left.colour == true)
-                            # left left case.
+                    if (sib.parent.left == sib) # Sibling is left child.
+                        if (sib.left != self.NullNode && sib.left.colour == true) # left left case.
                             sib.left.colour = sib.colour
                             sib.colour = parent.colour
                             self.rightRotate(parent)
-                        else
-                            # left right case.
+                        else # left right case.
                             sib.right.colour = parent.colour
                             self.leftRotate(sib)
                             self.rightRotate(parent)
                         end
                     else
                         # Sibling is right child.
-                        if (sib.left != self.NullNode && sib.left.colour == true)
-                            # right left case.
+                        if (sib.left != self.NullNode && sib.left.colour == true) # right left case.
                             sib.left.colour = parent.colour
                             self.rightRotate(sib)
                             self.leftRotate(parent)
-                        else
-                            # right right case.
+                        else # right right case.
                             sib.right.colour = sib.colour
                             sib.colour = parent.colour
                             self.leftRotate(parent)

@@ -107,7 +107,6 @@ end
 
 class GraphAM	
 	class Edge
-        attr_reader :src,:dest,:cost
         attr_accessor :src,:dest,:cost
         def initialize( s,  d,  c)
             self.src = s
@@ -160,6 +159,13 @@ class GraphAM
         gph.addUndirectedEdge(2, 3)
         gph.display()
     end
+
+"""
+Vertex 0 is connected to : 1(cost: 1) 2(cost: 1) 
+Vertex 1 is connected to : 0(cost: 1) 2(cost: 1) 
+Vertex 2 is connected to : 0(cost: 1) 1(cost: 1) 3(cost: 1) 
+Vertex 3 is connected to : 2(cost: 1) 
+"""
 
     def dijkstra( source)
         previous = Array.new(self.count){-1}
@@ -292,8 +298,8 @@ class GraphAM
 
     # Edges are (0->1 @ 4) (5->2 @ 4) (2->3 @ 7) (3->4 @ 9) (6->5 @ 2) (7->6 @ 1) (0->7 @ 8) (2->8 @ 2) 
     # Total MST cost: 37
-    # Testing code.
 
+    # Testing code.
     def self.main3()
         gph = GraphAM.new(9)
         gph.addUndirectedEdge(0, 2, 1)
@@ -357,13 +363,11 @@ class GraphAM
     def self.main4()
         count = 5
         gph = GraphAM.new(count)
-        adj =
-        [
-        [0, 1, 0, 1, 0],
-        [1, 0, 1, 1, 0],
-        [0, 1, 0, 0, 1],
-        [1, 1, 0, 0, 1],
-        [0, 1, 1, 1, 0]]
+        adj = [[0, 1, 0, 1, 0],
+                [1, 0, 1, 1, 0],
+                [0, 1, 0, 0, 1],
+                [1, 1, 0, 0, 1],
+                [0, 1, 1, 1, 0]]
         i = 0
         while (i < count)
             j = 0
@@ -377,13 +381,11 @@ class GraphAM
         end
         print("hamiltonianPath : " + gph.hamiltonianPath().to_s,"\n")
         gph2 = GraphAM.new(count)
-        adj2 =
-        [
-        [0, 1, 0, 1, 0],
-        [1, 0, 1, 1, 0],
-        [0, 1, 0, 0, 1],
-        [1, 1, 0, 0, 0],
-        [0, 1, 1, 0, 0]]
+        adj2 = [[0, 1, 0, 1, 0],
+                [1, 0, 1, 1, 0],
+                [0, 1, 0, 0, 1],
+                [1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0]]
         i = 0
         while (i < count)
             j = 0
@@ -453,14 +455,12 @@ class GraphAM
     def self.main5()
         count = 5
         gph = GraphAM.new(count)
-        adj =
-        [
-        [0, 1, 0, 1, 0],
-        [1, 0, 1, 1, 0],
-        [0, 1, 0, 0, 1],
-        [1, 1, 0, 0, 1],
-        [0, 1, 1, 1, 0]]
-        i = 0
+        adj = [[0, 1, 0, 1, 0],
+            [1, 0, 1, 1, 0],
+            [0, 1, 0, 0, 1],
+            [1, 1, 0, 0, 1],
+            [0, 1, 1, 1, 0]]
+            i = 0
         while (i < count)
             j = 0
             while (j < count)
@@ -473,13 +473,11 @@ class GraphAM
         end
         print("hamiltonianCycle : " + gph.hamiltonianCycle().to_s,"\n")
         gph2 = GraphAM.new(count)
-        adj2 =
-        [
-        [0, 1, 0, 1, 0],
-        [1, 0, 1, 1, 0],
-        [0, 1, 0, 0, 1],
-        [1, 1, 0, 0, 0],
-        [0, 1, 1, 0, 0]]
+        adj2 = [[0, 1, 0, 1, 0],
+                [1, 0, 1, 1, 0],
+                [0, 1, 0, 0, 1],
+                [1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0]]
         i = 0
         while (i < count)
             j = 0

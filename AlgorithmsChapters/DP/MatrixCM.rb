@@ -7,14 +7,15 @@ def MatrixChainMulBruteForceUtil( p,  i,  j)
 		return 0
 	end
 	min = 99999
-	k = i
+	
 	# place parenthesis at different places between
 	# first and last matrix, recursively calculate
 	# count of multiplications for each parenthesis
 	# placement and return the minimum count
+	k = i
 	while (k < j)
 		count = MatrixChainMulBruteForceUtil(p, i, k) + 
-		MatrixChainMulBruteForceUtil(p, k + 1, j) + p[i-1]*p[k]*p[j]
+				MatrixChainMulBruteForceUtil(p, k + 1, j) + p[i-1]*p[k]*p[j]
 		if (count < min)
 			min = count
 		end
@@ -49,7 +50,7 @@ def MatrixChainMulTDUtil( dp,  p,  i,  j)
 	k = i
 	while (k < j)
 		dp[i][j] = min(dp[i][j],MatrixChainMulTDUtil(dp, p, i, k) + 
-			MatrixChainMulTDUtil(dp, p, k + 1, j) + p[i-1]*p[k]*p[j])
+					MatrixChainMulTDUtil(dp, p, k + 1, j) + p[i-1]*p[k]*p[j])
 		k += 1
 	end
 	return dp[i][j]
@@ -139,3 +140,11 @@ print("Matrix Chain Multiplication is: " + MatrixChainMulBruteForce(arr, n).to_s
 print("Matrix Chain Multiplication is: " + MatrixChainMulTD(arr, n).to_s,"\n")
 print("Matrix Chain Multiplication is: " + MatrixChainMulBU(arr, n).to_s,"\n")
 print("Matrix Chain Multiplication is: " + MatrixChainMulBU2(arr, n).to_s,"\n")
+
+"""
+Matrix Chain Multiplication is: 18
+Matrix Chain Multiplication is: 18
+Matrix Chain Multiplication is: 18
+OptimalParenthesis : ( ( M1 M2 ) M3 ) 
+Matrix Chain Multiplication is: 18
+"""

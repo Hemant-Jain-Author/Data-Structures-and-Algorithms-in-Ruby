@@ -2,7 +2,7 @@ def max( *arr)
 	return arr.max()
 end
 
-def self.lbs( arr)
+def lbs( arr)
 	n = arr.length
 	lis = Array.new(n){1} # Initialize LIS values for all indexes as 1.
 	lds = Array.new(n){1} # Initialize LDS values for all indexes as 1.
@@ -40,4 +40,6 @@ def self.lbs( arr)
 end
 
 arr = [1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19]
-print("Length of lbs is " + self.lbs(arr).to_s,"\n")
+print("Length of lbs is " + lbs(arr).to_s,"\n")
+
+# Length of lbs is 8

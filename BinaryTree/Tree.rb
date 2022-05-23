@@ -1,11 +1,9 @@
 class Tree
     # Define the accessor and reader of class Tree
-    attr_reader :root
     attr_accessor :root
 
     class Node
         # Define the accessor and reader of class Node
-        attr_reader :value,:left,:right
         attr_accessor :value,:left,:right
 
         def initialize( v,  l = nil,  r = nil)
@@ -60,8 +58,7 @@ class Tree
         print("\n")
     end
 
-    def printPreOrderUtil( node)
-        # pre order
+    def printPreOrderUtil( node) # pre order
         if (node != nil)
             print(node.value.to_s + " ")
             self.printPreOrderUtil(node.left)
@@ -74,8 +71,7 @@ class Tree
         self.nthPreOrderUtil(self.root, index, counter)
     end
 
-    def nthPreOrderUtil( node,  index,  counter)
-        # pre order
+    def nthPreOrderUtil( node,  index,  counter)  # pre order
         if (node != nil)
             counter[0] += 1
             if (counter[0] == index)
@@ -91,8 +87,7 @@ class Tree
         print("\n")
     end
 
-    def printPostOrderUtil( node)
-        # post order
+    def printPostOrderUtil( node)  # post order
         if (node != nil)
             self.printPostOrderUtil(node.left)
             self.printPostOrderUtil(node.right)
@@ -105,8 +100,7 @@ class Tree
         self.nthPostOrderUtil(self.root, index, counter)
     end
 	
-    def nthPostOrderUtil( node,  index,  counter)
-        # post order
+    def nthPostOrderUtil( node,  index,  counter)  # post order
         if (node != nil)
             self.nthPostOrderUtil(node.left, index, counter)
             self.nthPostOrderUtil(node.right, index, counter)
@@ -122,8 +116,7 @@ class Tree
         print("\n")
     end
 	
-    def printInOrderUtil( node)
-        # In order
+    def printInOrderUtil( node)  # In order
         if (node != nil)
             self.printInOrderUtil(node.left)
             print(node.value.to_s + " ")
@@ -482,8 +475,7 @@ class Tree
         return self.maxLengthPathBTUtil(self.root)
     end
 
-    def maxLengthPathBTUtil( curr)
-        # diameter
+    def maxLengthPathBTUtil( curr)  # diameter
         if (curr == nil)
             return 0
         end
@@ -637,8 +629,7 @@ class Tree
         return self.isBST2Util(self.root, count)
     end
 
-    def isBST2Util( root,  count)
-        # in order traversal
+    def isBST2Util( root,  count)  # in order traversal
         if (root != nil)
             ret = self.isBST2Util(root.left, count)
             if (!ret)
@@ -759,7 +750,7 @@ class Tree
         if (ans != nil)
             return ans.value
         else
-            return -99999
+            return -9999999
         end
     end
 
@@ -787,7 +778,7 @@ class Tree
         else
             result = self.lcaBSTUtil(self.root, first, second)
         end
-        if (result == 99999)
+        if (result == 9999999)
             print("lca does not exist","\n")
         else
             print("lca is :" + result.to_s,"\n")
@@ -797,7 +788,7 @@ class Tree
 
     def lcaBSTUtil( curr,  first,  second)
         if (curr == nil)
-            return 99999
+            return 9999999
         end
         if (curr.value > second)
             return self.lcaBSTUtil(curr.left, first, second)
@@ -808,7 +799,7 @@ class Tree
         if (self.find(first) && self.find(second))
             return curr.value
         end
-        return 99999
+        return 9999999
     end
 
     def trimOutsideRange( min,  max)
@@ -848,7 +839,7 @@ class Tree
 	
     def floorBST( val)
         curr = self.root
-        floor = 99999
+        floor = 9999999
         while (curr != nil)
             if (curr.value == val)
                 floor = curr.value
@@ -865,7 +856,7 @@ class Tree
 	
     def ceilBST( val)
         curr = self.root
-        ceil = -99999
+        ceil = -9999999
         while (curr != nil)
             if (curr.value == val)
                 ceil = curr.value
@@ -887,7 +878,7 @@ class Tree
 	
     def findMaxBTUtil( curr)
         if (curr == nil)
-            return -99999
+            return -9999999
         end
         max = curr.value
         leftmax = self.findMaxBTUtil(curr.left)
@@ -993,6 +984,11 @@ def main1()
 	# 	9
 	# 	2
 	t.printAllPath()
+    # [1, 3, 7]
+    # [1, 3, 6]
+    # [1, 2, 5, 10]
+    # [1, 2, 4, 9]
+    # [1, 2, 4, 8]
 end
 
 def main2()
@@ -1014,6 +1010,7 @@ def main2()
 	print(t.treeDepth(),"\n")
 	# 4
 	print(t.maxLengthPathBT(),"\n")
+    # 5
 end
 
 def main3()
@@ -1032,6 +1029,10 @@ def main3()
 	print(t.isHeap2(),"\n")
 	print(t.isCompleteTree(),"\n")
 	print(t.isCompleteTree2(),"\n")
+    # true
+    # true
+    # true
+    # true
 end
 
 def main4()
@@ -1055,9 +1056,12 @@ def main4()
 	print(t.isBST(),"\n")
 	print(t.isBST2(),"\n")
 	print(t.isBST3(),"\n")
+    # true
+    # true
+    # true
 end
 
-def main8()
+def main5()
 	t = Tree.new()
 	t.insert(2)
 	t.insert(1)
@@ -1074,7 +1078,7 @@ end
 # After delete operation.
 # 1 3 4
 
-def main5()
+def main6()
 	t = Tree.new()
 	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	t.createBinarySearchTree(arr)
@@ -1090,7 +1094,7 @@ end
 # lca is :2
 # lca is :5
 
-def main6()
+def main7()
 	t = Tree.new()
 	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	t.createBinarySearchTree(arr)
@@ -1103,7 +1107,7 @@ end
 # 4 5 6 7 
 # 4 5 6 7
 
-def main7()
+def main8()
 	t = Tree.new()
 	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	t.createBinarySearchTree(arr)
@@ -1117,6 +1121,8 @@ def main7()
 	arr2 = [5, 2, 6, 4, 7, 9, 10]
 	print(t.isBSTArray(arr1),"\n")
 	print(t.isBSTArray(arr2),"\n")
+    # true
+    # false
 end
 	
 main1()
@@ -1126,3 +1132,4 @@ main4()
 main5()
 main6()
 main7()
+main8()

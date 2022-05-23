@@ -12,7 +12,7 @@ def largestPalinSubstr( str)
 	l = 1
 	while (l < n)
 		i = 0
-		; j = i + l
+		j = i + l
 		while (j < n)
 			if (str[i] == str[j] && dp[i + 1][j - 1] == j - i - 1)
 				dp[i][j] = dp[i + 1][j - 1] + 2
@@ -36,4 +36,7 @@ end
 str = "ABCAUCBCxxCBA"
 print("Max Palindromic Substrings len: " + largestPalinSubstr(str).to_s,"\n")
 
-
+"""
+Max Length Palindromic Substrings : BCxxCB
+Max Palindromic Substrings len: 6
+"""

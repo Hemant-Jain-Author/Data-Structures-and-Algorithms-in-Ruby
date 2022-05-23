@@ -1,11 +1,11 @@
 class DoublyCircularLinkedList
     # Define the accessor and reader of class DoublyCircularLinkedList
-    attr_reader :head,:tail,:size
     attr_accessor :head,:tail,:size
+
     class Node
         # Define the accessor and reader of class Node
-        attr_reader :value,:next,:prev
         attr_accessor :value,:next,:prev
+        
         def initialize( v,  nxt,  prv)
             self.value = v
             self.next = nxt
@@ -19,7 +19,6 @@ class DoublyCircularLinkedList
         self.tail = nil
         self.size = 0
     end
-
 
     # Other methods
     def count()
@@ -157,6 +156,7 @@ class DoublyCircularLinkedList
     # false
     # 3
     # true
+
     def self.main2()
         ll = DoublyCircularLinkedList.new()
         ll.addTail(1)
@@ -174,6 +174,7 @@ class DoublyCircularLinkedList
     # 2 3
     # 2
     # Empty List.
+
     def self.main3()
         ll = DoublyCircularLinkedList.new()
         ll.addHead(1)
@@ -185,6 +186,7 @@ class DoublyCircularLinkedList
     end
     # 3 2 1
     # 2 1
+
     def self.main4()
         ll = DoublyCircularLinkedList.new()
         ll.addHead(1)
@@ -196,6 +198,7 @@ class DoublyCircularLinkedList
     end
     # 3 2 1
     # 3 2
+
     def self.main()
         self.main1()
         self.main2()

@@ -1,4 +1,4 @@
-def self.gridUniqueWays( m,  n)
+def gridUniqueWays( m,  n)
 	dp = Array.new(m){Array.new(n){0}}
 	dp[0][0] = 1
 	i = 1
@@ -26,7 +26,7 @@ def self.gridUniqueWays( m,  n)
 end
 
 # Diagonal movement allowed.
-def self.gridUnique3Ways( m,  n)
+def gridUnique3Ways( m,  n)
 	dp = Array.new(m){Array.new(n){0}}
 	dp[0][0] = 1
 	i = 1
@@ -53,5 +53,10 @@ def self.gridUnique3Ways( m,  n)
 	return dp[m - 1][n - 1]
 end
 
-print(self.gridUniqueWays(3, 3),"\n")
-print(self.gridUnique3Ways(3, 3),"\n")
+print(gridUniqueWays(3, 3),"\n")
+print(gridUnique3Ways(3, 3),"\n")
+
+"""
+6
+13
+"""

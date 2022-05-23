@@ -93,10 +93,10 @@ class AVLTree
     # Function to right rotate subtree rooted with x
     def rightRotate( x)
         y = x.left
-        _T = y.right
+        t = y.right
         # Rotation
         y.right = x
-        x.left = _T
+        x.left = t
         # Update heights
         x.height = self.max(self.height(x.left), self.height(x.right)) + 1
         y.height = self.max(self.height(y.left), self.height(y.right)) + 1
@@ -107,10 +107,10 @@ class AVLTree
     # Function to left rotate subtree rooted with x
     def leftRotate( x)
         y = x.right
-        _T = y.left
+        t = y.left
         # Rotation
         y.left = x
-        x.right = _T
+        x.right = t
         # Update heights
         x.height = self.max(self.height(x.left), self.height(x.right)) + 1
         y.height = self.max(self.height(y.left), self.height(y.right)) + 1

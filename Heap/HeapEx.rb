@@ -1,11 +1,9 @@
 class Heap
     # Define the accessor and reader of class Heap
-    attr_accessor :CAPACITY,:size,:arr,:isMinHeap
-    # Number of elements in Heap
-    # The Heap array
+    attr_accessor :CAPACITY,:size,:arr,:isMinHeap    
     
     def initialize(isMin = true)
-        self.arr = Array.new(100){0}
+        self.arr = Array.new(100){0} # The Heap array
         self.size = 0
         self.isMinHeap = isMin
     end
@@ -102,34 +100,6 @@ class Heap
         end
         print("\n")
     end
-
-    def delete( value)
-        i = 0
-        while (i < self.size)
-            if (self.arr[i] == value)
-                self.arr[i] = self.arr[self.size - 1]
-                self.size -= 1
-                self.percolateUp(i)
-                self.percolateDown(i)
-                return true
-            end
-            i += 1
-        end
-        return false
-    end
-end
-
-def demo( args)
-	pq =  Heap.new(true)
-	arr = [ 1, 2, 10, 8, 7, 3, 4, 6, 5, 9]
-	for i in arr do
-	pq.add(i)
-	end
-	print("Printing Priority Queue Heap : " + pq.to_s,"\n")
-	print("Dequeue elements of Priority Queue ::")
-	while (pq.isEmpty() == false)
-		print(" " + pq.remove().to_s)
-	end
 end
 
 def kthSmallest( arr,  size,  k)
@@ -138,7 +108,7 @@ def kthSmallest( arr,  size,  k)
 end
 
 def kthSmallest2( arr,  size,  k)
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	while (i < size)
 		pq.add(arr[i])
@@ -153,7 +123,7 @@ def kthSmallest2( arr,  size,  k)
 end
 
 def kthSmallest3( arr,  size,  k)
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	while (i < size)
 		if (i < k)
@@ -171,7 +141,7 @@ end
 
 def kthLargest( arr,  size,  k)
 	value = 0
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	while (i < size)
 		pq.add(arr[i])
@@ -192,7 +162,8 @@ def isMinHeap( arr,  size)
 		lchild = parent * 2 + 1
 		rchild = parent * 2 + 2
 		# heap property check.
-		if (((lchild < size) && (arr[parent] > arr[lchild])) || ((rchild < size) && (arr[parent] > arr[rchild])))
+		if (((lchild < size) && (arr[parent] > arr[lchild])) || 
+			((rchild < size) && (arr[parent] > arr[rchild])))
 			return false
 		end
 		parent += 1
@@ -207,7 +178,8 @@ def isMaxHeap( arr,  size)
 		lchild = parent * 2 + 1
 		rchild = lchild + 1
 		# heap property check.
-		if (((lchild < size) && (arr[parent] < arr[lchild])) || ((rchild < size) && (arr[parent] < arr[rchild])))
+		if (((lchild < size) && (arr[parent] < arr[lchild])) || 
+			((rchild < size) && (arr[parent] < arr[rchild])))
 			return false
 		end
 		parent += 1
@@ -293,7 +265,7 @@ def kSmallestProduct3( arr,  size,  k)
 end
 
 def kSmallestProduct2( arr,  size,  k)
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	product = 1
 	i = 0
@@ -310,7 +282,7 @@ def kSmallestProduct2( arr,  size,  k)
 end
 
 def kSmallestProduct4( arr,  size,  k)
-	pq =  Heap.new(false)
+	pq =  Heap.new(false) # Max Heap
 	i = 0
 	while (i < size)
 		if (i < k)
@@ -343,10 +315,10 @@ def main3()
 	print("Kth Smallest product:: " + kSmallestProduct4(arr4, 8, 3).to_s,"\n")
 end
 
-# * Kth Smallest product:: 10 
-# * Kth Smallest product:: 10 
-# * Kth Smallest product:: 10
-# * Kth Smallest product:: 10
+# Kth Smallest product:: 10 
+# Kth Smallest product:: 10 
+# Kth Smallest product:: 10
+# Kth Smallest product:: 10
 
 def printLargerHalf( arr,  size)
 	arr.sort! {|x, y| x <=> y}
@@ -359,7 +331,7 @@ def printLargerHalf( arr,  size)
 end
 
 def printLargerHalf2( arr,  size)
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	while (i < size)
 		pq.add(arr[i])
@@ -392,12 +364,12 @@ def main4()
 	printLargerHalf3(arr3, 8)
 end
 
-# * 6 7 7 8 
-# * [6, 7, 7, 8] 
-# * 6 7 7 8
+# 6 7 7 8 
+# [6, 7, 7, 8] 
+# 6 7 7 8
 
 def sortK( arr,  size,  k)
-	pq =  Heap.new(true)
+	pq =  Heap.new(true) # Min Heap
 	i = 0
 	i = 0
 	while (i < k)
@@ -408,12 +380,14 @@ def sortK( arr,  size,  k)
 	index = 0
 	i = k
 	while (i < size)
-		output[index += 1] = pq.remove()
+		output[index] = pq.remove()
+		index += 1
 		pq.add(arr[i])
 		i += 1
 	end
 	while (pq.size() > 0) 
-		output[index += 1] = pq.remove()
+		output[index] = pq.remove()
+		index += 1
 	end
 	i = 0
 	while (i < size)
@@ -448,8 +422,8 @@ class MedianHeap
     attr_accessor :minHeap,:maxHeap
 
     def initialize()
-        self.minHeap =  Heap.new(true)
-        self.maxHeap =  Heap.new(false)
+        self.minHeap =  Heap.new(true) # Min Heap
+        self.maxHeap =  Heap.new(false) # Max Heap
     end
     # Other Methods.
     def add( value)
@@ -470,7 +444,7 @@ class MedianHeap
     end
     def getMedian()
         if (self.maxHeap.size() == 0 && self.minHeap.size() == 0)
-            return (2**(0.size*8-2))
+            return 99999
         end
         if (self.maxHeap.size() == self.minHeap.size())
             return (self.maxHeap.peek() + self.minHeap.peek()) / 2
@@ -483,8 +457,7 @@ class MedianHeap
 end
 
 def main6()
-	arr =
-	[1, 9, 2, 8, 3, 7]
+	arr = [1, 9, 2, 8, 3, 7]
 	hp = MedianHeap.new()
 	i = 0
 	while (i < 6)

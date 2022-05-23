@@ -1,4 +1,3 @@
-# Define the accessor and reader of class FloydWarshall
 INF = 99999
 
 def floydWarshall( graph,  ver)
@@ -12,14 +11,11 @@ def floydWarshall( graph,  ver)
 		end
 		i += 1
 	end
-	k = 0
-	# Pick intermediate vertices.
+	k = 0 # Pick intermediate vertices.
 	while (k < ver)
-		i = 0
-		# Pick source vertices one by one.
+		i = 0 	# Pick source vertices one by one.
 		while (i < ver)
-			j = 0
-			# Pick destination vertices.
+			j = 0 # Pick destination vertices.
 			while (j < ver)
 				# If we have shorter path from i to j via k.
 				# then update dist[i][j]
@@ -62,3 +58,13 @@ graph =	[
 [INF, INF, 4, INF, 4, 0, 2],
 [INF, INF, INF, 4, 2, 3, 0]]
 floydWarshall(graph, 7)
+
+"""
+0 2 4 3 6 8 7 
+2 0 3 1 4 7 5 
+4 3 0 2 5 4 6 
+3 1 2 0 3 6 4 
+7 5 6 4 0 3 1 
+8 7 4 6 4 0 2 
+7 5 6 4 2 3 0 
+"""

@@ -1,6 +1,5 @@
 class RangeMaxST
     # Define the accessor and reader of class RangeMaxST
-    attr_reader :segArr,:n
     attr_accessor :segArr,:n
 
     def initialize( input)
@@ -8,7 +7,7 @@ class RangeMaxST
         # Height of segment tree.
         x = (Math.log(self.n) / Math.log(2)).ceil.to_i
         # Maximum size of segment tree
-        max_size = 2 * 2**x.to_i - 1
+        max_size = 99999
         # Allocate memory for segment tree
         self.segArr = Array.new(max_size){0}
         self.constructST(input, 0, self.n - 1, 0)
@@ -41,7 +40,7 @@ class RangeMaxST
         # Check for error conditions.
         if (start > ed || start < 0 || ed > self.n - 1)
             print("Invalid Input.","\n")
-            return -(2**(0.size*8-2))
+            return -99999
         end
         return self.getMaxUtil(0, self.n - 1, start, ed, 0)
     end
@@ -53,7 +52,7 @@ class RangeMaxST
         end
         if (segEnd < queryStart || queryEnd < segStart)
             # no overlapping case.
-            return -(2**(0.size*8-2))
+            return -99999
         end
         # Segment tree is partly overlaps with the query range.
         mid = (segStart + segEnd) / 2

@@ -25,10 +25,11 @@ end
 def matchExpUtilDP( exp,  str,  m,  n)
 	lookup = Array.new(m + 1){Array.new(n + 1){false}}
 	lookup[0][0] = true
-	i = 1
+	
 	# empty exp and empty str match.
 	# 0 row will remain all false. empty exp cant match any str.
 	# '*' can match with empty string, column 0 update.
+	i = 1
 	while (i <= m)
 		if (exp[i - 1] == '*')
 			lookup[i][0] = lookup[i - 1][0]
@@ -37,6 +38,7 @@ def matchExpUtilDP( exp,  str,  m,  n)
 		end
 		i += 1
 	end
+
 	i = 1
 	# Fill the table in bottom-up fashion
 	while (i <= m)
@@ -63,3 +65,7 @@ end
 print("matchExp :: " + matchExp("*llo,?World?", "Hello, World!").to_s,"\n")
 print("matchExp :: " + matchExpDP("*llo,?World?", "Hello, World!").to_s,"\n")
     
+"""
+matchExp :: true
+matchExp :: true
+"""

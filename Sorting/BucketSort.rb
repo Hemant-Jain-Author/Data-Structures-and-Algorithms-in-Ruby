@@ -1,22 +1,22 @@
 # Allowed values from 0 to maxValue.
-def BucketSort( arr,  maxValue)
+def BucketSort( arr, maxValue)
 	numBucket = 5
 	BucketSortUtil(arr, maxValue, numBucket)
 end
 
-def BucketSortUtil( arr,  maxValue,  numBucket)
+def BucketSortUtil( arr, maxValue, numBucket)
 	length = arr.length
 	if (length == 0)
 		return
 	end
 
 	# Create empty buckets
-	bucket =  Array.new(numBucket){ Array.new()}
+	bucket = Array.new(numBucket){ Array.new()}
 
 	div = (maxValue / numBucket).ceil.to_i
 
-	i = 0
 	# Add elements into the buckets
+	i = 0
 	while (i < length)
 		if (arr[i] < 0 || arr[i] > maxValue)
 			print("Value out of range.","\n")
@@ -30,8 +30,9 @@ def BucketSortUtil( arr,  maxValue,  numBucket)
 		bucket[bucketIndex].append(arr[i])
 		i += 1
 	end
-	i = 0
+	
 	# Sort the elements of each bucket.
+	i = 0
 	while (i < numBucket)
 		bucket[i] = bucket[i].sort()
 		i += 1

@@ -1,12 +1,13 @@
 class SegmentTree
     # Define the accessor and reader of class SegmentTree
     attr_accessor :segArr,:size
+
     def initialize( input)
         self.size = input.length
         # Height of segment tree.
         x = (Math.log(self.size) / Math.log(2)).ceil.to_i
         # Maximum size of segment tree
-        max_size = 2 * 2**x.to_i - 1
+        max_size = 99999
         # Allocate memory for segment tree
         self.segArr = Array.new(max_size){0}
         self.constructST(input, 0, self.size - 1, 0)

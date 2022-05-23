@@ -1,9 +1,11 @@
 class LinkedList
     # Define the accessor and reader of class LinkedList
     attr_accessor :head,:size
+
     class Node
         # Define the accessor and reader of class Node
         attr_accessor :value,:next
+
         def initialize( v,  n)
             self.value = v
             self.next = n
@@ -15,24 +17,28 @@ class LinkedList
         self.size = 0
     end
 
-    # Other Methods.
     def count()
         return self.size
     end
+
     def isEmpty()
         return self.size == 0
     end
+
     # Other Methods.
+
     def peek()
         if (self.isEmpty())
             throw  raise StandardError, "EmptyListException"
         end
         return self.head.value
     end
+    
     def addHead( value)
         self.head = Node.new(value, self.head)
         self.size += 1
     end
+
     def addTail( value)
         newNode = Node.new(value, nil)
         curr = self.head
@@ -44,6 +50,7 @@ class LinkedList
         end
         curr.next = newNode
     end
+
     def removeHead() 
         if (self.isEmpty())
             throw  raise StandardError, "EmptyListException"
@@ -53,6 +60,7 @@ class LinkedList
         self.size -= 1
         return value
     end
+
     def search( data)
         temp = self.head
         while (temp != nil)
@@ -63,6 +71,7 @@ class LinkedList
         end
         return false
     end
+
     def deleteNode( delValue)
         temp = self.head
         if (self.isEmpty())
@@ -83,6 +92,7 @@ class LinkedList
         end
         return false
     end
+
     def deleteNodes( delValue)
         currNode = self.head
         found = false
@@ -103,6 +113,7 @@ class LinkedList
         end
         return found
     end
+
     def reverseRecurseUtil( currentNode,  nextNode)
         if (currentNode == nil)
             return nil
@@ -115,9 +126,11 @@ class LinkedList
         currentNode.next = nextNode
         return ret
     end
+
     def reverseRecurse()
         self.head = self.reverseRecurseUtil(self.head, nil)
     end
+
     def reverse()
         curr = self.head
         prev = nil
@@ -130,6 +143,7 @@ class LinkedList
         end
         self.head = prev
     end
+
     def copyListReversed()
         tempNode = nil
         tempNode2 = nil
@@ -143,6 +157,7 @@ class LinkedList
         ll2.head = tempNode
         return ll2
     end
+
     def copyList()
         headNode = nil
         tailNode = nil
@@ -164,9 +179,11 @@ class LinkedList
         ll2.head = headNode
         return ll2
     end
+
     def compareList( ll)
         return self.compareListUtil(self.head, ll.head)
     end
+
     def compareListUtil( head1,  head2)
         if (head1 == nil && head2 == nil)
             return true
@@ -176,6 +193,7 @@ class LinkedList
             return self.compareListUtil(head1.next, head2.next)
         end
     end
+
     def compareList2( ll2)
         head1 = self.head
         head2 = ll2.head
@@ -191,6 +209,7 @@ class LinkedList
         end
         return false
     end
+
     def findLength()
         curr = self.head
         count = 0
@@ -200,6 +219,7 @@ class LinkedList
         end
         return count
     end
+
     def nthNodeFromBeginning( index)
         if (index > self.size() || index < 1)
             return (2**(0.size*8-2))
@@ -212,6 +232,7 @@ class LinkedList
         end
         return curr.value
     end
+
     def nthNodeFromEnd( index)
         size = self.findLength()
         if (size != 0 && size < index)
@@ -220,6 +241,7 @@ class LinkedList
         startIndex = size - index + 1
         return self.nthNodeFromBeginning(startIndex)
     end
+
     def nthNodeFromEnd2( index)
         count = 1
         forward = self.head
@@ -237,6 +259,7 @@ class LinkedList
         end
         return curr.value
     end
+
     def findIntersection( lst2)
         head2 = lst2.head
         l1 = 0
@@ -271,10 +294,12 @@ class LinkedList
         end
         return tempHead
     end
+
     def deleteList()
         self.head = nil
         self.size = 0
     end
+
     def display()
         temp = self.head
         while (temp != nil)
@@ -283,6 +308,7 @@ class LinkedList
         end
         print("\n")
     end
+
     def sortedInsert( value)
         newNode = Node.new(value, nil)
         curr = self.head
@@ -297,6 +323,7 @@ class LinkedList
         newNode.next = curr.next
         curr.next = newNode
     end
+
     def bubbleSort()
         ed = nil
         if (self.head == nil || self.head.next == nil)
@@ -318,6 +345,7 @@ class LinkedList
             ed = curr
         end
     end
+
     def selectionSort()
         ed = nil
         if (self.head == nil || self.head.next == nil)
@@ -342,6 +370,7 @@ class LinkedList
             end
         end
     end
+
     def insertionSort()
         if (self.head == nil || self.head.next == nil)
             return
@@ -360,6 +389,7 @@ class LinkedList
             stop = stop.next
         end
     end
+
     def removeDuplicate()
         curr = self.head
         while (curr != nil)
@@ -370,6 +400,7 @@ class LinkedList
             end
         end
     end
+
     def makeLoop()
         temp = self.head
         while (temp != nil)
@@ -380,6 +411,7 @@ class LinkedList
             temp = temp.next
         end
     end
+
     def loopDetect()
         curr = self.head
         hs =  []
@@ -394,6 +426,7 @@ class LinkedList
         print("loop not found","\n")
         return false
     end
+
     def loopDetect2()
         slowPtr = fastPtr = self.head
         while (fastPtr.next != nil && fastPtr.next.next != nil)
@@ -407,6 +440,7 @@ class LinkedList
         print("loop not found","\n")
         return false
     end
+
     def reverseListLoopDetect()
         tempHead = self.head
         self.reverse()
@@ -420,6 +454,7 @@ class LinkedList
             return false
         end
     end
+
     def loopTypeDetect()
         slowPtr = fastPtr = self.head
         while (fastPtr.next != nil && fastPtr.next.next != nil)
@@ -437,6 +472,7 @@ class LinkedList
         print("loop not found","\n")
         return 0
     end
+
     def loopPointDetect()
         slowPtr = fastPtr = self.head
         while (fastPtr.next != nil && fastPtr.next.next != nil)
@@ -448,6 +484,7 @@ class LinkedList
         end
         return nil
     end
+
     def removeLoop()
         loopPoint = self.loopPointDetect()
         if (loopPoint == nil)
@@ -468,6 +505,7 @@ class LinkedList
         end
         secondPtr.next = nil
     end
+
     def self.main1()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -487,6 +525,7 @@ class LinkedList
     # Is empty : false
     # Peek : 3
     # 3 2 1 4
+
     def self.main2()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -500,6 +539,7 @@ class LinkedList
     # 3 2 1 
     # search : true
     # 2 1
+
     def self.main3()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -519,6 +559,7 @@ class LinkedList
     # 3 1 1 2 1 
     # deleteNodes : true
     # 3 2
+
     def self.main4()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -539,6 +580,7 @@ class LinkedList
     # 3 2 1 
     # 3 2 1 
     # 1 2 3
+
     def self.main5()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -561,6 +603,7 @@ class LinkedList
     # compareList : true
     # compareList : false
     # compareList : false
+
     def self.main6()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -576,6 +619,7 @@ class LinkedList
     # 2
     # 2
     # 2
+
     def self.main7()
         ll = LinkedList.new()
         ll.sortedInsert(1)
@@ -592,6 +636,7 @@ class LinkedList
     # 1 2 3 
     # 1 1 2 2 3 3 
     # 1 2 3
+
     def self.main8()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -609,6 +654,7 @@ class LinkedList
     # loop found
     # circular list loop found
     # loop not found
+
     def self.main9()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -628,6 +674,7 @@ class LinkedList
     # 4 2 1 
     # 5 3 2 1 
     # Intersection:: 2
+    
     def self.main10()
         ll = LinkedList.new()
         ll.addHead(1)
@@ -646,6 +693,7 @@ class LinkedList
         ll.insertionSort()
         ll.display()
     end
+
     def self.main()
         self.main1()
         self.main2()

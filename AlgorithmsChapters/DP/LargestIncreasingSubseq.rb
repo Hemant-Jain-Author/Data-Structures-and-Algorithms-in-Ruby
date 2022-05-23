@@ -25,3 +25,5 @@ end
 
 arr = [10, 12, 9, 23, 25, 55, 49, 70]
 print("Length of lis is " + lis(arr).to_s,"\n")
+
+# Length of lis is 6

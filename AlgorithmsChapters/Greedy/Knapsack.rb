@@ -19,6 +19,7 @@ def getMaxCostGreedy( wt,  cost,  capacity)
 		itemList[i] = Items.new(wt[i], cost[i])
 		i += 1
 	end
+
 	itemList.sort! {|x, y| -x.density <=> -y.density}
 
 	i = 0
@@ -38,3 +39,5 @@ cost = [60, 40, 90, 120]
 capacity = 50
 maxCost = getMaxCostGreedy(wt, cost, capacity)
 print("Maximum cost obtained = " + maxCost.to_s,"\n")
+
+# Maximum cost obtained = 150

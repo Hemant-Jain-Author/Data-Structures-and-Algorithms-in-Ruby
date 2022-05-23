@@ -123,15 +123,16 @@ def main1()
 	print(fibonacciSearch(first, 7, 8),"\n")
 	print(fibonacciSearch(first, 7, 25),"\n")
 end
-# * false 
-# * false 
-# * false 
-# * false
-# * 
-# * true 
-# * true 
-# * true 
-# * true
+# false 
+# false 
+# false 
+# false
+# 
+# true 
+# true 
+# true 
+# true
+
 def swap( arr,  first,  second)
 	temp = arr[first]
 	arr[first] = arr[second]
@@ -179,7 +180,8 @@ def main2()
 	print(firstRepeated(first, first.length),"\n")
 	print(firstRepeated2(first, first.length),"\n")
 end
-# * 1
+# 1
+
 def printRepeating( arr,  size)
 	print("Repeating elements are ")
 	i = 0
@@ -251,10 +253,10 @@ def main3()
 	printRepeating3(first, first.length)
 	printRepeating4(first, first.length, 50)
 end
-# * Repeating elements are 1 3 
-# * Repeating elements are 1 3 
-# * Repeating elements are 1 3 
-# * Repeating elements are 1 3
+# Repeating elements are 1 3 
+# Repeating elements are 1 3 
+# Repeating elements are 1 3 
+# Repeating elements are 1 3
 
 def removeDuplicates( array,  size)
 	j = 0
@@ -294,6 +296,7 @@ def main4()
 		i += 1
 	end
 	print("\n")
+
 	first2 = [1, 3, 5, 3, 9, 1, 30]
 	ret2 = removeDuplicates2(first2, first2.length)
 	i = 0
@@ -303,7 +306,8 @@ def main4()
 	end
 	print("\n")
 end
-# * 1 3 5 9 30
+# 1 3 5 9 30
+
 def findMissingNumber( arr,  size)
 	found = 0
 	i = 1
@@ -322,7 +326,7 @@ def findMissingNumber( arr,  size)
 		end
 		i += 1
 	end
-	return (2**(0.size*8-2))
+	return 999999
 end
 
 def findMissingNumber2( arr,  size)
@@ -351,7 +355,7 @@ def findMissingNumber3( arr,  size)
 		end
 		i += 1
 	end
-	return (2**(0.size*8-2))
+	return 999999
 end
 
 def findMissingNumber4( arr,  size)
@@ -368,7 +372,7 @@ def findMissingNumber4( arr,  size)
 		end
 		i += 1
 	end
-	return (2**(0.size*8-2))
+	return 999999
 end
 
 def findMissingNumber5( arr,  size)
@@ -404,7 +408,7 @@ def findMissingNumber6( arr,  size)
 		end
 		i += 1
 	end
-	return (2**(0.size*8-2))
+	return 999999
 end
 
 def findMissingNumber7( arr,  size)
@@ -453,7 +457,8 @@ def main5()
 	print(findMissingNumber8(first, first.length),"\n")
 	print(findMissingNumber6(first, first.length),"\n")
 end
-# * 6 6 6
+# 6 6 6
+
 def missingValues( arr,  size)
 	max = arr[0]
 	min = arr[0]
@@ -534,8 +539,8 @@ def main6()
 	missingValues2(arr, size)
 	missingValues3(arr, size)
 end
-# * 12 15 16 20 22 
-# * 12 15 16 20 22
+# 12 15 16 20 22 
+# 12 15 16 20 22
 def oddCount( arr,  size)
 	xorSum = 0
 	i = 0
@@ -570,8 +575,8 @@ def oddCount3( arr,  size)
 	first = 0
 	second = 0
 	i = 0
-	# 	 * xor of all elements in arr[] even occurrence will cancel each other. sum will
-	# 	 * contain sum of two odd elements.
+	# xor of all elements in arr[] even occurrence will cancel each other. sum will
+	# contain sum of two odd elements.
 	while (i < size)
 		xorSum = xorSum ^ arr[i]
 		i += 1
@@ -579,9 +584,9 @@ def oddCount3( arr,  size)
 	# Rightmost set bit. 
 	setBit = xorSum & ~(xorSum - 1)
 	i = 0
-	# 	 * Dividing elements in two group: Elements having setBit bit as 1. Elements
-	# 	 * having setBit bit as 0. Even elements cancelled themselves if group and we
-	# 	 * get our numbers.
+	# Dividing elements in two group: Elements having setBit bit as 1. Elements
+	# having setBit bit as 0. Even elements cancelled themselves if group and we
+	# get our numbers.
 	while (i < size)
 		if ((arr[i] & setBit) != 0)
 			first ^= arr[i]
@@ -625,7 +630,8 @@ def main8()
 	size = arr.length
 	sumDistinct(arr, size)
 end
-# * sum : 21
+# sum : 21
+
 def minAbsSumPair( arr,  size)
 	# Array should have at least two elements
 	if (size < 2)
@@ -689,8 +695,9 @@ def main9()
 	minAbsSumPair2(first, first.length)
 	minAbsSumPair(first, first.length)
 end
-# * Minimum sum elements are : -6 , 6 
-# * Minimum sum elements are : -6 , 6
+# Minimum sum elements are : -6 , 6 
+# Minimum sum elements are : -6 , 6
+
 def findPair( arr,  size,  value)
 	i = 0
 	while (i < size)
@@ -760,10 +767,11 @@ def main10()
 	findPair3(first, first.length, 8)
 	findPair4(first, first.length, 9, 8)
 end
-# * The pair is : 1, 7 
-# * The pair is 1, 7 
-# * The pair is : 5, 3  
-# * The pair is : 5, 3
+# The pair is : 1, 7 
+# The pair is 1, 7 
+# The pair is : 5, 3  
+# The pair is : 5, 3
+
 def findPairTwoLists( arr1,  size1,  arr2,  size2,  value)
 	i = 0
 	while (i < size1)
@@ -858,11 +866,12 @@ def main10A()
 	print(findPairTwoLists4(first, first.length, second, second.length, 8),"\n")
 	print(findPairTwoLists5(first, first.length, second, second.length, 9, 8),"\n")
 end
-# * The pair is : 1, 7 true 
-# * The pair is 1, 7 true 
-# * The pair is 1, 7 true 
-# * The pair is : 1, 7 true 
-# * The pair is : 1, 7 true
+# The pair is : 1, 7 true 
+# The pair is 1, 7 true 
+# The pair is 1, 7 true 
+# The pair is : 1, 7 true 
+# The pair is : 1, 7 true
+
 def findDifference( arr,  size,  value)
 	i = 0
 	while (i < size)
@@ -902,10 +911,13 @@ def main11()
 	print(findDifference(first, first.length, 6),"\n")
 	print(findDifference2(first, first.length, 6),"\n")
 end
-# * The pair is:: 1 & 7 true 
-# * The pair is::1 & 7 true
+# The pair is:: 1 & 7 
+# true 
+# The pair is::1 & 7 
+# true
+
 def findMinDiff( arr,  size)
-	diff = (2**(0.size*8-2))
+	diff = 999999
 	i = 0
 	while (i < size)
 		j = i + 1
@@ -923,7 +935,7 @@ end
 
 def findMinDiff2( arr,  size)
 	arr.sort! {|a,b| a <=> b }
-	diff = (2**(0.size*8-2))
+	diff = 999999
 	i = 0
 	while (i < (size - 1))
 		if ((arr[i + 1] - arr[i]) < diff)
@@ -939,9 +951,10 @@ def main12()
 	print("findMinDiff : " + findMinDiff(second, second.length).to_s,"\n")
 	print("findMinDiff : " + findMinDiff2(second, second.length).to_s,"\n")
 end
-# * findMinDiff : 1
+# findMinDiff : 1
+
 def minDiffPair( arr1,  size1,  arr2,  size2)
-	diff = (2**(0.size*8-2))
+	diff = 999999
 	first = 0
 	second = 0
 	i = 0
@@ -964,7 +977,7 @@ def minDiffPair( arr1,  size1,  arr2,  size2)
 end
 
 def minDiffPair2( arr1,  size1,  arr2,  size2)
-	minDiff = (2**(0.size*8-2))
+	minDiff = 999999
 	i = 0
 	j = 0
 	first = 0
@@ -997,6 +1010,7 @@ def main13()
 end
 # The pair is :: 4 & 4
 # Minimum difference is :: 0
+
 def closestPair( arr,  size,  value)
 	diff = 999999
 	first = -1
@@ -1048,8 +1062,9 @@ def main14()
 	closestPair(first, first.length, 47)
 	closestPair2(first, first.length, 47)
 end
-# * closest pair is :: 3 50 
-# * closest pair is :: 3 50
+# closest pair is :: 3 50 
+# closest pair is :: 3 50
+
 def sumPairRestArray( arr,  size)
 	arr.sort! {|a,b| a <=> b }
 	total = 0
@@ -1081,6 +1096,7 @@ def main15()
 end
 # Pair is :: 8 15
 # true
+
 def zeroSumTriplets( arr,  size)
 	i = 0
 	while (i < (size - 2))
@@ -1125,10 +1141,11 @@ def main16()
 	zeroSumTriplets(first, first.length)
 	zeroSumTriplets2(first, first.length)
 end
-# * Triplet:: 0 -1 1 
-# * Triplet:: 2 -3 1 
-# * Triplet :: -3 1 2 
-# * Triplet :: -1 0 1
+# Triplet:: 0 -1 1 
+# Triplet:: 2 -3 1 
+# Triplet :: -3 1 2 
+# Triplet :: -1 0 1
+
 def findTriplet( arr,  size,  value)
 	i = 0
 	while (i < (size - 2))
@@ -1173,10 +1190,11 @@ def main17()
 	findTriplet(first, first.length, 22)
 	findTriplet2(first, first.length, 22)
 end
-# * Triplet :: 1 15 6 
-# * Triplet :: 5 9 8 
-# * Triplet ::1 6 15 
-# * Triplet ::5 8 9
+# Triplet :: 1 15 6 
+# Triplet :: 5 9 8 
+# Triplet ::1 6 15 
+# Triplet ::5 8 9
+
 def abcTriplet( arr,  size)
 	i = 0
 	while (i < size - 1)
@@ -1221,9 +1239,10 @@ def main18()
 	abcTriplet(first, first.length)
 	abcTriplet2(first, first.length)
 end
-# * abcTriplet:: 1 5 6 
-# * abcTriplet:: 1 8 9 
-# * abcTriplet:: 6 9 15
+# abcTriplet:: 1 5 6 
+# abcTriplet:: 1 8 9 
+# abcTriplet:: 6 9 15
+
 def smallerThenTripletCount( arr,  size,  value)
 	count = 0
 	i = 0
@@ -1269,8 +1288,9 @@ def main19()
 	smallerThenTripletCount(first, first.length, 2)
 	smallerThenTripletCount(first, first.length, 2)
 end
-# * 4 
-# * 4
+# 4 
+# 4
+
 def apTriplets( arr,  size)
 	i = 1
 	while (i < size - 1)
@@ -1295,9 +1315,9 @@ def main20()
 	arr = [2, 4, 10, 12, 14, 18, 36]
 	apTriplets(arr, arr.length)
 end
-# * AP Triplet:: 2 10 18 
-# * AP Triplet:: 10 12 14 
-# * AP Triplet:: 10 14 18
+# AP Triplet:: 2 10 18 
+# AP Triplet:: 10 12 14 
+# AP Triplet:: 10 14 18
 def gpTriplets( arr,  size)
 	i = 1
 	while (i < size - 1)
@@ -1322,10 +1342,11 @@ def main21()
 	arr = [1, 2, 4, 8, 16]
 	gpTriplets(arr, arr.length)
 end
-# * GP Triplet:: 1 2 4 
-# * GP Triplet:: 2 4 8 
-# * GP Triplet:: 1 4 16 
-# * GP Triplet:: 4 8 16
+# GP Triplet:: 1 2 4 
+# GP Triplet:: 2 4 8 
+# GP Triplet:: 1 4 16 
+# GP Triplet:: 4 8 16
+
 def numberOfTriangles( arr,  size)
 	count = 0
 	i = 0
@@ -1372,8 +1393,9 @@ def main22()
 	print(numberOfTriangles(arr, arr.length),"\n")
 	print(numberOfTriangles2(arr, arr.length),"\n")
 end
-# * 3 
-# * 3
+# 3 
+# 3
+
 def getMax( arr,  size)
 	max = arr[0]
 	count = 1
@@ -1442,9 +1464,10 @@ def main23()
 	print(getMax2(first, first.length),"\n")
 	print(getMax3(first, first.length, 50),"\n")
 end
-# * 5 
-# * 5 
-# * 5
+# 5 
+# 5 
+# 5
+
 def getMajority( arr,  size)
 	max = 0
 	count = 0
@@ -1487,7 +1510,7 @@ def getMajority2( arr,  size)
 	if (count > size / 2)
 		return arr[majIndex]
 	else
-		return -(2**(0.size*8-2))
+		return -999999
 	end
 end
 
@@ -1529,9 +1552,10 @@ def main24()
 	print(getMajority2(first, first.length),"\n")
 	print(getMajority3(first, first.length),"\n")
 end
-# * 5 
-# * 5 
-# * 5
+# 5 
+# 5 
+# 5
+
 def getMedian( arr,  size)
 	arr.sort! {|a,b| a <=> b }
 	return arr[size / 2]
@@ -1547,7 +1571,8 @@ def main25()
 	print(getMedian(first, first.length),"\n")
 	print(getMedian(first, first.length),"\n")
 end
-# * 6
+# 6
+
 def searchBitonicArrayMax( arr,  size)
 	i = 0
 	while (i < size - 2)
@@ -1611,14 +1636,11 @@ def findMaxBitonicArray( arr,  size)
 	end
 	while (start <= ed)
 		mid = (start + ed) / 2
-		if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid])
-			# maxima
+		if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid]) # maxima
 			return mid
-		elsif (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1])
-			# increasing
+		elsif (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1]) # increasing
 			start = mid + 1
-		elsif (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1])
-			# decreasing
+		elsif (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1]) # decreasing
 			ed = mid - 1
 		else
 			break
@@ -1637,6 +1659,7 @@ end
 # 30
 # 30
 # 7
+
 def findKeyCount( arr,  size,  key)
 	count = 0
 	i = 0
@@ -1690,16 +1713,17 @@ def main27()
 	print(findKeyCount(first, first.length, 6),"\n")
 	print(findKeyCount2(first, first.length, 6),"\n")
 end
-# * 1 
-# * 1
+# 1 
+# 1
+
 # Using binary search method.
 def firstIndex( arr,  size,  low,  high,  value)
 	mid = 0
 	if (high >= low)
 		mid = (low + high) / 2
 	end
-	# 	 * Find first occurrence of value, either it should be the first element of the
-	# 	 * array or the value before it is smaller than it.
+	# Find first occurrence of value, either it should be the first element of the
+	# array or the value before it is smaller than it.
 	if ((mid == 0 || arr[mid - 1] < value) && (arr[mid] == value))
 		return mid
 	elsif (arr[mid] < value)
@@ -1712,8 +1736,8 @@ end
 def isMajority2( arr,  size)
 	majority = arr[size / 2]
 	i = firstIndex(arr, size, 0, size - 1, majority)
-	# 	 * we are using majority element form array so we will get some valid index
-	# 	 * always.
+	# we are using majority element form array so we will get some valid index
+	# always.
 	if (((i + size / 2) <= (size - 1)) && arr[i + size / 2] == majority)
 		return true
 	else
@@ -1742,7 +1766,8 @@ def main28()
 	print(isMajority(arr, arr.length),"\n")
 	print(isMajority2(arr, arr.length),"\n")
 end
-# * true
+# true
+
 def maxProfit( stocks,  size)
 	maxProfit = 0
 	buy = 0
@@ -1794,13 +1819,13 @@ def main29()
 	print(maxProfit(first, first.length),"\n")
 	print(maxProfit2(first, first.length),"\n")
 end
-# * Purchase day is- 2 at price 6 
-# * Sell day is- 10 at price 150 
-# * 144
+# Purchase day is- 2 at price 6 
+# Sell day is- 10 at price 150 
+# 144
+
 def findMedian( arrFirst,  sizeFirst,  arrSecond,  sizeSecond)
 	medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2
-	# ceiling
-	# function.
+	# ceiling function.
 	i = 0
 	j = 0
 	count = 0
@@ -1812,6 +1837,7 @@ def findMedian( arrFirst,  sizeFirst,  arrSecond,  sizeSecond)
 		end
 		count += 1
 	end
+
 	if (arrFirst[i] < arrSecond[j])
 		return arrFirst[i]
 	else
@@ -1824,7 +1850,8 @@ def main30()
 	second = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30]
 	print(findMedian(first, first.length, second, second.length),"\n")
 end
-# * 6
+# 6
+
 def search01( arr,  size)
 	i = 0
 	while (i < size)
@@ -1863,7 +1890,8 @@ def main31()
 	print(search01(first, first.length),"\n")
 	print(binarySearch01(first, first.length),"\n")
 end
-# * 8
+# 8
+
 def rotationMax( arr,  size)
 	i = 0
 	while (i < size - 1)
@@ -1902,6 +1930,7 @@ def main32()
 end
 # 77
 # 77
+
 def findRotationMax( arr,  size)
 	i = 0
 	while (i < size - 1)
@@ -1939,7 +1968,8 @@ def main33()
 	print(findRotationMax(first, first.length),"\n")
 	print(findRotationMax2(first, first.length),"\n")
 end
-# * 2
+# 2
+
 def countRotation( arr,  size)
 	maxIndex = findRotationMaxUtil(arr, 0, size - 1)
 	return (maxIndex + 1) % size
@@ -1949,7 +1979,8 @@ def main34()
 	first = [34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34]
 	print(countRotation(first, first.length),"\n")
 end
-# * 3
+# 3
+
 def searchRotateArray( arr,  size,  key)
 	i = 0
 	while (i < size - 1)
@@ -1995,10 +2026,10 @@ def main35()
 	print(countRotation(first, first.length),"\n")
 	print(first[findRotationMax(first, first.length)],"\n")
 end
-# * 15 
-# * 3 
-# * 7
-# * 7
+# 15 
+# 3 
+# 77
+
 def minAbsDiffAdjCircular( arr,  size)
 	diff = 9999999
 	if (size < 2)
@@ -2011,12 +2042,14 @@ def minAbsDiffAdjCircular( arr,  size)
 	end
 	return diff
 end
+
 # Testing Code
 def main36()
 	arr = [5, 29, 18, 51, 11]
 	print(minAbsDiffAdjCircular(arr, arr.length),"\n")
 end
-# * 6
+# 6
+
 def swapch( arr,  first,  second)
 	temp = arr[first]
 	arr[first] = arr[second]
@@ -2035,13 +2068,15 @@ def transformArrayAB1( arr,  size)
 		i += 1
 	end
 end
+
 # Testing Code
 def main37()
 	str = "aaaabbbb".chars
 	transformArrayAB1(str, str.length)
-	print(str,"\n")
+	print(str.join(""),"\n")
 end
-# * abababab
+# abababab
+
 def checkPermutation( array1,  size1,  array2,  size2)
 	if (size1 != size2)
 		return false
@@ -2104,6 +2139,7 @@ def checkPermutation3( array1,  size1,  array2,  size2)
 	end
 	return true
 end
+
 # Testing Code
 def main38()
 	str1 = "aaaabbbb".chars
@@ -2112,9 +2148,10 @@ def main38()
 	print(checkPermutation2(str1, str1.length, str2, str2.length),"\n")
 	print(checkPermutation3(str1, str1.length, str2, str2.length),"\n")
 end
-# * true
-# * true
-# * true
+# true
+# true
+# true
+
 def findElementIn2DArray( arr,  r,  c,  value)
 	row = 0
 	column = c - 1
@@ -2214,6 +2251,7 @@ def isAP3( arr,  size)
 	end
 	return true
 end
+
 # Testing Code
 def main39()
 	arr = [20, 25, 15, 5, 0, 10, 35, 30]
@@ -2221,9 +2259,10 @@ def main39()
 	print(isAP2(arr, arr.length),"\n")
 	print(isAP3(arr, arr.length),"\n")
 end
-# * true 
-# * true 
-# * true
+# true 
+# true 
+# true
+
 def findBalancedPoint( arr,  size)
 	first = 0
 	second = 0
@@ -2245,20 +2284,22 @@ def findBalancedPoint( arr,  size)
 	end
 	return -1
 end
+
 # Testing Code
 def main40()
 	arr = [-7, 1, 5, 2, -4, 3, 0]
 	print(findBalancedPoint(arr, arr.length),"\n")
 end
-# * 3
+# 3
+
 def findFloor( arr,  size,  value)
 	start = 0
 	stop = size - 1
 	while (start <= stop)
 		mid = (start + stop) / 2
-		# 		 * search value is equal to arr[mid] value.. search value is greater than mid
-		# 		 * index value and less than mid+1 index value. value is greater than
-		# 		 * arr[size-1] then floor is arr[size-1]
+		# search value is equal to arr[mid] value.. search value is greater than mid
+		# index value and less than mid+1 index value. value is greater than
+		# arr[size-1] then floor is arr[size-1]
 		if (arr[mid] == value || (arr[mid] < value && (mid == size - 1 || arr[mid + 1] > value)))
 			return arr[mid]
 		elsif (arr[mid] < value)
@@ -2275,9 +2316,9 @@ def findCeil( arr,  size,  value)
 	stop = size - 1
 	while (start <= stop)
 		mid = (start + stop) / 2
-		# 		 * search value is equal to arr[mid] value.. search value is less than mid index
-		# 		 * value and greater than mid-1 index value. value is less than arr[0] then ceil
-		# 		 * is arr[0]
+		# search value is equal to arr[mid] value.. search value is less than mid index
+		# value and greater than mid-1 index value. value is less than arr[0] then ceil
+		# is arr[0]
 		if (arr[mid] == value || (arr[mid] > value && (mid == 0 || arr[mid - 1] < value)))
 			return arr[mid]
 		elsif (arr[mid] < value)
@@ -2288,19 +2329,21 @@ def findCeil( arr,  size,  value)
 	end
 	return -1
 end
+
 # Testing Code
 def main41()
 	arr = [2, 4, 8, 16]
-	print("Floor :  " + findFloor(arr, arr.length, 5).to_s,"\n")
-	print("Ceil :  " + findCeil(arr, arr.length, 5).to_s,"\n")
+	print("Floor : " + findFloor(arr, arr.length, 5).to_s,"\n")
+	print("Ceil : " + findCeil(arr, arr.length, 5).to_s,"\n")
 end
-# Floor :  4
-# Ceil :  8
+# Floor : 4
+# Ceil : 8
+
 def closestNumber( arr,  size,  num)
 	start = 0
 	stop = size - 1
 	output = -1
-	minDist = (2**(0.size*8-2))
+	minDist = 999999
 	while (start <= stop)
 		mid = (start + stop) / 2
 		if (minDist > (arr[mid] - num).abs)
@@ -2317,12 +2360,14 @@ def closestNumber( arr,  size,  num)
 	end
 	return output
 end
+
 # Testing Code
 def main42()
 	arr = [2, 4, 8, 16]
 	print(closestNumber(arr, arr.length, 9),"\n")
 end
-# * 8
+# 8
+
 def duplicateKDistance( arr,  size,  k)
 	hm =  Hash.new
 	i = 0
@@ -2337,12 +2382,14 @@ def duplicateKDistance( arr,  size,  k)
 	end
 	return false
 end
+
 # Testing Code
 def main43()
 	arr = [1, 2, 3, 1, 4, 5]
 	duplicateKDistance(arr, arr.length, 3)
 end
-# * Value:1 Index: 0 & 3
+# Value:1 Index: 0 & 3
+
 def frequencyCounts( arr,  size)
 	hm =  Hash.new
 	i = 0
@@ -2418,6 +2465,7 @@ def frequencyCounts4( arr,  size)
 	end
 	print("\n")
 end
+
 # Testing Code
 def main44()
 	arr = [1, 2, 2, 2, 1]
@@ -2426,10 +2474,11 @@ def main44()
 	frequencyCounts3(arr, arr.length)
 	frequencyCounts4(arr, arr.length)
 end
-# * (1 : 2) (2 : 3) 
-# * (1 : 2) (2 : 3) 
-# * (1 : 2) (2 : 3) 
-# * (1 : 2) (2 : 3)
+# (1 : 2) (2 : 3) 
+# (1 : 2) (2 : 3) 
+# (1 : 2) (2 : 3) 
+# (1 : 2) (2 : 3)
+
 def kLargestElements( arrIn,  size,  k)
 	arr = Array.new(size){0}
 	i = 0
@@ -2494,14 +2543,15 @@ def kLargestElements2( arrIn,  size,  k)
 	end
 	print("\n")
 end
+
 # Testing Code
 def main45()
 	arr = [10, 50, 30, 60, 15]
 	kLargestElements(arr, arr.length, 2)
 	kLargestElements2(arr, arr.length, 2)
 end
-# * 50 60 
-# * 50 60
+# 50 60 
+# 50 60
 
 # linear search method
 def fixPoint( arr,  size)
@@ -2515,6 +2565,7 @@ def fixPoint( arr,  size)
 	# fix point not found so return invalid index
 	return -1
 end
+
 # Binary search method
 def fixPoint2( arr,  size)
 	low = 0
@@ -2532,14 +2583,16 @@ def fixPoint2( arr,  size)
 	# fix point not found so return invalid index
 	return -1
 end
+
 # Testing Code
 def main46()
 	arr = [-10, -2, 0, 3, 11, 12, 35, 51, 200]
 	print(fixPoint(arr, arr.length),"\n")
 	print(fixPoint2(arr, arr.length),"\n")
 end
-# * 3 
-# * 3
+# 3 
+# 3
+
 def subArraySums( arr,  size,  value)
 	start = 0
 	ed = 0
@@ -2557,6 +2610,7 @@ def subArraySums( arr,  size,  value)
 		end
 	end
 end
+
 # Testing Code
 def main47()
 	arr = [15, 5, 5, 20, 10, 5, 5, 20, 10, 10]
@@ -2564,6 +2618,7 @@ def main47()
 	print("\n")
 end
 # (0 to 1) (3 to 3) (4 to 6) (7 to 7) (8 to 9)
+
 def maxConSub( arr,  size)
 	currMax = 0
 	maximum = 0
@@ -2632,6 +2687,7 @@ def maxConSubArr2( _A,  sizeA,  _B,  sizeB)
 	print(maximum,"\n")
 	return maximum
 end
+
 # Testing Code
 def main48()
 	arr = [1, 2, -3, 4, 5, -10, 6, 7]
@@ -2641,9 +2697,10 @@ def main48()
 	maxConSubArr(arr2, arr2.length, arr3, arr3.length)
 	maxConSubArr2(arr2, arr2.length, arr3, arr3.length)
 end
-# * 13 
-# * 13 
-# * 13
+# 13 
+# 13 
+# 13
+
 def rainWater( arr,  size)
 	leftHigh = Array.new(size){0}
 	rightHigh = Array.new(size){0}
@@ -2703,14 +2760,16 @@ def rainWater2( arr,  size)
 	print("Water : " + water.to_s,"\n")
 	return water
 end
+
 # Testing Code
 def main49()
 	arr = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
 	rainWater(arr, arr.length)
 	rainWater2(arr, arr.length)
 end
-# * Water : 6 
-# * Water : 6
+# Water : 6 
+# Water : 6
+
 def separateEvenAndOdd( arr,  size)
 	left = 0
 	right = size - 1
@@ -2726,6 +2785,7 @@ def separateEvenAndOdd( arr,  size)
 		end
 	end
 end
+
 # Testing Code
 def main50()
 	first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30]
@@ -2734,7 +2794,8 @@ def main50()
 	print(val.to_s + " ")
 	end
 end
-# * 30 20 6 6 6 6 6 6 10 8 7 13 5 1
+# 30 20 6 6 6 6 6 6 10 8 7 13 5 1
+
 def arrayIndexMaxDiff( arr,  size)
 	maxDiff = -1
 	i = 0
@@ -2775,6 +2836,7 @@ def arrayIndexMaxDiff2( arr,  size)
 	end
 	return maxDiff
 end
+
 # Testing code
 def main51()
 	arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
@@ -2783,6 +2845,7 @@ def main51()
 end
 # arrayIndexMaxDiff : 7
 # arrayIndexMaxDiff : 7
+
 def maxPathSum( arr1,  size1,  arr2,  size2)
 	i = 0
 	j = 0
@@ -2816,6 +2879,7 @@ def maxPathSum( arr1,  size1,  arr2,  size2)
 	result += [sum1,sum2].max
 	return result
 end
+
 # Testing code
 def main52()
 	arr1 = [12, 13, 18, 20, 22, 26, 70]
@@ -2823,6 +2887,7 @@ def main52()
 	print("Max Path Sum:: " + maxPathSum(arr1, arr1.length, arr2, arr2.length).to_s,"\n")
 end
 # Max Path Sum:: 201
+
 def maxSubArraySum( a,  size)
 	maxSoFar = 0
 	maxEndingHere = 0
@@ -2839,12 +2904,13 @@ def maxSubArraySum( a,  size)
 	end
 	return maxSoFar
 end
+
 # Testing code
 def main53()
 	arr = [1, -2, 3, 4, -4, 6, -4, 3, 2]
-	print("Max sub array sum :" + maxSubArraySum(arr, 9).to_s,"\n")
+	print("Max sub array sum : " + maxSubArraySum(arr, 9).to_s,"\n")
 end
-# Max sub array sum :10
+# Max sub array sum : 10
 
 main1()
 main2()

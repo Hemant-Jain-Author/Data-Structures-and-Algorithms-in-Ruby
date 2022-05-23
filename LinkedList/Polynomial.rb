@@ -1,17 +1,18 @@
 class Polynomial
     # Define the accessor and reader of class Polynomial
-    attr_reader :head,:tail
     attr_accessor :head,:tail
+    
     class Node
         # Define the accessor and reader of class Node
-        attr_reader :coeff,:pow,:next
         attr_accessor :coeff,:pow,:next
+
         def initialize( c,  p)
             self.coeff = c
             self.pow = p
             self.next = nil
         end
     end
+
     def initialize( coeffs,  pows,  size)
         self.head = nil
         self.tail = nil
@@ -46,6 +47,7 @@ class Polynomial
                 p1 = p1.next
                 p2 = p2.next
             end
+
             if (poly.head == nil)
                 poly.head = poly.tail = temp
             else
@@ -55,6 +57,7 @@ class Polynomial
         end
         return poly
     end
+
     def display()
         curr = self.head
         while (curr != nil)
@@ -66,19 +69,17 @@ class Polynomial
         end
         print("\n")
     end
-    def self.main()
-        c1 = [6, 5, 4]
-        p1 = [2, 1, 0]
-        s1 = c1.length
-        first = Polynomial.new(c1, p1, s1)
-        first.display()
-        c2 = [3, 2, 1]
-        p2 = [3, 1, 0]
-        s2 = c2.length
-        second = Polynomial.new(c2, p2, s2)
-        second.display()
-        sum = first.add(second)
-        sum.display()
-    end
 end
-Polynomial.main()
+
+c1 = [6, 5, 4]
+p1 = [2, 1, 0]
+s1 = c1.length
+first = Polynomial.new(c1, p1, s1)
+first.display()
+c2 = [3, 2, 1]
+p2 = [3, 1, 0]
+s2 = c2.length
+second = Polynomial.new(c2, p2, s2)
+second.display()
+sum = first.add(second)
+sum.display()

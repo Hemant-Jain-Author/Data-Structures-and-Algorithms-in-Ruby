@@ -1,11 +1,3 @@
-def compareY( s1,  s2)
-	return (s1.y - s2.y)
-end
-
-def compareX( s1,  s2)
-	return (s1.x - s2.x)
-end
-
 class Point
 	# Define the accessor and reader of class Point
 	attr_reader :x,:y
@@ -40,10 +32,10 @@ end
 
 def stripMin( q,  n,  d)
 	min = d
-	i = 0
 	# Find the distance between all the points in the strip.
 	# Array q is sorted according to the y axis coordinate.
 	# The inner loop will run at most 6 times for each point.
+	i = 0
 	while (i < n)
 		j = i + 1
 		while (j < n && (q[j].y - q[i].y) < min)
@@ -95,6 +87,7 @@ def closestPairDC( arr)
 		p[i] = Point.new(arr[i][0], arr[i][1])
 		i += 1
 	end
+
 	# Sort according to x axis.
 	p.sort! {|x, y| x.x <=> y.x}
 	q = p.clone()
@@ -107,3 +100,8 @@ end
 arr = [[648, 896], [269, 879], [250, 922], [453, 347], [213, 17]]
 print("Smallest distance is:" + closestPairBF(arr).to_s,"\n")
 print("Smallest distance is:" + closestPairDC(arr).to_s,"\n")
+
+"""
+Smallest distance is:47.01063709417264
+Smallest distance is:47.01063709417264
+"""

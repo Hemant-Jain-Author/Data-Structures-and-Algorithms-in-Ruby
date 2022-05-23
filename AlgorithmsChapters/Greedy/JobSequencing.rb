@@ -58,7 +58,7 @@ class JobSequencing
         print("Jobs selected are::")
         i = 0
         while (i < self.maxDL)
-            if (job[i] != '�')
+            if (job[i] != ' ')
                 print(" " + job[i].to_s)
             end
             i += 1
@@ -72,3 +72,8 @@ deadline = [3, 1, 2, 4, 4]
 profit = [50, 40, 27, 31, 30]
 js = JobSequencing.new(id, deadline, profit, 5)
 js.display()
+
+"""
+Profit is :: 151
+Jobs selected are:: b e a d
+"""

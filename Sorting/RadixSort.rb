@@ -10,7 +10,7 @@ def RadixSort( arr)
 	end
 end
 
-def countSort( arr,  n,  dividend)
+def countSort( arr, n, dividend)
 	temp = arr.clone()
 	count = Array.new(10){0}
 	i = 0
@@ -37,7 +37,7 @@ def countSort( arr,  n,  dividend)
 	end
 end
 
-def getMax( arr,  n)
+def getMax( arr, n)
 	max = arr[0]
 	i = 1
 	while (i < n)

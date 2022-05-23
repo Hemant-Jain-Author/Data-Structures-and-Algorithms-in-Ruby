@@ -122,3 +122,11 @@ maxCost = maxCost01KnapsackBU(wt, cost, capacity)
 print("Maximum cost obtained = " + maxCost.to_s,"\n")
 maxCost = maxCost01KnapsackTD(wt, cost, capacity)
 print("Maximum cost obtained = " + maxCost.to_s,"\n")
+
+"""
+Maximum cost obtained = 300
+Maximum cost obtained = 210
+Selected items are: (wt:30, cost:120) (wt:20, cost:90)
+Maximum cost obtained = 210
+Maximum cost obtained = 210
+"""

@@ -305,14 +305,16 @@ class BTree
     def borrowFromLeft( node,  index)
         child = node.arr[index]
         sibling = node.arr[index - 1]
-        i = child.n - 1
+        
         # Moving all key in child one step forward.
+        i = child.n - 1
         while (i >= 0)
             child.keys[i + 1] = child.keys[i]
             i -= 1
         end
-        i = child.n
+        
         # Move all its child pointers one step forward.
+        i = child.n
         while (!child.leaf && i >= 0)
             child.arr[i + 1] = child.arr[i]
             i -= 1
@@ -345,8 +347,9 @@ class BTree
         end
         # First key from sibling is inserted into node.
         node.keys[index] = sibling.keys[0]
-        i = 1
+        
         # Moving all keys in sibling one step left
+        i = 1
         while (i < sibling.n)
             sibling.keys[i - 1] = sibling.keys[i]
             i += 1
@@ -370,26 +373,30 @@ class BTree
         start = left.n
         # Adding a key from node to the left child.
         left.keys[start] = node.keys[index]
-        i = 0
+        
         # Copying the keys from right to left.
+        i = 0
         while (i < right.n)
             left.keys[start + 1 + i] = right.keys[i]
             i += 1
         end
-        i = 0
+        
         # Copying the child pointers from right to left.
+        i = 0
         while (!left.leaf && i <= right.n)
             left.arr[start + 1 + i] = right.arr[i]
             i += 1
         end
-        i = index + 1
+        
         # Moving all keys after  index in the current node one step forward.
+        i = index + 1
         while (i < node.n)
             node.keys[i - 1] = node.keys[i]
             i += 1
         end
-        i = index + 2
+        
         # Moving the child pointers after (index+1) in the current node one step forward.
+        i = index + 2
         while (i <= node.n)
             node.arr[i - 1] = node.arr[i]
             i += 1
@@ -401,8 +408,7 @@ class BTree
     end
 end
 
-t = BTree.new(3)
-# A B-Tree with max key 3
+t = BTree.new(3) # A B-Tree with max key 3
 t.insert(1)
 t.insert(2)
 t.insert(3)
@@ -445,4 +451,4 @@ key[1]:8
     key[0]:9
     key[1]:10
 
- =end
+=end

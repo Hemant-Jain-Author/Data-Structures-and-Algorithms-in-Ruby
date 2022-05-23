@@ -21,7 +21,7 @@ end
 # main line 2
 
 def isBalancedParenthesis( expn)
-    stk =  []
+    stk = []
     for ch in expn.chars do
     if (ch=='{' || ch=='[' || ch=='(')
     stk.push(ch)
@@ -201,7 +201,7 @@ def stockSpanRange( arr)
 end
 
 def stockSpanRange2( arr)
-    stk =  []
+    stk = []
     _SR = Array.new(arr.length){0}
     stk.push(0)
     _SR[0] = 1
@@ -260,7 +260,7 @@ end
 
 def getMaxArea2( arr)
     size = arr.length
-    stk =  []
+    stk = []
     maxArea = 0
     i = 0
     while (i < size)
@@ -299,7 +299,7 @@ end
 
 def main7a()
     arr = [20, 19, 10, 21, 40, 35, 39, 50, 45, 42]
-    stk =  []
+    stk = []
     i = arr.length - 1
     while (i >= 0)
         stockAnalystAdd(stk, arr[i])
@@ -319,7 +319,7 @@ def sortedInsert( stk,  element)
 end
 
 def main8()
-    stk =  []
+    stk = []
     stk.push(1)
     stk.push(3)
     stk.push(4)
@@ -338,7 +338,7 @@ def sortStack( stk)
 end
 
 def sortStack2( stk)
-    stk2 =  []
+    stk2 = []
     while ((stk.length == 0) == false)
         temp = stk.pop()
         while (((stk2.length == 0) == false) && (stk2.last < temp)) 
@@ -352,7 +352,7 @@ def sortStack2( stk)
 end
 
 def main9()
-    stk =  []
+    stk = []
     stk.push(3)
     stk.push(1)
     stk.push(4)
@@ -360,7 +360,7 @@ def main9()
     print(stk,"\n")
     sortStack(stk)
     print(stk,"\n")
-    stk =  []
+    stk = []
     stk.push(3)
     stk.push(1)
     stk.push(4)
@@ -384,7 +384,7 @@ def bottomInsert( stk,  element)
 end
 
 def main10()
-    stk =  []
+    stk = []
     stk.push(1)
     stk.push(2)
     stk.push(3)
@@ -415,7 +415,7 @@ def reverseStack( stk)
 end
 
 def reverseStack2( stk)
-    que =  Queue.new()
+    que = Queue.new()
     while ((stk.length == 0) == false) 
       que.push(stk.pop())
     end
@@ -425,7 +425,7 @@ def reverseStack2( stk)
 end
 
 def reverseKElementInStack( stk,  k)
-    que =  Queue.new()
+    que = Queue.new()
     i = 0
     while ((stk.length == 0) == false && i < k)
         que.push(stk.pop())
@@ -437,7 +437,7 @@ def reverseKElementInStack( stk,  k)
 end
 
 def reverseQueue( que)
-    stk =  []
+    stk = []
     while (que.empty? == false) 
       stk.push(que.pop())
     end
@@ -447,7 +447,7 @@ def reverseQueue( que)
 end
 
 def reverseKElementInQueue( que,  k)
-    stk =  []
+    stk = []
     i = 0
     while (que.empty? == false && i < k)
         stk.push(que.pop())
@@ -465,7 +465,7 @@ def reverseKElementInQueue( que,  k)
 end
 
 def main11()
-    stk =  []
+    stk = []
     stk.push(1)
     stk.push(2)
     stk.push(3)
@@ -473,7 +473,7 @@ def main11()
 end
 # [1, 2, 3]
 def main12()
-    stk =  []
+    stk = []
     stk.push(1)
     stk.push(2)
     stk.push(3)
@@ -493,13 +493,13 @@ end
 # [1, 2, 4, 3]
 
 def main13()
-    que =  Queue.new()
+    que = Queue.new()
     que.push(1)
     que.push(2)
     que.push(3)
     reverseQueue(que)
     print(que.pop(),"\n")
-    que =  Queue.new()
+    que = Queue.new()
     que.push(1)
     que.push(2)
     que.push(3)
@@ -511,7 +511,7 @@ end
 # 2
 
 def maxDepthParenthesis( expn,  size)
-    stk =  []
+    stk = []
     maxDepth = 0
     depth = 0
     i = 0
@@ -561,7 +561,7 @@ end
 # Max depth parenthesis is 6
 
 def longestContBalParen( string,  size)
-    stk =  []
+    stk = []
     stk.push(-1)
     length = 0
     i = 0
@@ -582,7 +582,7 @@ def longestContBalParen( string,  size)
 end
 
 def longestContBalParen2( string,  size)
-    stk =  []
+    stk = []
     length = 0
     i = 0
     while (i < size)
@@ -609,7 +609,7 @@ end
 # longestContBalParen 12
 
 def reverseParenthesis( expn,  size)
-    stk =  []
+    stk = []
     openCount = 0
     closeCount = 0
     if (size % 2 == 1)
@@ -649,7 +649,7 @@ def main16()
 end
 # reverse Parenthesis is : 3
 def findDuplicateParenthesis( expn,  size)
-    stk =  []
+    stk = []
     i = 0
     while (i < size)
         ch = expn[i]
@@ -679,8 +679,8 @@ end
 # Duplicate Found : true
 
 def printParenthesisNumber( expn,  size)
-    stk =  []
-    output =  ""
+    stk = []
+    output = ""
     count = 1
     i = 0
     while (i < size)
@@ -732,7 +732,7 @@ def nextLargerElement( arr,  size)
 end
 
 def nextLargerElement2( arr,  size)
-    stk =  []
+    stk = []
     output = Array.new(size){0}
     index = 0
     i = 0
@@ -778,7 +778,7 @@ def nextSmallerElement( arr,  size)
 end
 
 def nextSmallerElement2( arr,  size)
-    stk =  []
+    stk = []
     output = Array.new(size){0}
     i = 0
     while (i < size)
@@ -836,7 +836,7 @@ def nextLargerElementCircular( arr,  size)
 end
 
 def nextLargerElementCircular2( arr,  size)
-    stk =  []
+    stk = []
     output = Array.new(size){0}
     i = 0
     while (i < (2 * size - 1))
@@ -896,7 +896,7 @@ def findCelebrity( relation,  count)
 end
 
 def findCelebrity2( relation,  count)
-    stk =  []
+    stk = []
     first = 0
     second = 0
     i = 0

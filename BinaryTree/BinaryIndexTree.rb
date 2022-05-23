@@ -1,12 +1,12 @@
 class BinaryIndexTree
     # Define the accessor and reader of class BinaryIndexTree
-    attr_accessor :BIT,:size
+    attr_accessor :BITS,:size
 
     def initialize( arr)
         self.size = arr.length
-        self.BIT = Array.new(self.size + 1){0}
+        self.BITS = Array.new(self.size + 1){0}
         i = 0
-        # Populating bit.
+        # Populating BITS.
         while (i < self.size)
             self.update(i, arr[i])
             i += 1
@@ -21,12 +21,12 @@ class BinaryIndexTree
     end
 
     def update( index,  val)
-        # Index in bit is 1 more than the input array.
+        # Index in BITS is 1 more than the input array.
         index = index + 1
         # Traverse to ancestors of nodes.
         while (index <= self.size)
             # Add val to current node of Binary Index Tree.
-            self.BIT[index] += val
+            self.BITS[index] += val
             # Next element which need to store val.
             index += index & (-index)
         end
@@ -49,7 +49,7 @@ class BinaryIndexTree
         # Traverse ancestors of Binary Index Tree nodes.
         while (index > 0)
             # Add current element to sum.
-            sum += self.BIT[index]
+            sum += self.BITS[index]
             # Parent index calculation.
             index -= index & (-index)
         end

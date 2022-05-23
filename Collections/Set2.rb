@@ -1,29 +1,52 @@
 class Set
+  attr_accessor :hm
   def initialize()
-    @hm = {}
+    self.hm = {}
   end
 
-  def Insert(key)
-      @hm[key] = 1
+  def add(key)
+      self.hm[key] = 1
   end
 
-  def Delete(key)
-        @hm.delete(key)
+  def delete(key)
+        self.hm.delete(key)
   end
 
-  def Has(key)
-    return @hm.key?(key)
+  def has(key)
+    return self.hm.key?(key)
   end
 
-  def Size()
-    return @hm.size
+  def size()
+    return self.hm.size
   end
+
+  def display()
+    self.hm.each do |key, value|
+      puts key
+    end
+  end
+
 end
 
 # Testing Code
-cm = Set.new()
-cm.Insert(2)
-print "\n 2 in set : " , cm.Has(2)
-cm.Delete(2)
-print "\n 2 in set : " , cm.Has(2)
+hs = Set.new()
+hs.add("Banana")
+hs.add("Apple")
+hs.add("Mango")
 
+#traverse
+hs.display()
+
+print "Apple present : " , hs.has("Apple"), "\n"
+print "Grapes present : " , hs.has("Grapes"), "\n"
+hs.delete("Apple")
+print "Apple present : " , hs.has("Apple"), "\n"
+
+"""
+Banana
+Apple
+Mango
+Apple present : true
+Grapes present : false
+Apple present : false
+"""
