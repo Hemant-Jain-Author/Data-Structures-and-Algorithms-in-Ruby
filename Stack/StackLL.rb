@@ -1,72 +1,63 @@
-class ListStack
-  attr_accessor :head, :count
-  def initialize()
-    @head = nil
-    @count = 0
-  end
-
-  class Node
-    attr_accessor :value, :next
-    def initialize(v, n = nil)
-      @value = v
-      @next = n
+class Stack
+    attr_accessor :head, :count
+    def initialize()
+        self.head = nil
+        self.count = 0
     end
-  end
 
-  def size()
-    return @count
-  end
-
-  def empty
-    return @count == 0
-  end
-
-  def peek()
-    if self.empty then
-      raise StandardError, "ListStackEmptyException"
+    class Node
+        attr_accessor :value, :next
+        def initialize(v, n = nil)
+            self.value = v
+            self.next = n
+        end
     end
-    return @head.value
-  end
 
-  def push(value)
-    @head = Node.new(value, @head)
-    @count += 1
-  end
-
-  def pop()
-    if self.empty then
-      raise StandardError, "ListStackEmptyException"
+    def size()
+        return self.count
     end
-    value = @head.value
-    @head = @head.next
-    @count -= 1
-    return value
-  end
 
-  def insertAtBottom(value)
-    if self.Empty then
-      self.Push(value)
-    else
-      temp = self.Pop()
-      self.insertAtBottom(value)
-      self.Push(temp)
+    def empty
+        return self.count == 0
     end
-  end
 
-  def display()
-    temp = @head
-    while temp != nil
-      print temp.value , " "
-      temp = temp.next
+    def peek()
+        if self.empty then
+            raise StandardError, "StackEmptyException"
+        end
+        return self.head.value
     end
-  end
+
+    def push(value)
+        self.head = Node.new(value, self.head)
+        self.count += 1
+    end
+
+    def pop()
+        if self.empty then
+            raise StandardError, "StackEmptyException"
+        end
+        value = self.head.value
+        self.head = self.head.next
+        self.count -= 1
+        return value
+    end
+
+    def display()
+        temp = self.head
+        while temp != nil
+            print temp.value , " "
+            temp = temp.next
+        end
+        print "\n"
+    end
 end
 
 # Testing code
-s = ListStack.new()
+s = Stack.new()
 s.push(1)
 s.push(2)
 s.push(3)
-print s.pop()
-print s.pop()
+s.display
+print s.pop(), " "
 

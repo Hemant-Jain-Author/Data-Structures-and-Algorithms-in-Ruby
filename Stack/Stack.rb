@@ -1,57 +1,41 @@
 class Stack
-  def initialize(capacity=1000)
-    @capacity = capacity
-    @top = -1
-    @data = Array.new(@capacity,0)
-  end
+    attr_accessor :stk
 
-  def size()
-    return (@top + 1)
-  end
-
-  def empty
-    return (@top == -1)
-  end
-
-  def push(value)
-    if self.size() == @data.size then
-      raise StandardError, "StackOvarflowException"
+    def initialize()
+        self.stk = []
     end
-    @top += 1
-    @data[@top] = value
-  end
 
-  def peek()
-    if self.empty then
-      raise StandardError, "StackEmptyException"
+    def size()
+        return self.stk.size
     end
-    return @data[@top]
-  end
 
-  def pop()
-    if self.empty then
-      raise StandardError, "StackEmptyException"
+    def empty
+        return self.stk.size == 0
     end
-    topVal = @data[@top]
-    @top -= 1
-    return topVal
-  end
 
-  def display()
-    i = @top
-    while i > -1
-      print " " , @data[i]
-      i -= 1
+    def push(value)
+        self.stk.push(value)
     end
-    puts ""
-  end
+
+    def peek()
+        self.stk[stk.size -1]
+    end
+
+    def pop()
+        self.stk.pop()
+    end
+
+    def display()
+        print self.stk, "\n"
+    end
 end
 
 # Testing code
-s = Stack.new(1000)
+s = Stack.new()
 s.push(1)
 s.push(2)
 s.push(3) 
+s.display
 print s.pop()
 
 

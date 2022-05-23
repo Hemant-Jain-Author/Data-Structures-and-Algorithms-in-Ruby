@@ -1,87 +1,78 @@
 class Trie
-  class Node
-    attr_accessor :child, :isLastChar
-    def initialize(isLastChar = false)
-      @child = Array.new(26, Node)
-      i = 0
-      while i < 26
-        @child[i] = nil
-        i += 1
-      end
-      @isLastChar = isLastChar
-    end
-  end
+    attr_accessor :root
 
-  #first node with dummy value.
-  def Insert(str)
-    if str == nil 
-      return @root
+    class Node
+        attr_accessor :child, :isLastChar
+        def initialize(isLastChar = false)
+            self.child = Array.new(26){nil}
+            self.isLastChar = isLastChar
+        end
     end
-    @root = self.InsertUtil(@root, str.downcase(), 0)
-  end
 
-  def InsertUtil(curr, str, index)
-    if curr == nil 
-      curr = Node.new()
+    #first node with dummy value.
+    def insert(str)
+        if str == nil 
+            return self.root
+        end
+        self.root = self.insertUtil(self.root, str.downcase(), 0)
     end
-    if str.size == index 
-      curr.isLastChar = true
-    else
-      chIndex = str[index].ord() - 'a'.ord()
-      curr.child[chIndex] = self.InsertUtil(curr.child[chIndex], str, index + 1)
-    end
-    return curr
-  end
 
-  def Remove(str)
-    if str == nil 
-      return
+    def insertUtil(curr, str, index)
+        if curr == nil 
+            curr = Node.new()
+        end
+        if str.size == index 
+            curr.isLastChar = true
+        else
+            chIndex = str[index].ord() - 'a'.ord()
+            curr.child[chIndex] = self.insertUtil(curr.child[chIndex], str, index + 1)
+        end
+        return curr
     end
-    str = str.downcase()
-    self.RemoveUtil(@root, str, 0)
-  end
 
-  def RemoveUtil(curr, str, index)
-    if curr == nil 
-      return
+    def remove(str)
+        if str == nil 
+            return
+        end
+        self.removeUtil(self.root, str.downcase(), 0)
     end
-    if str.size == index 
-      if curr.isLastChar 
-        curr.isLastChar = false
-      end
-      return
-    end
-    self.RemoveUtil(curr.child[str[index].ord() - 'a'.ord()], str, index + 1)
-  end
 
-  def Find(str)
-    if str == nil 
-      return false
+    def removeUtil(curr, str, index)
+        if curr == nil 
+            return
+        end
+        if str.size == index 
+            if curr.isLastChar 
+                curr.isLastChar = false
+            end
+            return
+        end
+        self.removeUtil(curr.child[str[index].ord() - 'a'.ord()], str, index + 1)
     end
-    str = str.downcase()
-    return self.FindUtil(@root, str, 0)
-  end
 
-  def FindUtil(curr, str, index)
-    if curr == nil 
-      return false
+    def find(str)
+        if str == nil 
+            return false
+        end
+        return self.findUtil(self.root, str.downcase(), 0)
     end
-    if str.size == index 
-      return curr.isLastChar
+
+    def findUtil(curr, str, index)
+        if curr == nil 
+            return false
+        end
+        if str.size == index 
+            return curr.isLastChar
+        end
+        return self.findUtil(curr.child[str[index].ord() - 'a'.ord()], str, index + 1)
     end
-    return self.FindUtil(curr.child[str[index].ord() - 'a'.ord()], str, index + 1)
-  end
 end
 
 # Testing code
-t = Trie.new()
-a = "apple"
-b = "app"
-c = "appletree"
-d = "tree"
-t.Insert(a)
-t.Insert(d)
-puts t.Find(a)
-puts t.Find(b)
-puts t.Find(c)
-puts t.Find(d)
+tt = Trie.new()
+tt.insert("banana");
+tt.insert("apple");
+tt.insert("mango");
+print("Apple Found : ", tt.find("apple"), "\n");
+print("Banana Found : ", tt.find("banana"), "\n");
+print("Grapes Found : ", tt.find("grapes"), "\n");

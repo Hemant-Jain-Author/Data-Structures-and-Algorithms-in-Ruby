@@ -1,101 +1,73 @@
 class StringTree
-  class Node
-    attr_accessor :value, :count, :lChild, :rChild
-    def initialize(v, left = nil, right = nil)
-      @value = v
-      @count = 1
-      @lChild = left
-      @rChild = right
+    class Node
+        attr_accessor :value, :count, :lChild, :rChild
+        def initialize(v, left = nil, right = nil)
+            self.value = v
+            self.lChild = left
+            self.rChild = right
+        end
     end
-  end
 
-  attr_accessor :root
-  def initialize()
-    @root = nil
-  end
+    attr_accessor :root
+    def initialize()
+        self.root = nil
+    end
 
-  def printTree(curr=@root) # pre order
-    if curr != nil 
-      print " value is ::" , curr.value
-      print " count is :: " , curr.count
-      self.printTree(curr.lChild)
-      self.printTree(curr.rChild)
+    def printTree(curr = self.root) # pre order
+        if curr != nil 
+            print " value is ::" , curr.value
+            self.printTree(curr.lChild)
+            self.printTree(curr.rChild)
+        end
     end
-  end
 
-  def insert(value)
-    @root=insertUtil(value, @root)
-  end
-  
-  def insertUtil(value, curr)
-    if curr == nil 
-      curr = Node.new(value)
-      curr.count = 1
-    else
-      
-      compare = ( curr.value <=> value )
-      if compare == 0 
-        curr.count += 1
-      elsif compare == 1 
-        curr.lChild = self.insertUtil(value, curr.lChild)
-      else
-        curr.rChild = self.insertUtil(value, curr.rChild)
-      end
+    def insert(value)
+        self.root=insertUtil(value, self.root)
     end
-    return curr
-  end
+    
+    def insertUtil(value, curr)
+        if curr == nil 
+            return Node.new(value)
+        end
+            
+        if curr.value < value
+            curr.rChild = self.insertUtil(value, curr.rChild)
+        elsif curr.value > value
+            curr.lChild = self.insertUtil(value, curr.lChild)
+        end
 
-  def freeTree()
-    root = nil
-  end
+        return curr
+    end
 
-  def find(value, curr=@root)
-    if curr == nil 
-      return false
+    def freeTree()
+        root = nil
     end
-    compare = ( curr.value <=> value )
-    if compare == 0 
-      return true
-    else
-      if compare == 1 
-        return self.find(value, curr.lChild)
-      else
-        return self.find(value, curr.rChild)
-      end
-    end
-  end
 
-  def frequency(value, curr=@root)
-    if curr == nil 
-      return 0
+    def find(value, curr = self.root)
+        if curr == nil 
+            return false
+        end
+        
+        if curr.value == value
+            return true
+        elsif curr.value > value
+            return self.find(value, curr.lChild)
+        else
+            return self.find(value, curr.rChild)
+        end
+        
     end
-    compare = ( curr.value <=> value )
-    if compare == 0 
-      return curr.count
-    else
-      if compare > 0 
-        return self.frequency(value, curr.lChild)
-      else
-        return self.frequency(value, curr.rChild)
-      end
-    end
-  end
 end
 
 # Testing code
 tt = StringTree.new()
-tt.insert("banana")
-tt.insert("apple")
-tt.insert("mango")
-tt.insert("banana")
-print ("\nSearch results for apple, banana, grapes and mango :\n")
-puts tt.find("apple")
-puts tt.find("banana")
-puts tt.find("grapes")
-puts tt.find("mango")
-puts tt.find("banan")
-puts tt.frequency("apple")
-puts tt.frequency("banana")
-puts tt.frequency("mango")
+tt.insert("banana");
+tt.insert("apple");
+tt.insert("mango");
+print("Apple Found : ", tt.find("apple"), "\n");
+print("Banana Found : ", tt.find("banana"), "\n");
+print("Grapes Found : ", tt.find("grapes"), "\n");
+
+
 
 

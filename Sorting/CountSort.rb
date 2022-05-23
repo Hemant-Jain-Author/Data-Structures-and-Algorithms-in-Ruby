@@ -1,32 +1,25 @@
-public class CountSort {
-	public void sort(int[] arr, int lowerRange, int upperRange) {
-		int i, j;
-		int size = arr.length;
-		int range = upperRange - lowerRange;
-		int[] count = new int[range];
+def CountSort(array, lowerRange, upperRange)
+  range = upperRange - lowerRange
+  size = array.size
+  count = Array.new(range,0)
+  i = 0
+  while i < size
+    count[array[i] - lowerRange] += 1
+    i += 1
+  end
+  j = 0
+  i = 0
+  while i < range
+    while count[i] > 0
+      array[j] = i + lowerRange
+      j += 1
+      count[i] -= 1
+    end
+    i += 1
+  end
+end
 
-		for (i = 0; i < size; i++) {
-			count[arr[i] - lowerRange]++;
-		}
-
-		j = 0;
-		for (i = 0; i < range; i++) {
-			for (; count[i] > 0; (count[i])--) {
-				arr[j++] = i + lowerRange;
-			}
-		}
-	}
-
-	public static void main(String[] args) {
-		int[] array = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
-		CountSort b = new CountSort();
-		b.sort(array, 20, 30);
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-	}
-}
-
-/*
-21 21 21 22 23 24 25 26 27 28
-*/
+# Testing code
+array = [23, 24, 22, 21, 26, 25, 27, 28, 21, 21]
+CountSort(array, 20, 30)
+print array

@@ -1,33 +1,23 @@
+def greater(value1, value2)
+  return value1 > value2
+end
 
-public class InsertionSort {
-	private boolean greater(int value1, int value2) {
-		return value1 > value2;
-	}
+def InsertionSort(arr)
+  size = arr.size
+  i = 1
+  while i < size
+    temp = arr[i]
+    j = i
+    while j > 0 and greater(arr[j - 1], temp)
+      arr[j] = arr[j - 1]
+      j -= 1
+    end
+    arr[j] = temp
+    i += 1
+  end
+end
 
-	public void sort(int[] arr) {
-		int size = arr.length;
-		int temp, j;
-		
-		for (int i = 1; i < size; i++) {
-			temp = arr[i];
-			for (j = i; j > 0 && greater(arr[j - 1], temp); j--) {
-				arr[j] = arr[j - 1];
-			}
-			arr[j] = temp;
-		}
-	}
-
-	public static void main(String[] args) {
-		int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-		InsertionSort srt = new InsertionSort();
-		srt.sort(array);
-		
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-
-		}
-	}
-}
-/*
-1 2 3 4 5 6 7 8 9
-*/
+# Testing code
+array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
+InsertionSort(array)
+print array

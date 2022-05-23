@@ -1,70 +1,58 @@
-import java.util.ArrayList;
-import java.util.Collections;
+# Allowed values from 0 to maxValue.
+def BucketSort( arr,  maxValue)
+	numBucket = 5
+	BucketSortUtil(arr, maxValue, numBucket)
+end
 
-// Allowed values from 0 to maxValue.
-public class BucketSort {
+def BucketSortUtil( arr,  maxValue,  numBucket)
+	length = arr.length
+	if (length == 0)
+		return
+	end
 
-	public void sort(int[] arr, int maxValue) {
-		int numBucket = 5;
-		sort(arr, maxValue, numBucket);
-	}
+	# Create empty buckets
+	bucket =  Array.new(numBucket){ Array.new()}
 
-	public void sort(int[] arr, int maxValue, int numBucket) {
-		int length = arr.length;
-		if (length == 0)
-			return;
+	div = (maxValue / numBucket).ceil.to_i
 
-		ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>(numBucket);
+	i = 0
+	# Add elements into the buckets
+	while (i < length)
+		if (arr[i] < 0 || arr[i] > maxValue)
+			print("Value out of range.","\n")
+			return
+		end
+		bucketIndex = (arr[i] / div)
+		# Maximum value will be assigned to last bucket.
+		if (bucketIndex >= numBucket)
+			bucketIndex = numBucket - 1
+		end
+		bucket[bucketIndex].append(arr[i])
+		i += 1
+	end
+	i = 0
+	# Sort the elements of each bucket.
+	while (i < numBucket)
+		bucket[i] = bucket[i].sort()
+		i += 1
+	end
 
-		// Create empty buckets
-		for (int i = 0; i < numBucket; i++)
-			bucket.add(new ArrayList<Integer>());
+	# Populate output from the sorted subarray.
+	index = 0
+	i = 0
+	while (i < numBucket)
+		count = bucket[i].size()
+		j = 0
+		while (j < count)
+			arr[index] = bucket[i][j]
+			index += 1
+			j += 1
+		end
+		i += 1
+	end
+end
 
-		int div = (int) Math.ceil((double) maxValue / (numBucket));
-
-		// Add elements into the buckets
-		for (int i = 0; i < length; i++) {
-			if (arr[i] < 0 || arr[i] > maxValue) {
-				System.out.println("Value out of range.");
-				return;
-			}
-
-			int bucketIndex = (arr[i] / div);
-
-			// Maximum value will be assigned to last bucket.
-			if (bucketIndex >= numBucket)
-				bucketIndex = numBucket - 1;
-
-			bucket.get(bucketIndex).add(arr[i]);
-		}
-
-		// Sort the elements of each bucket.
-		for (int i = 0; i < numBucket; i++) {
-			Collections.sort(bucket.get(i));
-		}
-
-		// Populate output from the sorted subarray.
-		int index = 0, count;
-		for (int i = 0; i < numBucket; i++) {
-			ArrayList<Integer> temp = bucket.get(i);
-			count = temp.size();
-			for (int j = 0; j < count; j++) {
-				arr[index++] = temp.get(j);
-			}
-		}
-	}
-
-	public static void main(String[] args) {
-		int[] array = { 1, 34, 7, 99, 5, 23, 45, 88, 77, 19, 91, 100 };
-		int maxValue = 100;
-		BucketSort b = new BucketSort();
-		b.sort(array, maxValue);
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-	}
-}
-
-/*
-1 5 7 19 23 34 45 77 88 91 99 100
- */
+array = [1, 34, 7, 99, 5, 23, 45, 88, 77, 19, 91, 100]
+maxValue = 100
+BucketSort(array, maxValue)
+print(array)
