@@ -174,7 +174,7 @@ def maxOfMinSlidingWindows( arr,  size,  k)
         end
         # Remove smaller values at left.
         while (deq.size() > 0 && arr[deq[-1]] >= arr[i]) 
-            deq.shift
+            deq.pop()
         end
         deq.push(i)
         # window of size k
