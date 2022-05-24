@@ -10,7 +10,7 @@ hs.add("Mango")
 
 #traverse
 hs.each do |key|
-  puts "#{key} "
+    puts "#{key} "
 end
 print hs
 print "Apple present : " , hs.include?("Apple"), "\n"

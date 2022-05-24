@@ -6,8 +6,8 @@ que.push(3)
 size = que.size
 i = 0
 while i < size
-  print "Dequeue : " , que.pop(), "\n"
-  i += 1
+    print "Dequeue : " , que.pop(), "\n"
+    i += 1
 end
 
 # Dequeue : 1

@@ -8,7 +8,7 @@ hm["Mango"] = 50
 puts "Total number of fruits :: #{hm.size}"
 
 hm.each do |key, value|
-  puts "#{key}  cost :#{value}"
+    puts "#{key}    cost :#{value}"
 end
 hm.delete("Mango")
 puts "Apple present :: #{hm.key?("Apple")}" 

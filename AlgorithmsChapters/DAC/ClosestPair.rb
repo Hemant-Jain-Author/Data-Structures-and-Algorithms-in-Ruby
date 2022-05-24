@@ -2,7 +2,7 @@ class Point
 	# Define the accessor of class Point
 	attr_accessor :x,:y
 
-	def initialize( a,  b)
+	def initialize( a, b)
 		self.x = a
 		self.y = b
 	end
@@ -26,11 +26,11 @@ def closestPairBF( arr)
 	return dmin
 end
 
-def distance( a,  b)
+def distance( a, b)
 	return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
 end
 
-def stripMin( q,  n,  d)
+def stripMin( q, n, d)
 	min = d
 	# Find the distance between all the points in the strip.
 	# Array q is sorted according to the y axis coordinate.

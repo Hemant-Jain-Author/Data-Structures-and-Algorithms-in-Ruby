@@ -1,10 +1,10 @@
-def makePairs( nuts,  bolts)
+def makePairs( nuts, bolts)
 	makePairsUtil(nuts, bolts, 0, nuts.length - 1)
 	print("Matched nuts and bolts are : ",nuts,bolts)
 end
 
 # Quick sort kind of approach.
-def makePairsUtil( nuts,  bolts,  low,  high)
+def makePairsUtil( nuts, bolts, low, high)
 	if (low < high)
 		# Choose first element of bolts array as pivot to partition nuts.
 		pivot = partition(nuts, low, high, bolts[low])

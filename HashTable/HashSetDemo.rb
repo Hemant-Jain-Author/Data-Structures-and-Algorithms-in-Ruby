@@ -8,7 +8,7 @@ hs.add("Mango")
 
 #traverse
 hs.each do |key|
-  print "#{key} "
+    print "#{key} "
 end
 print("\n")
 

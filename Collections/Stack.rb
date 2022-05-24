@@ -8,6 +8,6 @@ print "Element at top of stack ::" , stk[size -1], "\n"
 
 i = 0
 while i < size
-  print "Pop from stack: " , stk.pop(), "\n"
-  i += 1
+    print "Pop from stack: " , stk.pop(), "\n"
+    i += 1
 end
