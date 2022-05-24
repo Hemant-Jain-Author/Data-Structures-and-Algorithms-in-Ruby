@@ -1,12 +1,9 @@
 class Heap
-    # Define the accessor and reader of class Heap
-    attr_reader :CAPACITY,:size,:arr,:isMinHeap
-    attr_accessor :CAPACITY,:size,:arr,:isMinHeap
-    # Number of elements in Heap
-    # The Heap array
+    # Define the accessor of class Heap
+    attr_accessor :CAPACITY,:size,:arr,:isMinHeap  
     
     def initialize(isMin = true)
-        self.arr = Array.new(100){0}
+        self.arr = Array.new(100){0} # The Heap array
         self.size = 0
         self.isMinHeap = isMin
     end
@@ -107,9 +104,9 @@ end
 
 class HuffmanTree
 	class Node 
-        # Define the accessor and reader of class Node
-        attr_reader :c,:freq,:left,:right
+        # Define the accessor of class Node
         attr_accessor :c,:freq,:left,:right
+        
         def initialize( ch,  fr,  l,  r)
             self.c = ch
             self.freq = fr

@@ -1,12 +1,9 @@
 class Heap
-    # Define the accessor and reader of class Heap
-    attr_reader :CAPACITY,:size,:arr,:isMinHeap
+    # Define the accessor of class Heap
     attr_accessor :CAPACITY,:size,:arr,:isMinHeap
-    # Number of elements in Heap
-    # The Heap array
     
     def initialize(isMin = true)
-        self.arr = Array.new(100){0}
+        self.arr = Array.new(100){0} # The Heap array
         self.size = 0
         self.isMinHeap = isMin
     end

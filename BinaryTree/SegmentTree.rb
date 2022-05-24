@@ -1,5 +1,5 @@
 class SegmentTree
-    # Define the accessor and reader of class SegmentTree
+    # Define the accessor of class SegmentTree
     attr_accessor :segArr,:size
 
     def initialize( input)

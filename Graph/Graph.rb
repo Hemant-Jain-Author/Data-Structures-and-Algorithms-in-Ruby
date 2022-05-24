@@ -1,5 +1,5 @@
 class Heap
-    # Define the accessor and reader of class Heap
+    # Define the accessor of class Heap
     attr_accessor :CAPACITY,:size,:arr,:isMinHeap
     
     def initialize(isMin = true)
@@ -903,9 +903,9 @@ class Graph
     end
 
     class Set
-        # Define the accessor and reader of class Set
-        attr_reader :parent,:rank
+        # Define the accessor of class Set
         attr_accessor :parent,:rank
+
         def initialize( p,  r)
             self.parent = p
             self.rank = r

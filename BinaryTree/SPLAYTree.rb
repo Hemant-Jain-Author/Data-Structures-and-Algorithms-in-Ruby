@@ -1,9 +1,9 @@
 class SPLAYTree
-    # Define the accessor and reader of class SPLAYTree
+    # Define the accessor of class SPLAYTree
     attr_accessor :root
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_reader :data,:left,:right,:parent
         attr_accessor :data,:left,:right,:parent
         def initialize( d,  l,  r)

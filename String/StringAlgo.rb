@@ -22,9 +22,9 @@ def main1()
     print(myStrcmp("apple", "apple"),"\n")
     print(myStrcmp("apple", "appme"),"\n")
 end
-# 	1
-# 	0
-# 	-1
+# 1
+# 0
+# -1
 
 def matchPattern( source,  pattern)
     iSource = 0
@@ -129,8 +129,8 @@ def main5()
     isUniqueChar("aple")
     isUniqueChar("apple")
 end
-# 	No duplicate detected!
-# 	Duplicate detected!
+# No duplicate detected!
+# Duplicate detected!
 
 def toUpper( s)
     if (s.ord >= 97 && s.ord <= (97 + 25))
@@ -161,10 +161,10 @@ def main6()
     print(lowerUpper('s'),"\n")
     print(lowerUpper('S'),"\n")
 end
-# 	a
-# 	A
-# 	S
-# 	s
+# a
+# A
+# S
+# s
 
 def isPermutation( s1,  s2)
     count = Array.new(256){0}
@@ -197,8 +197,8 @@ def main7()
     print(isPermutation("apple", "plepa"),"\n")
 end
 
-# 	Strings are permutation.
-# 	true
+# Strings are permutation.
+# true
 
 def isPalindrome( str)
     i = 0
@@ -221,8 +221,8 @@ def main8()
     isPalindrome("oyo")
 end
 
-# 	String is not a Palindrome
-# 	String is a Palindrome
+# String is not a Palindrome
+# String is a Palindrome
 
 def pow( x,  n)
     if (n == 0)
@@ -284,8 +284,8 @@ def main11()
     print(reverseWords("hello world"),"\n")
 end
 
-# 	elppa
-# 	world hello
+# elppa
+# world hello
 
 def printAnagram( str)
     printAnagramUtil(str.chars, 0, str.length)
@@ -316,12 +316,12 @@ def main12()
     printAnagram("123")
 end
 
-# 	123
-# 	132
-# 	213
-# 	231
-# 	321
-# 	312
+# 123
+# 132
+# 213
+# 231
+# 321
+# 312
 
 def shuffle( str)
     ar = str.chars

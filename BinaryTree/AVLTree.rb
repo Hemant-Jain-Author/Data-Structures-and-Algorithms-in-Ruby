@@ -1,9 +1,9 @@
 class AVLTree
-    # Define the accessor and reader of class AVLTree
+    # Define the accessor of class AVLTree
     attr_accessor :root
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :data,:left,:right,:height
 
         def initialize( d,  l,  r)

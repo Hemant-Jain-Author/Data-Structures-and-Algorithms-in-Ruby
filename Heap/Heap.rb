@@ -133,8 +133,8 @@ def main1()
     end
     print "\n"
 end
-# 	1 3 2 7 6 5 4 
-# 	1 2 3 4 5 6 7
+# 1 3 2 7 6 5 4 
+# 1 2 3 4 5 6 7
 
 def heapSort(array,  inc)
     # Create max heap for increasing order sorting.

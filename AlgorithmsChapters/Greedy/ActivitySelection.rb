@@ -1,4 +1,5 @@
-class Activity # Define the accessor and reader of class Activity
+class Activity 
+	# Define the accessor of class Activity
 	attr_reader :start,:stop
 	attr_accessor :start,:stop
 	def initialize( s,  f)

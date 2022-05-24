@@ -1,9 +1,9 @@
 class Polynomial
-    # Define the accessor and reader of class Polynomial
+    # Define the accessor of class Polynomial
     attr_accessor :head,:tail
     
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :coeff,:pow,:next
 
         def initialize( c,  p)

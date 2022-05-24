@@ -20,15 +20,12 @@ def subsetSumUtil( arr,  n,  flags,  sum,  curr,  target)
 		# Solution found.
 		return
 	end
-	if (curr >= n || sum > target)
-		# constraint check and Backtracking.
+	if (curr >= n || sum > target) # constraint check and Backtracking.
 		return
 	end
-	# Current element included.
-	flags[curr] = true
+	flags[curr] = true # Current element included.
 	subsetSumUtil(arr, n, flags, sum + arr[curr], curr + 1, target)
-	# Current element excluded.
-	flags[curr] = false
+	flags[curr] = false # Current element excluded.
 	subsetSumUtil(arr, n, flags, sum, curr + 1, target)
 end
 

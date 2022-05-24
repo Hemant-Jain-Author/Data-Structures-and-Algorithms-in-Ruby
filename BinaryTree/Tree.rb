@@ -966,23 +966,23 @@ def main1()
 	t.printDepthFirst()
 	# 1 3 7 6 2 5 10 4 9 8
 	t.printLevelOrderLineByLine()
-	# 	1 
-	# 	2 3 
-	# 	4 5 6 7 
-	# 	8 9 10 
+	# 1 
+	# 2 3 
+	# 4 5 6 7 
+	# 8 9 10 
 	t.printLevelOrderLineByLine2()
-	# 	1 
-	# 	2 3 
-	# 	4 5 6 7 
-	# 	8 9 10 
+	# 1 
+	# 2 3 
+	# 4 5 6 7 
+	# 8 9 10 
 	t.printSpiralTree()
 	# 1 2 3 7 6 5 4 8 9 10 
 	t.nthInOrder(2)
 	t.nthPostOrder(2)
 	t.nthPreOrder(2)
-	# 	4
-	# 	9
-	# 	2
+	# 4
+	# 9
+	# 2
 	t.printAllPath()
     # [1, 3, 7]
     # [1, 3, 6]
@@ -1024,7 +1024,7 @@ def main3()
 	t3.printInOrder()
 	# 7 3 6 1 5 10 2 9 4 8
 	print(t.isEqual(t2),"\n")
-	# 	true
+	# true
 	print(t.isHeap(),"\n")
 	print(t.isHeap2(),"\n")
 	print(t.isCompleteTree(),"\n")
@@ -1048,11 +1048,11 @@ def main4()
 	t.insert(9)
 	t.insert(10)
 	t.printInOrder()
-	# 	1 2 3 4 5 6 7 8 9 10 
+	# 1 2 3 4 5 6 7 8 9 10 
 	print(t.find(3),"\n")
 	print(t.find(16),"\n")
-	# 	true
-	# 	false
+	# true
+	# false
 	print(t.isBST(),"\n")
 	print(t.isBST2(),"\n")
 	print(t.isBST3(),"\n")

@@ -1,9 +1,9 @@
 class CircularLinkedList
-    # Define the accessor and reader of class CircularLinkedList
+    # Define the accessor of class CircularLinkedList
     attr_accessor :tail,:size
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :value,:next
         
         def initialize( v,  n)

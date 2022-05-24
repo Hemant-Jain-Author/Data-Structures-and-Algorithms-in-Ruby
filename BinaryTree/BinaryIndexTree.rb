@@ -1,5 +1,5 @@
 class BinaryIndexTree
-    # Define the accessor and reader of class BinaryIndexTree
+    # Define the accessor of class BinaryIndexTree
     attr_accessor :BITS,:size
 
     def initialize( arr)

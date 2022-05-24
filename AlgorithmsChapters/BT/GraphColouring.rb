@@ -98,10 +98,8 @@ graph =[
 [false, false, true, false, true],
 [true, true, true, true, false]]
 
-v = 5
-# Number of vertices
-m = 4
-# Number of colours
+v = 5 # Number of vertices
+m = 4 # Number of colours
 if (!graphColouring2(graph,v, m))
 	print("Solution does not exist","\n")
 end

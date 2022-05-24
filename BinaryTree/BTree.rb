@@ -1,5 +1,5 @@
 class BTree
-    # Define the accessor and reader of class BTree
+    # Define the accessor of class BTree
     attr_accessor :root,:max,:min
 
     def initialize( dg)
@@ -9,7 +9,7 @@ class BTree
     end
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :n,:keys,:arr,:leaf
         
         # Constructor

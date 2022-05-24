@@ -282,7 +282,7 @@ def rottenFruit( arr,  maxCol,  maxRow)
 end
 
 class Fruit
-    # Define the accessor and reader of class Fruit
+    # Define the accessor of class Fruit
     attr_accessor :x,:y,:day
 
     def initialize( a,  b,  d)
@@ -380,8 +380,9 @@ def stepsOfKnight( size,  srcX,  srcY,  dstX,  dstY)
 end
 
 class Knight
-    # Define the accessor and reader of class Knight
+    # Define the accessor of class Knight
     attr_accessor :x,:y,:cost
+
     def initialize( a,  b,  c)
         self.x = a
         self.y = b
@@ -480,8 +481,9 @@ def distNearestFill( arr,  maxCol,  maxRow)
 end
 
 class Node
-    # Define the accessor and reader of class Node
+    # Define the accessor of class Node
     attr_accessor :x,:y,:dist
+
     def initialize( a,  b,  d)
         self.x = a
         self.y = b

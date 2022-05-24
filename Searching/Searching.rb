@@ -1375,8 +1375,8 @@ def numberOfTriangles2( arr,  size)
 		k = i + 2
 		j = i + 1
 		while (j < (size - 1))
-			# 			 * if sum of arr[i] & arr[j] is greater arr[k] then sum of arr[i] & arr[j + 1]
-			# 			 * is also greater than arr[k] this improvement make algo O(n2)
+			# if sum of arr[i] & arr[j] is greater arr[k] then sum of arr[i] & arr[j + 1]
+			# is also greater than arr[k] this improvement make algo O(n2)
 			while (k < size && arr[i] + arr[j] > arr[k]) 
 				k += 1
 			end

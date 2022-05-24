@@ -11,7 +11,7 @@ end
 
 def nQueens(queens,  k,  n)
 	if (k == n)
-		print("#{queens}\n")
+		print(queens, "\n")
 		return
 	end
 	i = 0

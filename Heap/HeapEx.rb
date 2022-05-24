@@ -1,5 +1,5 @@
 class Heap
-    # Define the accessor and reader of class Heap
+    # Define the accessor of class Heap
     attr_accessor :CAPACITY,:size,:arr,:isMinHeap    
     
     def initialize(isMin = true)
@@ -418,7 +418,7 @@ main4()
 main5()
 
 class MedianHeap
-    # Define the accessor and reader of class MedianHeap
+    # Define the accessor of class MedianHeap
     attr_accessor :minHeap,:maxHeap
 
     def initialize()

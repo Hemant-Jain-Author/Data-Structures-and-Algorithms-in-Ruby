@@ -1,17 +1,16 @@
 class RBTree
-    # Define the accessor and reader of class RBTree
+    # Define the accessor of class RBTree
     attr_accessor :root,:NullNode
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :left,:right,:parent,:data,:colour
-        # true for red colour, false for black colour
+
         def initialize( data,  nullNode)
             self.data = data
             self.left = nullNode
             self.right = nullNode
-            self.colour = true
-            # New node are red in colour.
+            self.colour = true # New node are red in colour.
             self.parent = nullNode
         end
     end
@@ -50,6 +49,7 @@ class RBTree
     end
 
     # Other methods
+
     # Function to right rotate subtree rooted with x
     def rightRotate( x)
         y = x.left
@@ -71,8 +71,8 @@ class RBTree
         else
             y.parent.right = y
         end
-        # Return new root
-        return y
+        
+        return y # Return new root
     end
 
     # Function to left rotate subtree rooted with x
@@ -96,8 +96,8 @@ class RBTree
         else
             y.parent.right = y
         end
-        # Return new root
-        return y
+        
+        return y # Return new root
     end
 	
     def rightLeftRotate( node)

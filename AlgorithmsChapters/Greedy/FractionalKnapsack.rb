@@ -1,7 +1,8 @@
-# Define the accessor and reader of class Items
+
 class Items
-	attr_reader :wt,:cost,:density
+	# Define the accessor of class Items
 	attr_accessor :wt,:cost,:density
+	
 	def initialize( w,  v)
 		self.wt = w
 		self.cost = v

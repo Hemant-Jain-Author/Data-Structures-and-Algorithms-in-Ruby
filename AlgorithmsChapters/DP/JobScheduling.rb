@@ -3,9 +3,9 @@ def max( *arr)
 end
 
 class Job
-	# Define the accessor and reader of class Job
-	attr_reader :start,:stop,:value
+	# Define the accessor of class Job
 	attr_accessor :start,:stop,:value
+	
 	def initialize( s,  f,  v)
 		self.start = s
 		self.stop = f

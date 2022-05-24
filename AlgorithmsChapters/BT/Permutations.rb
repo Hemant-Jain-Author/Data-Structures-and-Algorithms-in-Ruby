@@ -1,12 +1,3 @@
-def printArray( arr,  n)
-	i = 0
-	while (i < n)
-		print(arr[i].to_s + " ")
-		i += 1
-	end
-	print("\n")
-end
-
 def swap( arr,  i,  j)
 	temp = arr[i]
 	arr[i] = arr[j]
@@ -15,7 +6,7 @@ end
 
 def permutation( arr,  i,  length)
 	if (length == i)
-		printArray(arr, length)
+		print(arr, "\n")
 		return
 	end
 	j = i
@@ -42,7 +33,7 @@ end
 def permutation2( arr,  i,  length)
 	if (length == i)
 		if (isValid(arr, length))
-			printArray(arr, length)
+			print(arr, "\n")
 		end
 		return
 	end
@@ -65,7 +56,7 @@ end
 
 def permutation3( arr,  i,  length)
 	if (length == i)
-		printArray(arr, length)
+		print(arr, "\n")
 		return
 	end
 	j = i

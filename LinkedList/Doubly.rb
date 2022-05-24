@@ -1,10 +1,11 @@
 class DoublyLinkedList
-    # Define the accessor and reader of class DoublyLinkedList
+    # Define the accessor of class DoublyLinkedList
     attr_accessor :head,:tail,:size
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :value,:next,:prev
+        
         def initialize( v,  nxt,  prv)
             self.value = v
             self.next = nxt
@@ -238,9 +239,9 @@ class DoublyLinkedList
         ll.removeDuplicate()
         ll.display()
     end
-    # 	1 2 3 
-    # 	1 1 2 2 3 3 
-    # 	1 2 3
+    # 1 2 3 
+    # 1 1 2 2 3 3 
+    # 1 2 3
 
     def self.main3()
         ll = DoublyLinkedList.new()
@@ -253,9 +254,9 @@ class DoublyLinkedList
         l3 = ll.copyListReversed()
         l3.display()
     end
-    # 	3 2 1 
-    # 	3 2 1 
-    # 	1 2 3
+    # 3 2 1 
+    # 3 2 1 
+    # 1 2 3
 
     def self.main4()
         ll = DoublyLinkedList.new()
@@ -266,8 +267,8 @@ class DoublyLinkedList
         ll.removeNode(2)
         ll.display()
     end
-    # 	3 2 1 
-    # 	3 1
+    # 3 2 1 
+    # 3 1
 
     def self.main5()
         ll = DoublyLinkedList.new()
@@ -278,8 +279,8 @@ class DoublyLinkedList
         ll.reverseList()
         ll.display()
     end
-    # 	3 2 1
-    # 	1 2 3
+    # 3 2 1
+    # 1 2 3
     
     def self.main()
         self.main1()

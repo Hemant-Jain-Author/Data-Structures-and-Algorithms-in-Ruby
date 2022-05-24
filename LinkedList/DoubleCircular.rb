@@ -1,9 +1,9 @@
 class DoublyCircularLinkedList
-    # Define the accessor and reader of class DoublyCircularLinkedList
+    # Define the accessor of class DoublyCircularLinkedList
     attr_accessor :head,:tail,:size
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :value,:next,:prev
         
         def initialize( v,  nxt,  prv)

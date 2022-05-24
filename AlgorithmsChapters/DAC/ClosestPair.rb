@@ -1,7 +1,7 @@
 class Point
-	# Define the accessor and reader of class Point
-	attr_reader :x,:y
+	# Define the accessor of class Point
 	attr_accessor :x,:y
+
 	def initialize( a,  b)
 		self.x = a
 		self.y = b

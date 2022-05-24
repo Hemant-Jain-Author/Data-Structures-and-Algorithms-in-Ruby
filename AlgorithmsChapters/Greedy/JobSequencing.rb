@@ -1,11 +1,9 @@
 class JobSequencing
-    # Define the accessor and reader of class JobSequencing
-    attr_reader :jobs,:n,:maxDL
+    # Define the accessor of class JobSequencing
     attr_accessor :jobs,:n,:maxDL
 
     class Job
-        # Define the accessor and reader of class Job
-        attr_reader :id,:deadline,:profit
+        # Define the accessor of class Job
         attr_accessor :id,:deadline,:profit
 
         def initialize( id,  deadline,  profit)

@@ -1,5 +1,5 @@
 class RangeMaxST
-    # Define the accessor and reader of class RangeMaxST
+    # Define the accessor of class RangeMaxST
     attr_accessor :segArr,:n
 
     def initialize( input)

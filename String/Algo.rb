@@ -1,6 +1,5 @@
 def bruteForceSearch(text, pattern)
     i = 0
-    j = 0
     n = text.length
     m = pattern.length
     while (i <= n - m)

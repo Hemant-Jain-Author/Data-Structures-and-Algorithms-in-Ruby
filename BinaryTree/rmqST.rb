@@ -1,6 +1,7 @@
 class RmqST
-    # Define the accessor and reader of class RmqST
+    # Define the accessor of class RmqST
     attr_accessor :segArr,:n
+
     def initialize( input)
         self.n = input.length
         # Height of segment tree.

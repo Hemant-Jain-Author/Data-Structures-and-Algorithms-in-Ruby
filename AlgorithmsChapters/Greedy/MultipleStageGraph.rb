@@ -2,8 +2,7 @@
 INF = 99999
 
 def shortestDist( graph,  n)
-	# dist[i] is going to store shortest
-	# distance from node i to node n-1.
+	# dist[i] is going to store shortest distance from node i to node n-1.
 	dist = Array.new(n){INF}
 	path = Array.new(n){0}
 	dist[0] = 0
