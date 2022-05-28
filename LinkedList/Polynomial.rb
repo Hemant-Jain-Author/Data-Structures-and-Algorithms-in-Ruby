@@ -36,7 +36,7 @@ class Polynomial
         temp = nil
         poly = Polynomial.new(nil, nil, 0)
         while (p1 != nil || p2 != nil)
-            if (p1 == nil || p1.pow < p2.pow)
+            if (p1 == nil || (p2 != nil && p1.pow < p2.pow))
                 temp = Node.new(p2.coeff, p2.pow)
                 p2 = p2.next
             elsif (p2 == nil || p1.pow > p2.pow)
