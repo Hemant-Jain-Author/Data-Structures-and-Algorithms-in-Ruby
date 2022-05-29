@@ -12,7 +12,6 @@ def BucketSortUtil( arr, maxValue, numBucket)
 
 	# Create empty buckets
 	bucket = Array.new(numBucket){ Array.new()}
-
 	div = (maxValue / numBucket).ceil.to_i
 
 	# Add elements into the buckets
@@ -57,3 +56,5 @@ array = [1, 34, 7, 99, 5, 23, 45, 88, 77, 19, 91, 100]
 maxValue = 100
 BucketSort(array, maxValue)
 print(array)
+
+# [1, 5, 7, 19, 23, 34, 45, 77, 88, 91, 99, 100]

@@ -10,19 +10,21 @@ hs.add("Mango")
 
 #traverse
 hs.each do |key|
-    puts "#{key} "
+    print "#{key} "
 end
-print hs
-print "Apple present : " , hs.include?("Apple"), "\n"
-print "Grapes present : " , hs.include?("Grapes"), "\n"
+
+p hs
+p "Size : #{hs.size}"
+p "Apple present : #{hs.include?("Apple")}"
+p "Grapes present : #{hs.include?("Grapes")}"
 hs.delete("Apple")
-print "Apple present : " , hs.include?("Apple"), "\n"
+p "Apple present : #{hs.include?("Apple")}"
 
 =begin 
-Banana 
-Apple 
-Mango 
-Apple present : true
-Grapes present : false
-Apple present : false 
+Banana Apple Mango 
+#<Set: {"Banana", "Apple", "Mango"}>
+"Size : 3"
+"Apple present : true"
+"Grapes present : false"
+"Apple present : false"
 =end

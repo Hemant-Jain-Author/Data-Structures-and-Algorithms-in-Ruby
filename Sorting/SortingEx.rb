@@ -83,8 +83,11 @@ def main1()
 	partition012_(arr3, arr3.length)
 	print(arr3)
 end
-# 	[ 0 0 0 0 0 0 1 1 1 1 1 1 ]
-# 	[ 0 0 0 0 0 1 1 1 1 1 2 2 ]
+# 	[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+# 	[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+# 	[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+
+
 def rangePartition( arr, size, lower, higher)
 	start = 0
 	ed = size - 1
@@ -110,7 +113,7 @@ def main2()
 	print(arr)
 end
 
-# 	[ 1 2 3 4 5 6 7 8 10 12 9 11 14 13 15 16 17 18 ]
+# [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 9, 11, 14, 13, 15, 16, 17, 18]
 
 def minSwaps( arr, size, val)
 	swapCount = 0
@@ -187,7 +190,8 @@ def main4()
 	print(array2)
 end
 
-# [ 4 6 8 2 7 3 1 9 5 ]
+# [8, 2, 6, 4, 5, 3, 7, 1, 9]
+# [4, 6, 8, 2, 7, 3, 1, 9, 5]
 
 def absGreater( value1, value2, ref)
 	return ((value1 - ref).abs > (value2 - ref).abs)
@@ -215,7 +219,7 @@ def main5()
 	print(array)
 end
 
-# 	[ 5 6 4 7 3 8 2 9 1 ]
+# 	[5, 6, 4, 7, 3, 8, 2, 9, 1]
 
 def eqGreater( value1, value2, _A)
 	value1 = _A * value1 * value1
@@ -248,42 +252,54 @@ end
 
 def sortByOrder( arr, size, arr2, size2)
 	ht = Hash.new
+	out = Array.new(size)
 	i = 0
 	while (i < size)
 		if (ht.key?(arr[i]))
-			value = ht[arr[i]]
-			ht[arr[i]] = value + 1
+			ht[arr[i]] = ht[arr[i]] + 1
 		else
 			ht[arr[i]] = 1
 		end
 		i += 1
 	end
+
 	j = 0
+	ind = 0
 	while (j < size2)
 		if (ht.key?(arr2[j]))
 			value = ht[arr2[j]]
 			k = 0
 			while (k < value)
-				print(arr2[j].to_s + " ")
+				out[ind] = arr2[j]
 				k += 1
+				ind += 1
 			end
 			ht.delete(arr2[j])
 		end
 		j += 1
 	end
+
 	i = 0
 	while (i < size)
 		if (ht.key?(arr[i]))
 			value = ht[arr[i]]
 			k = 0
 			while (k < value)
-				print(arr[i].to_s + " ")
+				out[ind] = arr[i]
 				k += 1
+				ind += 1
 			end
 			ht.delete(arr[i])
 		end
 		i += 1
 	end
+
+	i = 0
+	while (i < size)
+		arr[i] = out[i]
+		i += 1
+	end
+
 end
 
 # Testing code
@@ -291,10 +307,10 @@ def main7()
 	arr = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
 	arr2 = [2, 1, 8, 3]
 	sortByOrder(arr, arr.length, arr2, arr2.length)
-	print("\n")
+	print arr
 end
 
-# 	2 2 1 1 8 8 3 5 7 9 6
+# [2, 2, 1, 1, 8, 8, 3, 5, 7, 9, 6]
 
 def merge( arr1, size1, arr2, size2)
 	index = 0
@@ -332,8 +348,7 @@ def main8()
 	print(arr2)
 end
 
-# 	[ 1 2 3 5 8 9 ]
-# 	[ 10 13 15 20 ]
+# [1, 2, 3, 5, 8, 9][10, 13, 15, 20]
 
 def checkReverse( arr, size)
 	start = -1
@@ -440,9 +455,9 @@ def main10()
 	unionIntersectionUnsorted(arr1, arr1.length, arr2, arr2.length)
 end
 
-# 	[ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ]
-# 	[ 2 5 8 ]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14][2, 5, 8]
 
+=begin 
 main1()
 main2()
 main3()
@@ -450,6 +465,7 @@ main4()
 main5()
 main6()
 main7()
+=end
 main8()
 main9()
-main10()
+main10() 

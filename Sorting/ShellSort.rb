@@ -29,3 +29,5 @@ end
 array = [36, 32, 11, 6, 19, 31, 17, 3]
 ShellSort(array)
 print array
+
+# [3, 6, 11, 17, 19, 31, 32, 36]

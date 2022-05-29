@@ -68,16 +68,16 @@ arr = [1,2,3,4,5]
 permutation(arr, 0, 5)
 
 def GCD(m, n)
-    if m < n
-        return GCD(n, m)
+    if n == 0
+        return m
     end
-    if m % n == 0
-        return (n)
+    if m == 0
+        return n
     end
     return GCD(n, m % n)
 end
 
-print "GCD : " ,GCD(7, 3)
+print "GCD : " ,GCD(5, 2)
 #puts ""
 
 def towerOfHanoi(num, src, dst, temp)
@@ -224,8 +224,6 @@ puts BinarySearchRecursive(arr, 9)
 puts BinarySearchRecursive(arr, 7)
 
 
-
-
 def reverseArray(a, start, end1)
     i = start
     j = end1
@@ -353,7 +351,7 @@ def printInt2(number, baseValue)
 end
 
 # Testing code
-print printInt2(75, 16)
+print printInt2(500, 16)
 
 def fibonacci(n)
     if n <= 1 then

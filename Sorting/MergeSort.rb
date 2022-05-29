@@ -49,6 +49,6 @@ def merge(arr, tempArray, lowerIndex, middleIndex, upperIndex)
 end
 
 # Testing code
-array = [3, 4, 2, 1, 6, 5, 7, 8 ]
+array = [7, 6, 3, 2, 4, 1, 8, 5 ]
 MergeSort(array)
 print array

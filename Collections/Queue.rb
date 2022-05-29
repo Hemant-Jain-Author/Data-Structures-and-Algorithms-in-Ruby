@@ -3,14 +3,12 @@ que.push(1)
 que.push(2)
 que.push(3)
 
-size = que.size
-i = 0
-while i < size
-    print "Dequeue : " , que.pop(), "\n"
-    i += 1
-end
+p "Size : " + que.size.to_s
+p "Dequeue : " + que.pop().to_s
+p "Dequeue : " + que.pop().to_s
 
-# Dequeue : 1
-# Dequeue : 2
-# Dequeue : 3
-
+=begin 
+"Size : 3"
+"Dequeue : 1"
+"Dequeue : 2"
+ =end

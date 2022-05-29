@@ -88,26 +88,6 @@ end
 
 def fun7(n)
     m = 0
-    i = 1
-    while i < n
-        m += 1
-        i = i * 2
-    end
-    return m
-end
-
-def fun8(n)
-    m = 0
-    i = n
-    while i > 0
-        m += 1
-        i = i / 2
-    end
-    return m
-end
-
-def fun9(n)
-    m = 0
     i = n
     while i > 0
         j = 0
@@ -120,7 +100,7 @@ def fun9(n)
     return m
 end
 
-def fun10(n)
+def fun8(n)
     m = 0
     i = 1
     while i <= n
@@ -133,6 +113,28 @@ def fun10(n)
     end
     return m
 end
+
+def fun9(n)
+    m = 0
+    i = 1
+    while i < n
+        m += 1
+        i = i * 2
+    end
+    return m
+end
+
+def fun10(n)
+    m = 0
+    i = n
+    while i > 0
+        m += 1
+        i = i / 2
+    end
+    return m
+end
+
+
 
 def fun11(n)
     m = 0
@@ -187,19 +189,19 @@ end
 
 
 # Testing Code
-print    "N = 100, Number of instructions :: " , fun1(100), "\n"
-print    "N = 100, Number of instructions :: " , fun2(100), "\n"
-print    "N = 100, Number of instructions :: " , fun3(100), "\n"
-print    "N = 100, Number of instructions :: " , fun4(100), "\n"
-print    "N = 100, Number of instructions :: " , fun5(100), "\n"
-print    "N = 100, Number of instructions :: " , fun6(100), "\n"
-print    "N = 100, Number of instructions :: " , fun7(100), "\n"
-print    "N = 100, Number of instructions :: " , fun8(100), "\n"
-print    "N = 100, Number of instructions :: " , fun9(100), "\n"
-print    "N = 100, Number of instructions :: " , fun10(100), "\n"
-print    "N = 100, Number of instructions :: " , fun11(100), "\n"
-print    "N = 100, Number of instructions :: " , fun12(100), "\n"
-print    "N = 100, Number of instructions :: " , fun13(100), "\n"
+print "N = 100, Number of instructions :: ", fun1(100), "\n"
+print "N = 100, Number of instructions :: ", fun2(100), "\n"
+print "N = 100, Number of instructions :: ", fun3(100), "\n"
+print "N = 100, Number of instructions :: ", fun4(100), "\n"
+print "N = 100, Number of instructions :: ", fun5(100), "\n"
+print "N = 100, Number of instructions :: ", fun6(100), "\n"
+print "N = 100, Number of instructions :: ", fun7(100), "\n"
+print "N = 100, Number of instructions :: ", fun8(100), "\n"
+print "N = 100, Number of instructions :: ", fun9(100), "\n"
+print "N = 100, Number of instructions :: ", fun10(100), "\n"
+print "N = 100, Number of instructions :: ", fun11(100), "\n"
+print "N = 100, Number of instructions :: ", fun12(100), "\n"
+print "N = 100, Number of instructions :: ", fun13(100), "\n"
 
 """
 N = 100, Number of instructions :: 100
@@ -208,11 +210,11 @@ N = 100, Number of instructions :: 1000000
 N = 100, Number of instructions :: 166650
 N = 100, Number of instructions :: 4950
 N = 100, Number of instructions :: 4950
+N = 100, Number of instructions :: 197
+N = 100, Number of instructions :: 134
 N = 100, Number of instructions :: 7
 N = 100, Number of instructions :: 7
 N = 100, Number of instructions :: 20000
 N = 100, Number of instructions :: 1000
-N = 100, Number of instructions :: 197
-N = 100, Number of instructions :: 134
 N = 100, Number of instructions :: 100
 """

@@ -47,5 +47,5 @@ end
 
 # Testing code
 array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
-bs = BubbleSort2(array)
+BubbleSort(array)
 print array

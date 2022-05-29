@@ -33,6 +33,8 @@ def quickSortUtil(arr, lower, upper)
 end
 
 # Testing code
-array = [ 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 ]
+array = [ 6, 4, 5, 1, 8, 2, 9, 7, 10, 3 ]
 QuickSort(array)
 print array
+
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
