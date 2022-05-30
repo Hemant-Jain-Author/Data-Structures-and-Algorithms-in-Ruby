@@ -85,7 +85,7 @@ def towerOfHanoi(num, src, dst, temp)
         return
     end
     towerOfHanoi(num - 1, src, temp, dst)
-    print "\n Move " , num , " disk    from peg " , src , " to peg " , dst
+    print "\n Move " , num , " disk from peg " , src , " to peg " , dst
     towerOfHanoi(num - 1, temp, dst, src)
 end
 
@@ -154,16 +154,7 @@ while i < 10
 end
 print arr
 
-def SumArray(arr)
-    size = arr.Length
-    total = 0
-    index = 0
-    while index < size
-        total = total + arr[index]
-        index += 1
-    end
-    return total
-end
+
 
 def SequentialSearch(arr, value)
     size = arr.size

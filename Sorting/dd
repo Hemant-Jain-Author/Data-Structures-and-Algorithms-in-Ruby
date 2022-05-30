@@ -1,15 +1,511 @@
-[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
-[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
-[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+def swap( arr,  x,  y)
+    temp = arr[x]
+    arr[x] = arr[y]
+    arr[y] = temp
+    return
+end
 
-[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 9, 11, 14, 13, 15, 16, 17, 18]
+def sumArray( arr)
+    size = arr.length
+    total = 0
+    index = 0
+    while (index < size)
+        total = total + arr[index]
+        index += 1
+    end
+    return total
+end
+# Testing code
+def main1()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    print("Sum of values in array:" + sumArray(arr).to_s,"\n")
+end
+# 	Sum of values in array:45
+def function2()
+    print("fun2 line 1","\n")
+end
+def function1()
+    print("fun1 line 1","\n")
+    function2()
+    print("fun1 line 2","\n")
+end
+# Testing code
+def main2()
+    print("main line 1","\n")
+    function1()
+    print("main line 2","\n")
+end
+# 	main line 1
+# 	fun1 line 1
+# 	fun2 line 1
+# 	fun1 line 2
+# 	main line 2
 
-minSwaps 3
+def sequentialSearch( arr,  size,  value)
+    i = 0
+    while (i < size)
+        if (value == arr[i])
+            return i
+        end
+        i += 1
+    end
+    return -1
+end
 
-[8, 2, 6, 4, 5, 3, 7, 1, 9]
-[4, 6, 8, 2, 7, 3, 1, 9, 5]
-[5, 6, 4, 7, 3, 8, 2, 9, 1]
-Total number of reductions: 4
-2 2 1 1 8 8 3 5 7 9 6 
-[1, 2, 3, 5, 8, 9][10, 13, 15, 20]true
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14][2, 5, 8]
+def binarySearch( arr,  size,  value)
+    low = 0
+    high = size - 1
+    while (low <= high)
+        mid = (low + high) / 2
+        if (arr[mid] == value)
+            return mid
+        else
+            if (arr[mid] < value)
+                low = mid + 1
+            else
+                high = mid - 1
+            end
+        end
+    end
+    return -1
+end
+def main3()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    print("sequentialSearch:" + sequentialSearch(arr, arr.length, 7).to_s,"\n")
+    print("binarySearch:" + binarySearch(arr, arr.length, 7).to_s,"\n")
+end
+# 	sequentialSearch:6
+# 	binarySearch:6
+
+def rotateArray( a,  n,  k)
+    reverseArray(a, 0, k - 1)
+    reverseArray(a, k, n - 1)
+    reverseArray(a, 0, n - 1)
+end
+
+def reverseArray( a,  start,  end)
+    i = start
+    ; j = end
+    while (i < j)
+        temp = a[i]
+        a[i] = a[j]
+        a[j] = temp
+        i += 1j -= 1
+    end
+end
+
+def reverseArray2( a)
+    start = 0
+    end = a.length - 1
+    i = start
+    ; j = end
+    while (i < j)
+        temp = a[i]
+        a[i] = a[j]
+        a[j] = temp
+        i += 1j -= 1
+    end
+end
+
+# Testing code
+def main4()
+    arr = [1, 2, 3, 4, 5, 6]
+    rotateArray(arr, arr.length, 2)
+    printArray(arr, arr.length)
+end
+# 	[ 3 4 5 6 1 2 ]
+
+def maxSubArraySum( a,  size)
+    maxSoFar = 0
+    maxEndingHere = 0
+    i = 0
+    while (i < size)
+        maxEndingHere = maxEndingHere + a[i]
+        if (maxEndingHere < 0)
+            maxEndingHere = 0
+        end
+        if (maxSoFar < maxEndingHere)
+            maxSoFar = maxEndingHere
+        end
+        i += 1
+    end
+    return maxSoFar
+end
+# Testing code
+def main5()
+    arr = [1, -2, 3, 4, -4, 6, -4, 3, 2]
+    print("Max sub array sum :" + maxSubArraySum(arr, 9).to_s,"\n")
+end
+# 	Max sub array sum :10
+
+
+def smallestPositiveMissingNumber( arr,  size)
+    i = 1
+    while (i < size + 1)
+        found = 0
+        j = 0
+        while (j < size)
+            if (arr[j] == i)
+                found = 1
+                break
+            end
+            j += 1
+        end
+        if (found == 0)
+            return i
+        end
+        i += 1
+    end
+    return -1
+end
+def smallestPositiveMissingNumber2( arr,  size)
+    hs =  Hash.new
+    i = 0
+    while (i < size)
+        hs[arr[i]] = 1
+        i += 1
+    end
+    i = 1
+    while (i < size + 1)
+        if (hs.key?(i) == false)
+            return i
+        end
+        i += 1
+    end
+    return -1
+end
+def smallestPositiveMissingNumber3( arr,  size)
+    aux = Array.new(size){0}
+    Arrays.fill(aux,-1)
+    i = 0
+    while (i < size)
+        if (arr[i] > 0 && arr[i] <= size)
+            aux[arr[i] - 1] = arr[i]
+        end
+        i += 1
+    end
+    i = 0
+    while (i < size)
+        if (aux[i] != i + 1)
+            return i + 1
+        end
+        i += 1
+    end
+    return -1
+end
+def smallestPositiveMissingNumber4( arr,  size)
+    i = 0
+    while (i < size)
+        while (arr[i] != i + 1 && arr[i] > 0 && arr[i] <= size)
+            temp = arr[i]
+            arr[i] = arr[temp - 1]
+            arr[temp - 1] = temp
+        end
+        i += 1
+    end
+    i = 0
+    while (i < size)
+        if (arr[i] != i + 1)
+            return i + 1
+        end
+        i += 1
+    end
+    return -1
+end
+# Testing code
+def main9()
+    arr = [8, 5, 6, 1, 9, 11, 2, 7, 4, 10]
+    size = arr.length
+    print("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber(arr, size).to_s,"\n")
+    print("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber2(arr, size).to_s,"\n")
+    print("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber3(arr, size).to_s,"\n")
+    print("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber4(arr, size).to_s,"\n")
+end
+# 	smallestPositiveMissingNumber :3
+# 	smallestPositiveMissingNumber :3
+# 	smallestPositiveMissingNumber :3
+# 	smallestPositiveMissingNumber :3
+
+def arrayIndexMaxDiff( arr,  size)
+    maxDiff = -1
+    i = 0
+    while (i < size)
+        j = size - 1
+        while (i < j)
+            if (arr[i] <= arr[j])
+                maxDiff = Math.max(maxDiff,j - i)
+                break
+            end
+            j -= 1
+        end
+        i += 1
+    end
+    return maxDiff
+end
+def arrayIndexMaxDiff2( arr,  size)
+    rightMax = Array.new(size){0}
+    rightMax[size - 1] = arr[size - 1]
+    i = size - 2
+    while (i >= 0)
+        rightMax[i] = Math.max(rightMax[i + 1],arr[i])
+        i -= 1
+    end
+    maxDiff = -1
+    i = 0
+    ; j = 1
+    while (i < size && j < size)
+        if (arr[i] <= rightMax[j])
+            if (i < j)
+                maxDiff = Math.max(maxDiff,j - i)
+            end
+            j = j + 1
+        else
+            i = i + 1
+        end
+    end
+    return maxDiff
+end
+# Testing code
+def main12()
+    arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
+    print("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length).to_s,"\n")
+    print("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length).to_s,"\n")
+end
+# 	arrayIndexMaxDiff : 7
+# 	arrayIndexMaxDiff : 7
+def maxPathSum( arr1,  size1,  arr2,  size2)
+    i = 0
+    j = 0
+    result = 0
+    sum1 = 0
+    sum2 = 0
+    while (i < size1 && j < size2)
+        if (arr1[i] < arr2[j])
+            sum1 += arr1[i]
+            i += 1
+        elsif (arr1[i] > arr2[j])
+            sum2 += arr2[j]
+            j += 1
+        else
+            result += Math.max(sum1,sum2)
+            result = result + arr1[i]
+            sum1 = 0
+            sum2 = 0
+            i += 1
+            j += 1
+        end
+    end
+    while (i < size1)
+        sum1 += arr1[i]
+        i += 1
+    end
+    while (j < size2)
+        sum2 += arr2[j]
+        j += 1
+    end
+    result += Math.max(sum1,sum2)
+    return result
+end
+# Testing code
+def main13()
+    arr1 = [12, 13, 18, 20, 22, 26, 70]
+    arr2 = [11, 15, 18, 19, 20, 26, 30, 31]
+    print("Max Path Sum :: " + maxPathSum(arr1, arr1.length, arr2, arr2.length).to_s,"\n")
+end
+# 	Max Path Sum :: 201
+def printInt10( number)
+    digit = ((number % 10 + '0'.ord)).chr
+    number = number / 10
+    if (number != 0)
+        printInt10(number)
+    end
+    print(digit)
+end
+def printInt( number,  base)
+    conversion = "0123456789ABCDEF"
+    digit = ((number % base)).chr
+    number = number / base
+    if (number != 0)
+        printInt(number, base)
+    end
+    print(conversion[digit])
+end
+# Testing code
+def main14()
+    printInt10(50)
+    print("\n")
+    printInt(500, 16)
+    print("\n")
+end
+# 	50
+# 	1F4
+def towerOfHanoi( num,  src,  dst,  temp)
+    if (num < 1)
+        return
+    end
+    towerOfHanoi(num - 1, src, temp, dst)
+    print("Move " + num.to_s + " disk from peg " + src.to_s + " to peg " + dst.to_s,"\n")
+    towerOfHanoi(num - 1, temp, dst, src)
+end
+# Testing code
+def main15()
+    num = 3
+    print("Moves involved in the Tower of Hanoi are:","\n")
+    towerOfHanoi(num, 'A', 'C', 'B')
+end
+# Moves involved in the Tower of Hanoi are:
+# Move 1 disk from peg A to peg C
+# Move 2 disk from peg A to peg B
+# Move 1 disk from peg C to peg B
+# Move 3 disk from peg A to peg C
+# Move 1 disk from peg B to peg A
+# Move 2 disk from peg B to peg C
+# Move 1 disk from peg A to peg C
+def gcd( m,  n)
+    if (n == 0)
+        return m
+    end
+    if (m == 0)
+        return n
+    end
+    return (gcd(n, m % n))
+end
+# Testing code
+def main16()
+    print("Gcd is:: " + gcd(5, 2).to_s,"\n")
+end
+# 	Gcd is:: 1
+def fibonacci( n)
+    if (n < 2)
+        return n
+    end
+    return fibonacci(n - 1) + fibonacci(n - 2)
+end
+def fibonacci2( n)
+    if (n < 2)
+        return n
+    end
+    first = 0
+    second = 1
+    temp = 1
+    i = 2
+    while (i <= n)
+        temp = first + second
+        first = second
+        second = temp
+        i += 1
+    end
+    return temp
+end
+# Testing code
+def main17()
+    print(fibonacci(10),"\n")
+end
+# 	55
+def permutation( arr,  i,  length)
+    if (length == i)
+        printArray(arr, length)
+        return
+    end
+    j = i
+    j = i
+    while (j < length)
+        swap(arr, i, j)
+        permutation(arr, i + 1, length)
+        swap(arr, i, j)
+        j += 1
+    end
+    return
+end
+# Testing code
+def main18()
+    arr = Array.new(3){0}
+    i = 0
+    while (i < 3)
+        arr[i] = i
+        i += 1
+    end
+    permutation(arr, 0, 3)
+end
+# 	[ 0 1 2 ]
+# 	[ 0 2 1 ]
+# 	[ 1 0 2 ]
+# 	[ 1 2 0 ]
+# 	[ 2 1 0 ]
+# 	[ 2 0 1 ]
+# Binary Search Algorithm - Recursive
+def binarySearchRecursive( arr,  low,  high,  value)
+    if (low > high)
+        return -1
+    end
+    mid = (low + high) / 2
+    if (arr[mid] == value)
+        return mid
+    elsif (arr[mid] < value)
+        return binarySearchRecursive(arr, mid + 1, high, value)
+    else
+        return binarySearchRecursive(arr, low, mid - 1, value)
+    end
+end
+# Testing code
+def main19()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    print(binarySearchRecursive(arr, 0, arr.length - 1, 6),"\n")
+    print(binarySearchRecursive(arr, 0, arr.length - 1, 16),"\n")
+end
+# 	5
+# 	-1
+def ackermann( m,  n)
+    if (m == 0)
+        return n + 1
+    end
+    if (m > 0 && n == 0)
+        return ackermann(m - 1, 1)
+    end
+    if (m > 0 && n > 0)
+        return ackermann(m - 1, ackermann(m, n - 1))
+    end
+    return -1
+end
+# Testing code
+def main20()
+    print(ackermann(3, 6),"\n")
+end
+# 	 509
+def factorial( i)
+    # Termination Condition
+    if (i <= 1)
+        return 1
+    end
+    # Body, Recursive Expansion
+    return i * factorial(i - 1)
+end
+# Testing code
+def main21()
+    print("Factorial:" + factorial(5).to_s,"\n")
+end
+# Factorial:120
+def main()
+    main1()
+    i = Introduction.new()
+    i.main2()
+    main3()
+    main4()
+    main5()
+    main6()
+    main7()
+    main8()
+    main9()
+    main10()
+    main11()
+    main12()
+    main13()
+    main14()
+    main15()
+    main16()
+    main17()
+    main18()
+    main19()
+    main20()
+    main21()
+end

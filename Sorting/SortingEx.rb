@@ -41,15 +41,18 @@ def partition012_( arr, size)
 	end
 	index = 0
 	while (zero > 0)
-		arr[index += 1] = 0
+		arr[index] = 0
+		index += 1
 		zero -= 1
 	end
 	while (one > 0)
-		arr[index += 1] = 1
+		arr[index] = 1
+		index += 1
 		one -= 1
 	end
 	while (two > 0)
-		arr[index += 1] = 2
+		arr[index] = 2
+		index += 1
 		two -= 1
 	end
 end
@@ -75,17 +78,17 @@ end
 def main1()
 	arr = [0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1]
 	partition01(arr, arr.length)
-	print(arr)
+	p arr
 	arr2 = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
 	partition012(arr2, arr2.length)
-	print(arr2)
+	p arr2
 	arr3 = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
 	partition012_(arr3, arr3.length)
-	print(arr3)
+	p arr3
 end
 # 	[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
 # 	[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
-# 	[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+# 	[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
 
 
 def rangePartition( arr, size, lower, higher)
@@ -110,7 +113,7 @@ end
 def main2()
 	arr = [1, 2, 3, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11]
 	rangePartition(arr, arr.length, 9, 12)
-	print(arr)
+	p arr
 end
 
 # [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 9, 11, 14, 13, 15, 16, 17, 18]
@@ -137,7 +140,7 @@ end
 # Testing code
 def main3()
 	array = [1, 2, 3, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11]
-	print("minSwaps " + minSwaps(array, array.length, 10).to_s,"\n")
+	p "minSwaps " + minSwaps(array, array.length, 10).to_s
 end
 
 # minSwaps 3
@@ -184,10 +187,10 @@ end
 def main4()
 	array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
 	separateEvenAndOdd(array, array.length)
-	print(array)
+	p array
 	array2 = [9, 1, 8, 2, 7, 3, 6, 4, 5]
 	separateEvenAndOdd2(array2, array2.length)
-	print(array2)
+	p array2
 end
 
 # [8, 2, 6, 4, 5, 3, 7, 1, 9]
@@ -216,7 +219,7 @@ def main5()
 	array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
 	ref = 5
 	absBubbleSort(array, array.length, ref)
-	print(array)
+	p array
 end
 
 # 	[5, 6, 4, 7, 3, 8, 2, 9, 1]
@@ -226,7 +229,7 @@ def eqGreater( value1, value2, _A)
 	value2 = _A * value2 * value2
 	return value1 > value2
 end
-
+    222
 def arrayReduction( arr, size)
 	arr = arr.sort()
 	count = 1
@@ -239,7 +242,7 @@ def arrayReduction( arr, size)
 		end
 		i += 1
 	end
-	print("Total number of reductions: " + count.to_s,"\n")
+	p "Total number of reductions: " + count.to_s
 end
 
 # Testing code
@@ -307,7 +310,7 @@ def main7()
 	arr = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
 	arr2 = [2, 1, 8, 3]
 	sortByOrder(arr, arr.length, arr2, arr2.length)
-	print arr
+	p arr
 end
 
 # [2, 2, 1, 1, 8, 8, 3, 5, 7, 9, 6]
@@ -344,8 +347,8 @@ def main8()
 	arr1 = [1, 5, 9, 10, 15, 20]
 	arr2 = [2, 3, 8, 13]
 	merge(arr1, arr1.length, arr2, arr2.length)
-	print(arr1)
-	print(arr2)
+	p arr1
+	p arr2
 end
 
 # [1, 2, 3, 5, 8, 9][10, 13, 15, 20]
@@ -390,9 +393,10 @@ def checkReverse( arr, size)
 	return true
 end
 
+# Testing code.
 def main9()
 	arr1 = [1, 2, 6, 5, 4, 7]
-	print(checkReverse(arr1, arr1.length),"\n")
+	p checkReverse(arr1, arr1.length)
 end
 
 # true
@@ -439,8 +443,8 @@ def unionIntersectionSorted( arr1, size1, arr2, size2)
 		uIndex += 1
 		second += 1
 	end
-	print unionArr[0..uIndex-1]
-	print interArr[0..iIndex-1]
+	p unionArr[0..uIndex-1]
+	p interArr[0..iIndex-1]
 end
 
 def unionIntersectionUnsorted( arr1, size1, arr2, size2)
@@ -449,6 +453,7 @@ def unionIntersectionUnsorted( arr1, size1, arr2, size2)
 	unionIntersectionSorted(arr1, size1, arr2, size2)
 end
 
+# Testing code.
 def main10()
 	arr1 = [1, 11, 2, 3, 14, 5, 6, 8, 9]
 	arr2 = [2, 4, 5, 12, 7, 8, 13, 10]
@@ -457,7 +462,203 @@ end
 
 # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14][2, 5, 8]
 
-=begin 
+def waveArray2( arr)
+    size = arr.length
+    i = 1
+    # Odd elements are lesser then even elements.
+    while (i < size)
+        if ((i - 1) >= 0 && arr[i] > arr[i - 1])
+            swap(arr, i, i - 1)
+        end
+        if ((i + 1) < size && arr[i] > arr[i + 1])
+            swap(arr, i, i + 1)
+        end
+        i += 2
+    end
+end
+def waveArray( arr)
+    size = arr.length
+    arr = arr.sort
+    i = 0
+    while (i < size - 1)
+        swap(arr, i, i + 1)
+        i += 2
+    end
+end
+# Testing code
+def main11()
+arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
+waveArray(arr)
+p arr
+    arr2 = [8, 1, 2, 3, 4, 5, 6, 4, 2]
+    waveArray2(arr2)
+    p arr2
+end
+# 	[8, 1, 2, 3, 4, 5, 6, 4, 2]
+# 	[8, 1, 3, 2, 5, 4, 6, 2, 4]
+
+
+def indexArray( arr,  size)
+    i = 0
+    while (i < size)
+        curr = i
+        value = -1
+        # swaps to move elements in proper position.
+        while (arr[curr] != -1 && arr[curr] != curr)
+            temp = arr[curr]
+            arr[curr] = value
+            value = curr = temp
+        end
+        # check if some swaps happened.
+        if (value != -1)
+            arr[curr] = value
+        end
+        i += 1
+    end
+end
+
+def indexArray2( arr,  size)
+    i = 0
+    while (i < size)
+        while (arr[i] != -1 && arr[i] != i)
+            # swap arr[i] and arr[arr[i]] 
+            temp = arr[i]
+            arr[i] = arr[temp]
+            arr[temp] = temp
+        end
+        i += 1
+    end
+end
+# Testing code
+def main12()
+arr = [8, -1, 6, 1, 9, 3, 2, 7, 4, -1]
+size = arr.length
+indexArray2(arr, size)
+p arr
+    arr2 = [8, -1, 6, 1, 9, 3, 2, 7, 4, -1]
+    size = arr2.length
+    indexArray(arr2, size)
+    p arr2
+end
+# 	[-1, 1, 2, 3, 4, -1, 6, 7, 8, 9]
+# 	[-1, 1, 2, 3, 4, -1, 6, 7, 8, 9]
+
+
+
+def sort1toN( arr,  size)
+    i = 0
+    while (i < size)
+        curr = i
+        value = -1
+        # swaps to move elements in proper position.
+        while (curr >= 0 && curr < size && arr[curr] != curr + 1)
+            nxt = arr[curr]
+            arr[curr] = value
+            value = nxt
+            curr = nxt - 1
+        end
+        i += 1
+    end
+end
+
+def sort1toN2( arr,  size)
+    i = 0
+    while (i < size)
+        while (arr[i] != i + 1 && arr[i] > 1)
+            temp = arr[i]
+            arr[i] = arr[temp - 1]
+            arr[temp - 1] = temp
+        end
+        i += 1
+    end
+end
+# Testing code
+def main13()
+arr = [8, 5, 6, 1, 9, 3, 2, 7, 4, 10]
+size = arr.length
+sort1toN2(arr, size)
+p arr
+    arr2 = [8, 5, 6, 1, 9, 3, 2, 7, 4, 10]
+    size = arr2.length
+    sort1toN(arr2, size)
+    p arr2
+end
+# 	[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# 	[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def maxMinArr( arr,  size)
+    aux = arr.clone
+    start = 0
+    stop = size - 1
+    i = 0
+    while (i < size)
+        if (i % 2 == 0)
+            arr[i] = aux[stop]
+            stop -= 1
+        else
+            arr[i] = aux[start]
+            start += 1
+        end
+        i += 1
+    end
+end
+def reverseArr( arr,  start,  stop)
+    while (start < stop)
+        swap(arr, start, stop)
+        start += 1
+        stop -= 1
+    end
+end
+def maxMinArr2( arr,  size)
+    i = 0
+    while (i < (size - 1))
+        reverseArr(arr, i, size - 1)
+        i += 1
+    end
+end
+# Testing code
+def main14()
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    size = arr.length
+    maxMinArr(arr, size)
+    p (arr)
+    arr2 = [1, 2, 3, 4, 5, 6, 7]
+    size2 = arr.length
+    maxMinArr2(arr2, size2)
+    p (arr2)
+end
+# 	[7, 1, 6, 2, 5, 3, 4]
+# 	[7, 1, 6, 2, 5, 3, 4]
+
+
+def maxCircularSum( arr,  size)
+    sumAll = 0
+    currVal = 0
+    i = 0
+    while (i < size)
+        sumAll += arr[i]
+        currVal += (i * arr[i])
+        i += 1
+    end
+    maxVal = currVal
+    i = 1
+    while (i < size)
+        currVal = (currVal + sumAll) - (size * arr[size - i])
+        if (currVal > maxVal)
+            maxVal = currVal
+        end
+        i += 1
+    end
+    return maxVal
+end
+# Testing code
+def main15()
+    arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    print("MaxCircularSum: " + maxCircularSum(arr, arr.length).to_s,"\n")
+end
+# 	MaxCircularSum: 290
+
 main1()
 main2()
 main3()
@@ -465,7 +666,11 @@ main4()
 main5()
 main6()
 main7()
-=end
 main8()
 main9()
 main10() 
+main11()
+main12()
+main13()
+main14()
+main15()
