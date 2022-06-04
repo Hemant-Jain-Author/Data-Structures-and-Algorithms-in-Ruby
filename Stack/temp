@@ -1,0 +1,30 @@
+def infixToPostfixUtil(expn)
+    stk = []
+    output = ""
+    expn.each    do |ch|
+        if ch <= '9' and ch >= '0' then
+            output = output + ch
+        else
+            case ch
+            when '+', '-', '*', '/', '%', '^'
+                while stk.size != 0 and precedence(ch) <= precedence(stk[stk.size - 1])
+                    temp = stk.pop()
+                    output = output + " " + temp
+                end
+                stk.push(ch)
+                output = output + " "
+            when '('
+                stk.push(ch)
+            when ')'
+                while stk.size != 0 and (temp = stk.pop()) != '('
+                    output = output + " " + temp + " "
+                end
+            end
+        end
+    end
+    while stk.size != 0
+        temp = stk.pop()
+        output = output + temp + " "
+    end
+    return output
+end

@@ -10,9 +10,9 @@ end
 
 # Testing code
 def main1()
-    print("main line 1","\n")
-    function1()
-    print("main line 2","\n")
+print("main line 1","\n")
+function1()
+print("main line 2","\n")
 end
 # main line 1
 # fun1 line 1
@@ -23,29 +23,29 @@ end
 def isBalancedParenthesis( expn)
     stk = []
     for ch in expn.chars do
-    if (ch=='{' || ch=='[' || ch=='(')
-    stk.push(ch)
-    elsif(ch=='}')
-    if (stk.pop() != '{'.ord)
-            return false
+        if (ch=='{' || ch=='[' || ch=='(')
+            stk.push(ch)
+        elsif(ch=='}')
+            if (stk.pop() != '{'.ord)
+                return false
+            end
+        elsif(ch==']')
+            if (stk.pop() != '['.ord)
+                return false
+            end
+        elsif(ch==')')
+            if (stk.pop() != '('.ord)
+                return false
+            end
         end
-    elsif(ch==']')
-    if (stk.pop() != '['.ord)
-            return false
-        end
-    elsif(ch==')')
-    if (stk.pop() != '('.ord)
-            return false
-        end
-    end
     end
     return (stk.length == 0)
 end
 
 def main2()
-    expn = "{()}[]"
-    value = isBalancedParenthesis(expn)
-    print("isBalancedParenthesis: " + value.to_s,"\n")
+expn = "{()}[]"
+value = isBalancedParenthesis(expn)
+print("isBalancedParenthesis: " + value.to_s,"\n")
 end
 # isBalancedParenthesis: true
 
@@ -81,55 +81,55 @@ end
 # Result after Evaluation: 288
 
 def precedence(x)
-  if x == '(' then
-    return (0)
-  end
-  if x == '+' or x == '-' then
-    return (1)
-  end
-  if x == '*' or x == '/' or x == '%' then
-    return (2)
-  end
-  if x == '^' then
-    return (3)
-  end
-  return (4)
+    if x == '(' then
+        return (0)
+    end
+    if x == '+' or x == '-' then
+        return (1)
+    end
+    if x == '*' or x == '/' or x == '%' then
+        return (2)
+    end
+    if x == '^' then
+        return (3)
+    end
+    return (4)
 end
 
 def infixToPostfix(expIn)
-  expn = expIn.split("")
-  return infixToPostfixUtil(expn)
+    expn = expIn.split("")
+    return infixToPostfixUtil(expn)
 end
 
 def infixToPostfixUtil(expn)
-  stk = []
-  output = ""
-  expn.each  do |ch|
-    if ch <= '9' and ch >= '0' then
-      output = output + ch
-    else
-      case ch
-      when '+', '-', '*', '/', '%', '^'
-        while stk.size != 0 and precedence(ch) <= precedence(stk[stk.size - 1])
-          temp = stk.pop()
-          output = output + " " + temp
+    stk = []
+    output = ""
+    expn.each    do |ch|
+        if ch <= '9' and ch >= '0' then
+            output = output + ch
+        else
+            case ch
+            when '+', '-', '*', '/', '%', '^'
+                while stk.size != 0 and precedence(ch) <= precedence(stk[stk.size - 1])
+                    temp = stk.pop()
+                    output = output + " " + temp
+                end
+                stk.push(ch)
+                output = output + " "
+            when '('
+                stk.push(ch)
+            when ')'
+                while stk.size != 0 and (temp = stk.pop()) != '('
+                    output = output + " " + temp + " "
+                end
+            end
         end
-        stk.push(ch)
-        output = output + " "
-      when '('
-        stk.push(ch)
-      when ')'
-        while stk.size != 0 and (temp = stk.pop()) != '('
-          output = output + " " + temp + " "
-        end
-      end
     end
-  end
-  while stk.size != 0
-    temp = stk.pop()
-    output = output + temp + " "
-  end
-  return output
+    while stk.size != 0
+        temp = stk.pop()
+        output = output + temp + " "
+    end
+    return output
 end
 
 def main4()
@@ -220,17 +220,11 @@ end
 def main6()
     arr = [6, 5, 4, 3, 2, 4, 5, 7, 9]
     value = stockSpanRange(arr)
-    print("stockSpanRange : ")
-    for val in value do
-      print(val.to_s + " ")
-    end
+    print("stockSpanRange : ", value)
+    
     print("\n")
     value = stockSpanRange2(arr)
-    print("stockSpanRange : ")
-    for val in value do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print("stockSpanRange : ", value)
 end
 # stockSpanRange : 1 1 1 1 1 4 6 8 9 
 # stockSpanRange : 1 1 1 1 1 4 6 8 9
@@ -319,16 +313,17 @@ def sortedInsert( stk,  element)
 end
 
 def main8()
-    stk = []
-    stk.push(1)
-    stk.push(3)
-    stk.push(4)
-    print(stk,"\n")
-    sortedInsert(stk, 2)
-    print(stk,"\n")
+stk = []
+stk.push(1)
+stk.push(3)
+stk.push(4)
+print(stk,"\n")
+sortedInsert(stk, 2)
+print(stk,"\n")
 end
 # [1, 3, 4]
 # [1, 2, 3, 4]
+
 def sortStack( stk)
     if ((stk.length == 0) == false)
         temp = stk.pop()
@@ -352,14 +347,14 @@ def sortStack2( stk)
 end
 
 def main9()
-    stk = []
-    stk.push(3)
-    stk.push(1)
-    stk.push(4)
-    stk.push(2)
-    print(stk,"\n")
-    sortStack(stk)
-    print(stk,"\n")
+stk = []
+stk.push(3)
+stk.push(1)
+stk.push(4)
+stk.push(2)
+print(stk,"\n")
+sortStack(stk)
+print(stk,"\n")
     stk = []
     stk.push(3)
     stk.push(1)
@@ -384,16 +379,17 @@ def bottomInsert( stk,  element)
 end
 
 def main10()
-    stk = []
-    stk.push(1)
-    stk.push(2)
-    stk.push(3)
-    print(stk,"\n")
-    bottomInsert(stk, 4)
-    print(stk,"\n")
+stk = []
+stk.push(1)
+stk.push(2)
+stk.push(3)
+print(stk,"\n")
+bottomInsert(stk, 4)
+print(stk,"\n")
 end
 # [1, 2, 3]
 # [4, 1, 2, 3]
+
 def bottomInsert( stk,  value)
     if ((stk.length == 0))
         stk.push(value)
@@ -493,18 +489,19 @@ end
 # [1, 2, 4, 3]
 
 def main13()
-    que = Queue.new()
-    que.push(1)
-    que.push(2)
-    que.push(3)
-    reverseQueue(que)
-    print(que.pop(),"\n")
-    que = Queue.new()
-    que.push(1)
-    que.push(2)
-    que.push(3)
-    reverseKElementInQueue(que, 2)
-    print(que.pop(),"\n")
+que = Queue.new()
+que.push(1)
+que.push(2)
+que.push(3)
+reverseQueue(que)
+print(que.pop(),"\n")
+
+que = Queue.new()
+que.push(1)
+que.push(2)
+que.push(3)
+reverseKElementInQueue(que, 2)
+print(que.pop(),"\n")
 end
 
 # 3
@@ -552,9 +549,9 @@ def maxDepthParenthesis2( expn,  size)
 end
 
 def main14()
-    expn = "((((A)))((((BBB()))))()()()())"
-    size = expn.length
-    print("Max depth parenthesis is " + maxDepthParenthesis(expn, size).to_s,"\n")
+expn = "((((A)))((((BBB()))))()()()())"
+size = expn.length
+print("Max depth parenthesis is " + maxDepthParenthesis(expn, size).to_s,"\n")
     print("Max depth parenthesis is " + maxDepthParenthesis2(expn, size).to_s,"\n")
 end
 # Max depth parenthesis is 6
@@ -601,9 +598,9 @@ def longestContBalParen2( string,  size)
 end
 
 def main15()
-    expn = "())((()))(())()(()"
-    size = expn.length
-    print("longestContBalParen " + longestContBalParen(expn, size).to_s,"\n")
+expn = "())((()))(())()(()"
+size = expn.length
+print("longestContBalParen " + longestContBalParen(expn, size).to_s,"\n")
     print("longestContBalParen " + longestContBalParen2(expn, size).to_s,"\n")
 end
 # longestContBalParen 12
@@ -642,10 +639,10 @@ def reverseParenthesis( expn,  size)
 end
 
 def main16()
-    expn2 = ")(())((("
-    size = expn2.length
-    value = reverseParenthesis(expn2, size)
-    print("reverse Parenthesis is : " + value.to_s,"\n")
+expn2 = ")(())((("
+size = expn2.length
+value = reverseParenthesis(expn2, size)
+print("reverse Parenthesis is : " + value.to_s,"\n")
 end
 # reverse Parenthesis is : 3
 def findDuplicateParenthesis( expn,  size)
@@ -671,10 +668,10 @@ def findDuplicateParenthesis( expn,  size)
 end
 
 def main17()
-    expn = "(((a+b))+c)"
-    size = expn.length
-    value = findDuplicateParenthesis(expn, size)
-    print("Duplicate Found : " + value.to_s,"\n")
+expn = "(((a+b))+c)"
+size = expn.length
+value = findDuplicateParenthesis(expn, size)
+print("Duplicate Found : " + value.to_s,"\n")
 end
 # Duplicate Found : true
 
@@ -722,13 +719,11 @@ def nextLargerElement( arr,  size)
             end
             j += 1
         end
-        output[outIndex += 1] = nxt
+        output[outIndex] = nxt
+        outIndex += 1
         i += 1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def nextLargerElement2( arr,  size)
@@ -751,10 +746,7 @@ def nextLargerElement2( arr,  size)
         index = stk.pop()
         output[index] = -1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def nextSmallerElement( arr,  size)
@@ -771,10 +763,7 @@ def nextSmallerElement( arr,  size)
         end
         i += 1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def nextSmallerElement2( arr,  size)
@@ -796,10 +785,7 @@ def nextSmallerElement2( arr,  size)
         index = stk.pop()
         output[index] = -1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def main19()
@@ -829,10 +815,7 @@ def nextLargerElementCircular( arr,  size)
         end
         i += 1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def nextLargerElementCircular2( arr,  size)
@@ -854,10 +837,7 @@ def nextLargerElementCircular2( arr,  size)
         index = stk.pop()
         output[index] = -1
     end
-    for val in output do
-      print(val.to_s + " ")
-    end
-    print("\n")
+    print(output, "\n")
 end
 
 def main20()
@@ -949,13 +929,13 @@ def findCelebrity3( relation,  count)
 end
 
 def main21()
-    arr = [
-    [1, 0, 1, 1, 0],
-    [1, 0, 0, 1, 0],
-    [0, 0, 1, 1, 1],
-    [0, 0, 0, 0, 0],
-    [1, 1, 0, 1, 1]]
-    print("Celebrity : " + findCelebrity3(arr, 5).to_s,"\n")
+arr = [
+[1, 0, 1, 1, 0],
+[1, 0, 0, 1, 0],
+[0, 0, 1, 1, 1],
+[0, 0, 0, 0, 0],
+[1, 1, 0, 1, 1]]
+print("Celebrity : " + findCelebrity3(arr, 5).to_s,"\n")
     print("Celebrity : " + findCelebrity(arr, 5).to_s,"\n")
     print("Celebrity : " + findCelebrity2(arr, 5).to_s,"\n")
 end
@@ -1000,8 +980,8 @@ end
 
 main1()
 main2()
-#main3()
-main4()
+main3()
+
 main5()
 main6()
 main7()
@@ -1011,6 +991,7 @@ main9()
 main10()
 main11()
 main12()
+main4()
 main13()
 main14()
 main15()

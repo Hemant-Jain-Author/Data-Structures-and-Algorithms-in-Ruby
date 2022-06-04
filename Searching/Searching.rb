@@ -2779,8 +2779,8 @@ end
 
 # Testing Code
 def main49()
-	arr = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-	rainWater(arr, arr.length)
+arr = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+rainWater(arr, arr.length)
 	rainWater2(arr, arr.length)
 end
 # Water : 6 
@@ -2855,8 +2855,8 @@ end
 
 # Testing code
 def main51()
-	arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
-	print("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length).to_s,"\n")
+arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
+print("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length).to_s,"\n")
 	print("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length).to_s,"\n")
 end
 # arrayIndexMaxDiff : 7
@@ -2898,9 +2898,9 @@ end
 
 # Testing code
 def main52()
-	arr1 = [12, 13, 18, 20, 22, 26, 70]
-	arr2 = [11, 15, 18, 19, 20, 26, 30, 31]
-	print("Max Path Sum:: " + maxPathSum(arr1, arr1.length, arr2, arr2.length).to_s,"\n")
+arr1 = [12, 13, 18, 20, 22, 26, 70]
+arr2 = [11, 15, 18, 19, 20, 26, 30, 31]
+print("Max Path Sum:: " + maxPathSum(arr1, arr1.length, arr2, arr2.length).to_s,"\n")
 end
 # Max Path Sum:: 201
 
@@ -2923,8 +2923,8 @@ end
 
 # Testing code
 def main53()
-	arr = [1, -2, 3, 4, -4, 6, -4, 3, 2]
-	print("Max sub array sum : " + maxSubArraySum(arr, 9).to_s,"\n")
+arr = [1, -2, 3, 4, -4, 6, -4, 3, 2]
+print("Max sub array sum : " + maxSubArraySum(arr, 9).to_s,"\n")
 end
 # Max sub array sum : 10
 

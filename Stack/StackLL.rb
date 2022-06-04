@@ -61,5 +61,11 @@ s.push(1)
 s.push(2)
 s.push(3)
 s.display
-print s.pop(), " "
+p s.pop()
+s.display
 
+=begin 
+3 2 1 
+3
+2 1 
+=end
