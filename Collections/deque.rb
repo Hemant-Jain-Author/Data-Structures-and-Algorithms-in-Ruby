@@ -1,15 +1,19 @@
 deq = []
+
 deq.append(1)
 deq.append(2)
 deq.append(3)
+
 p "Size : #{deq.size}" 
 p "Empty : #{deq.empty?}"
 p "Deque : #{deq}"
+
 p "First : #{deq.first}"
 p "Last : #{deq.last}"
 
 p "Remove : #{deq.shift}"
 p "Deque : #{deq}"
+
 p "Pop : #{deq.pop}"
 p "Deque : #{deq}"
 

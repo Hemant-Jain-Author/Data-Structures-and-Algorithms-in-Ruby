@@ -1,5 +1,5 @@
 # Create a hash map.
-hm =  {}
+hm =  {}  # hm = Hash.new
 
 # Put elements into the map
 hm["Apple"] = 40
@@ -8,9 +8,9 @@ hm["Mango"] = 20
 
 print("Size :: " + hm.size().to_s,"\n")
 
-hm.each { |key,value|
-print(key + " cost : " + hm[key].to_s,"\n")
-}
+hm.each do |key,value|
+    print(key + " cost : " + hm[key].to_s,"\n")
+end
 print(hm,"\n")
 print("Apple present ::" + hm.key?("Apple").to_s,"\n")
 print("Grapes present :: " + hm.key?("Grapes").to_s,"\n")

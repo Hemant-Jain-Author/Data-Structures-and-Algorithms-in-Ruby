@@ -21,7 +21,7 @@ def getMaxCostGreedy( wt,  cost,  capacity)
 	end
 
 	itemList.sort! {|x, y| -x.density <=> -y.density}
-
+	print(itemList)
 	i = 0
 	while (i < n && capacity > 0)
 		if (capacity - itemList[i].wt >= 0)

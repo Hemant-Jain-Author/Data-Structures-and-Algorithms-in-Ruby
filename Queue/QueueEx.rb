@@ -431,7 +431,6 @@ end
 # 8
 
 def distNearestFillUtil( arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  dist)
-    # Range check
     dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     i = 0
     while (i < 4)
@@ -596,7 +595,6 @@ end
 # Testing code
 def main10()
     arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1], [0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
-
     print("Largest Island : " + findLargestIsland(arr, 5, 5).to_s,"\n")
 end
 # Largest Island : 12
@@ -669,18 +667,15 @@ def main12()
 end
 # Position : 8
 
-
 main1()
 main2()
 main3()
 main4()
 main5()
 main6()
-
 main7()
 main8()
 main9()
 main10()
 main11()
-
 main12()

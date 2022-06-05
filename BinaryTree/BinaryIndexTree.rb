@@ -57,8 +57,7 @@ class BinaryIndexTree
     end
 end
 
-
-# Main function
+# Testing function
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 tree = BinaryIndexTree.new(arr)
 print("Sum of elements in range(0, 5): " + tree.prefixSum(5).to_s,"\n")

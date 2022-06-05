@@ -35,6 +35,7 @@ class RangeMaxST
             return second
         end
     end
+    # Other functions.
 
     def getMax( start,  ed)
         # Check for error conditions.

@@ -402,11 +402,7 @@ def main5()
 	arr = [ 1, 5, 4, 10, 50, 9]
 	size = arr.length
 	sortK(arr, size, k)
-	i = 0
-	while (i < size)
-		print(arr[i].to_s + " ")
-		i += 1
-	end
+	print(arr)
 end
 
 # 1 4 5 9 10 50
@@ -425,6 +421,7 @@ class MedianHeap
         self.minHeap =  Heap.new(true) # Min Heap
         self.maxHeap =  Heap.new(false) # Max Heap
     end
+	
     # Other Methods.
     def add( value)
         if (self.maxHeap.size() == 0 || self.maxHeap.peek() >= value)

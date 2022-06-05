@@ -102,8 +102,8 @@ class Heap
     end
 end
 
-class Graph	
-	class Edge
+class Graph 
+    class Edge
         attr_accessor :src,:dest,:cost
 
         def initialize( s,  d,  c)
@@ -112,41 +112,43 @@ class Graph
             self.cost = c
         end
 
-		def -(obj)
-        	return self.cost - obj.cost
-    	end
+        def -(obj)
+            return self.cost - obj.cost
+        end
     end
 
-	attr_accessor :count, :Adj
+    attr_accessor :count, :Adj
 
     def initialize( cnt)
         self.count = cnt
         self.Adj =  Array.new(cnt){Array.new()}
     end
-	
+    
     def addEdge( source,  dest,  cost = 1)
         edge = Edge.new(source, dest, cost)
         self.Adj[source].append(edge)
     end
-	
+    
     def addUndirectedEdge( source,  dest,  cost = 1)
         self.addEdge(source, dest, cost)
         self.addEdge(dest, source, cost)
     end
-	
+    
     def display()
         i = 0
         while (i < self.count)
             ad = self.Adj[i]
             print("Vertex " + i.to_s + " is connected to : ")
             for adn in ad do
-            	print(adn.dest.to_s + "(cost: " + adn.cost.to_s + ") ")
+                print(adn.dest.to_s + "(cost: " + adn.cost.to_s + ") ")
             end
             print("\n")
             i += 1
         end
     end
-	
+    
+    # Other Methods.
+    
     def dfsStack( source,  target)
         visited = Array.new(self.count){false}
         stk =  []
@@ -164,34 +166,34 @@ class Graph
         end
         return visited[target]
     end
-	
+
     def dfs( source,  target)
         visited = Array.new(self.count){false}
         self.dfsUtil(source, visited)
         return visited[target]
     end
-	
+
     def dfsUtil( index,  visited)
         visited[index] = true
         adl = self.Adj[index]
         for adn in adl do
-			if (visited[adn.dest] == false)
-				self.dfsUtil(adn.dest, visited)
-			end
+            if (visited[adn.dest] == false)
+                self.dfsUtil(adn.dest, visited)
+            end
         end
     end
-	
+
     def dfsUtil2( index,  visited,  stk)
         visited[index] = true
         adl = self.Adj[index]
         for adn in adl do
-			if (visited[adn.dest] == false)
-				self.dfsUtil2(adn.dest, visited, stk)
-			end
+            if (visited[adn.dest] == false)
+                self.dfsUtil2(adn.dest, visited, stk)
+            end
         end
         stk.push(index)
     end
-	
+
     def bfs( source,  target)
         visited = Array.new(self.count){false}
         que =  Queue.new()
@@ -201,15 +203,15 @@ class Graph
             curr = que.pop()
             adl = self.Adj[curr]
             for adn in adl do
-				if (visited[adn.dest] == false)
-					visited[adn.dest] = true
-					que.push(adn.dest)
-				end
+                if (visited[adn.dest] == false)
+                    visited[adn.dest] = true
+                    que.push(adn.dest)
+                end
             end
         end
         return visited[target]
     end
-	
+    
     def self.main0()
         gph = Graph.new(4)
         gph.addUndirectedEdge(0, 1)
@@ -218,7 +220,7 @@ class Graph
         gph.addUndirectedEdge(2, 3)
         gph.display()
     end
-	
+    
     # Testing Code
     def self.main1()
         gph = Graph.new(8)
@@ -254,7 +256,7 @@ class Graph
             print(" " + stk.pop().to_s)
         end
     end
-	
+    
     # Testing Code
     def self.main2()
         gph = Graph.new(9)
@@ -278,7 +280,7 @@ class Graph
         self.dfsUtil(source, visited)
         return visited[dest]
     end
-	
+        
     def countAllPathDFS( visited,  source,  dest)
         if (source == dest)
             return 1
@@ -287,19 +289,19 @@ class Graph
         visited[source] = true
         adl = self.Adj[source]
         for adn in adl do
-			if (visited[adn.dest] == false)
-				count += self.countAllPathDFS(visited, adn.dest, dest)
-			end
+            if (visited[adn.dest] == false)
+                count += self.countAllPathDFS(visited, adn.dest, dest)
+            end
         end
         visited[source] = false
         return count
     end
-	
+
     def countAllPath( src,  dest)
         visited = Array.new(self.count){false}
         return self.countAllPathDFS(visited, src, dest)
     end
-	
+        
     def printAllPathDFS( visited,  source,  dest,  path)
         path.push(source)
         if (source == dest)
@@ -310,20 +312,20 @@ class Graph
         visited[source] = true
         adl = self.Adj[source]
         for adn in adl do
-			if (visited[adn.dest] == false)
-				self.printAllPathDFS(visited, adn.dest, dest, path)
-			end
+            if (visited[adn.dest] == false)
+                self.printAllPathDFS(visited, adn.dest, dest, path)
+            end
         end
         visited[source] = false
         path.pop()
     end
-	
+
     def printAllPath( src,  dest)
         visited = Array.new(self.count){false}
         path =  []
         self.printAllPathDFS(visited, src, dest, path)
     end
-	
+    
     # Testing Code
     def self.main3()
         gph = Graph.new(5)
@@ -333,7 +335,6 @@ class Graph
         gph.addEdge(1, 3)
         gph.addEdge(3, 4)
         gph.addEdge(1, 4)
-        gph.display()
         print("PathExist :: " + gph.pathExist(0, 4).to_s,"\n")
         print("Path Count :: " + gph.countAllPath(0, 4).to_s,"\n")
         gph.printAllPath(0, 4)
@@ -365,7 +366,7 @@ class Graph
         print("Root vertex is :: " + retVal.to_s)
         return retVal
     end
-	
+    
     # Testing Code
     def self.main4()
         gph = Graph.new(7)
@@ -385,12 +386,12 @@ class Graph
         tc[source][dest] = 1
         adl = self.Adj[dest]
         for adn in adl do
-			if (tc[source][adn.dest] == 0)
-				self.transitiveClosureUtil(source, adn.dest, tc)
-			end
+            if (tc[source][adn.dest] == 0)
+                self.transitiveClosureUtil(source, adn.dest, tc)
+            end
         end
     end
-	
+
     def transitiveClosure()
         tc = Array.new(self.count){Array.new(self.count){0}}
         i = 0
@@ -400,7 +401,7 @@ class Graph
         end
         return tc
     end
-	
+    
     # Testing Code
     def self.main5()
         gph = Graph.new(4)
@@ -441,15 +442,15 @@ class Graph
             adl = self.Adj[curr]
             print(curr.to_s + " - " + depth.to_s,"\n")
             for adn in adl do
-				if (visited[adn.dest] == false)
-					visited[adn.dest] = true
-					que.push(adn.dest)
-					level[adn.dest] = depth + 1
-				end
+                if (visited[adn.dest] == false)
+                    visited[adn.dest] = true
+                    que.push(adn.dest)
+                    level[adn.dest] = depth + 1
+                end
             end
         end
     end
-	
+        
     def bfsDistance( source,  dest)
         visited = Array.new(self.count){false}
         que =  Queue.new()
@@ -462,19 +463,19 @@ class Graph
             depth = level[curr]
             adl = self.Adj[curr]
             for adn in adl do
-				if (adn.dest == dest)
-					return depth + 1
-				end
-				if (visited[adn.dest] == false)
-					visited[adn.dest] = true
-					que.push(adn.dest)
-					level[adn.dest] = depth + 1
-				end
+                if (adn.dest == dest)
+                    return depth + 1
+                end
+                if (visited[adn.dest] == false)
+                    visited[adn.dest] = true
+                    que.push(adn.dest)
+                    level[adn.dest] = depth + 1
+                end
             end
         end
         return -1
     end
-	
+    
     # Testing Code
     def self.main6()
         gph = Graph.new(7)
@@ -503,18 +504,18 @@ class Graph
         visited[index] = true
         adl = self.Adj[index]
         for adn in adl do
-			dest = adn.dest
-			if (visited[dest] == false)
-				if (self.isCyclePresentUndirectedDFS(dest, index, visited))
-					return true
-				end
-			elsif (parentIndex != dest)
-				return true
-			end
+            dest = adn.dest
+            if (visited[dest] == false)
+                if (self.isCyclePresentUndirectedDFS(dest, index, visited))
+                    return true
+                end
+            elsif (parentIndex != dest)
+                return true
+            end
         end
         return false
     end
-	
+
     def isCyclePresentUndirected()
         visited = Array.new(self.count){false}
         i = 0
@@ -526,7 +527,7 @@ class Graph
         end
         return false
     end
-	
+        
     def findRootParent( parent,  index)
         p = parent[index]
         while (p != -1)
@@ -535,11 +536,11 @@ class Graph
         end
         return index
     end
-	
+
     def unionParent( parent,  x,  y)
         parent[y] = x
     end
-	
+
     def isCyclePresentUndirected2()
         parent = Array.new(self.count){-1}
         edge =  Array.new()
@@ -548,26 +549,26 @@ class Graph
         while (i < self.count)
             ad = self.Adj[i]
             for adn in ad do
-				# Using flags[][] array, if considered edge x to y,
-				# then ignore edge y to x.
-				if (flags[adn.dest][adn.src] == false)
-					edge.append(adn)
-					flags[adn.src][adn.dest] = true
-				end
+                # Using flags[][] array, if considered edge x to y,
+                # then ignore edge y to x.
+                if (flags[adn.dest][adn.src] == false)
+                    edge.append(adn)
+                    flags[adn.src][adn.dest] = true
+                end
             end
             i += 1
         end
         for e in edge do
-			x = self.findRootParent(parent, e.src)
-			y = self.findRootParent(parent, e.dest)
-			if (x == y)
-				return true
-			end
-			self.unionParent(parent, x, y)
+            x = self.findRootParent(parent, e.src)
+            y = self.findRootParent(parent, e.dest)
+            if (x == y)
+                return true
+            end
+            self.unionParent(parent, x, y)
         end
         return false
     end
-	
+
     def isCyclePresentUndirected3()
         # Different subsets are created.
         sets = Array.new(self.count){nil}
@@ -582,12 +583,12 @@ class Graph
         while (i < self.count)
             ad = self.Adj[i]
             for adn in ad do
-				# Using flags[][] array, if considered edge x to y,
-				# then ignore edge y to x.
-				if (flags[adn.dest][adn.src] == false)
-					edge.append(adn)
-					flags[adn.src][adn.dest] = true
-				end
+                # Using flags[][] array, if considered edge x to y,
+                # then ignore edge y to x.
+                if (flags[adn.dest][adn.src] == false)
+                    edge.append(adn)
+                    flags[adn.src][adn.dest] = true
+                end
             end
             i += 1
         end
@@ -601,7 +602,7 @@ class Graph
         end
         return false
     end
-	
+    
     # Testing Code
     def self.main7()
         gph = Graph.new(6)
@@ -630,20 +631,20 @@ class Graph
         marked[index] = 1
         adl = self.Adj[index]
         for adn in adl do
-			dest = adn.dest
-			if (marked[dest] == 1)
-				return true
-			end
-			if (visited[dest] == false)
-				if (self.isCyclePresentDFS(dest, visited, marked))
-					return true
-				end
-			end
+            dest = adn.dest
+            if (marked[dest] == 1)
+                return true
+            end
+            if (visited[dest] == false)
+                if (self.isCyclePresentDFS(dest, visited, marked))
+                    return true
+                end
+            end
         end
         marked[index] = 0
         return false
     end
-	
+
     def isCyclePresent()
         visited = Array.new(self.count){false}
         marked = Array.new(self.count){0}
@@ -658,29 +659,26 @@ class Graph
         end
         return false
     end
-	
+        
     def isCyclePresentDFSColour( index,  visited)
         visited[index] = 1
         # 1 = grey
         adl = self.Adj[index]
         for adn in adl do
-			dest = adn.dest
-			if (visited[dest] == 1)
-				# "Grey":
-				return true
-			end
-			if (visited[dest] == 0)
-				# "White":
-				if (self.isCyclePresentDFSColour(dest, visited))
-					return true
-				end
-			end
+            dest = adn.dest
+            if (visited[dest] == 1) # "Grey":
+                return true
+            end
+            if (visited[dest] == 0) # "White":
+                if (self.isCyclePresentDFSColour(dest, visited))
+                    return true
+                end
+            end
         end
-        visited[index] = 2
-        # "Black"
+        visited[index] = 2 # "Black"
         return false
     end
-	
+
     def isCyclePresentColour()
         visited = Array.new(self.count){0}
         i = 0
@@ -695,7 +693,7 @@ class Graph
         end
         return false
     end
-	
+   
     # Testing Code
     def self.main8()
         gph = Graph.new(5)
@@ -721,14 +719,14 @@ class Graph
         while (i < self.count)
             adl = self.Adj[i]
             for adn in adl do
-				dest = adn.dest
-				g.addEdge(dest, i)
+                dest = adn.dest
+                g.addEdge(dest, i)
             end
             i += 1
         end
         return g
     end
-	
+    
     # Testing Code
     def self.main9()
         gph = Graph.new(5)
@@ -759,7 +757,7 @@ class Graph
         end
         return true
     end
-	
+    
     # Testing Code
     def self.main10A()
         gph = Graph.new(6)
@@ -798,7 +796,7 @@ class Graph
         end
         return true
     end
-	
+    
     # Testing Code
     def self.main10()
         gph = Graph.new(5)
@@ -834,7 +832,7 @@ class Graph
             end
         end
     end
-	
+    
     # Testing Code
     def self.main11()
         gph = Graph.new(7)
@@ -869,14 +867,14 @@ class Graph
             source = node.dest
             adl = self.Adj[source]
             for adn in adl do
-				dest = adn.dest
-				alt = adn.cost
-				if (dist[dest] > alt && visited[dest] == false)
-					dist[dest] = alt
-					previous[dest] = source
-					node = Edge.new(source, dest, alt)
-					queue.add(node)
-				end
+                dest = adn.dest
+                alt = adn.cost
+                if (dist[dest] > alt && visited[dest] == false)
+                    dist[dest] = alt
+                    previous[dest] = source
+                    node = Edge.new(source, dest, alt)
+                    queue.add(node)
+                end
             end
         end
         # printing result.
@@ -933,7 +931,7 @@ class Graph
             sets[y].rank += 1
         end
     end
-	
+
     def kruskalMST()
         # Different subsets are created.
         sets = Array.new(self.count){nil}
@@ -949,8 +947,8 @@ class Graph
         while (i < self.count)
             ad = self.Adj[i]
             for adn in ad do
-            	edge.append(adn)
-				_E += 1
+                edge.append(adn)
+                _E += 1
             end
             i += 1
         end
@@ -971,7 +969,7 @@ class Graph
         print(output,"\n")
         print("Total MST cost: " + sum.to_s,"\n")
     end
-	
+    
     # Testing Code
     def self.main12()
         gph = Graph.new(9)
@@ -1022,16 +1020,16 @@ class Graph
             curr = que.pop()
             adl = self.Adj[curr]
             for adn in adl do
-				if (distance[adn.dest] == -1)
-					distance[adn.dest] = distance[curr] + 1
-					path[adn.dest] = curr
-					que.push(adn.dest)
-				end
+                if (distance[adn.dest] == -1)
+                    distance[adn.dest] = distance[curr] + 1
+                    path[adn.dest] = curr
+                    que.push(adn.dest)
+                end
             end
         end
         self.printPath(path, distance, self.count, source)
     end
-	
+        
     def printPathUtil( previous,  source,  dest)
         path = ""
         if (dest == source)
@@ -1042,7 +1040,7 @@ class Graph
         end
         return path
     end
-	
+
     def printPath( previous,  dist,  count,  source)
         output = "Shortest Paths: "
         i = 0
@@ -1058,7 +1056,7 @@ class Graph
         end
         print(output,"\n")
     end
-	
+        
     def dijkstra( source)
         previous = Array.new(self.count){-1}
         dist = Array.new(self.count){99999}
@@ -1087,7 +1085,7 @@ class Graph
         end
         self.printPath(previous, dist, self.count, source)
     end
-	
+        
     def bellmanFordShortestPath( source)
         distance = Array.new(self.count){99999}
         path = Array.new(self.count){-1}
@@ -1103,11 +1101,11 @@ class Graph
             while (j < self.count)
                 adl = self.Adj[j]
                 for adn in adl do
-					newDistance = distance[j] + adn.cost
-					if (distance[adn.dest] > newDistance)
-						distance[adn.dest] = newDistance
-						path[adn.dest] = j
-					end
+                    newDistance = distance[j] + adn.cost
+                    if (distance[adn.dest] > newDistance)
+                        distance[adn.dest] = newDistance
+                        path[adn.dest] = j
+                    end
                 end
                 j += 1
             end
@@ -1115,7 +1113,7 @@ class Graph
         end
         self.printPath(path, distance, self.count, source)
     end
-	
+    
     # Testing Code
     def self.main13()
         gph = Graph.new(5)
@@ -1166,7 +1164,7 @@ class Graph
         end
         return maxHight
     end
-	
+    
     def getHeight( arr,  height,  index)
         if (arr[index] == -1)
             return 0
@@ -1174,7 +1172,7 @@ class Graph
             return self.getHeight(arr, height, arr[index]) + 1
         end
     end
-	
+    
     def heightTreeParentArr2( arr)
         count = arr.length
         height = Array.new(count){0}
@@ -1187,7 +1185,7 @@ class Graph
         end
         return maxHeight
     end
-	
+    
     # Testing Code
     def self.main14()
         parentArray = [-1, 0, 1, 2, 3]
@@ -1223,7 +1221,7 @@ class Graph
         end
         return true
     end
-	
+    
     def isEulerian()
         # Check if all non - zero degree nodes are connected
         if (self.isConnected() == false)
@@ -1262,7 +1260,7 @@ class Graph
             return 0
         end
     end
-	
+    
     # Testing Code
     def self.main15()
         gph = Graph.new(5)
@@ -1316,7 +1314,7 @@ class Graph
         end
         return true
     end
-	
+    
     def isEulerianCycle()
         # Check if all non - zero degree count are connected
         inDegree = Array.new(self.count){0}
@@ -1343,7 +1341,7 @@ class Graph
         end
         return true
     end
-	
+    
     # Testing Code
     def self.main16()
         gph = Graph.new(5)
@@ -1400,7 +1398,7 @@ class Graph
     end
     # Shortest Paths: (0->1 @ 1)(0->1->2 @ 2)(0->1->2->3 @ 3)(0->1->2->3->4 @ 4)(0->1->2->5 @ 3)(0->7->6 @ 2)(0->7 @ 1)(0->7->8 @ 2)
    
-	def floydWarshall()
+    def floydWarshall()
         _V = self.count
         dist = Array.new(_V){Array.new(_V){0}}
         path = Array.new(_V){Array.new(_V){0}}
@@ -1423,8 +1421,8 @@ class Graph
         while (i < _V)
             adl = self.Adj[i]
             for adn in adl do
-				path[adn.src][adn.dest] = adn.src
-				dist[adn.src][adn.dest] = adn.cost
+                path[adn.src][adn.dest] = adn.src
+                dist[adn.src][adn.dest] = adn.cost
             end
             i += 1
         end
@@ -1457,7 +1455,7 @@ class Graph
         end
         self.printSolution(dist, path, _V)
     end
-	
+
     def printSolution( cost,  path,  _V)
         print("Shortest Paths : ")
         u = 0
@@ -1475,7 +1473,7 @@ class Graph
         end
         print("\n")
     end
-	
+
     def printPath2( path,  u,  v)
         if (path[u][v] == u)
             print(u.to_s + "->" + v.to_s)
@@ -1500,7 +1498,7 @@ class Graph
     end
     # Shortest Paths : (0->1 @ 5) (0->1->2 @ 8) (0->1->2->3 @ 9) (1->2 @ 3) (1->2->3 @ 4) (2->3 @ 1)
     
-	def self.main()
+    def self.main()
         main0()
         main1()
         main2()

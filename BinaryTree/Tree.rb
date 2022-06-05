@@ -1,9 +1,9 @@
 class Tree
-    # Define the accessor and reader of class Tree
+    # Define the accessor of class Tree
     attr_accessor :root
 
     class Node
-        # Define the accessor and reader of class Node
+        # Define the accessor of class Node
         attr_accessor :value,:left,:right
 
         def initialize( v,  l = nil,  r = nil)
@@ -18,6 +18,7 @@ class Tree
     end
 
     # Other methods
+    
     def createCompleteBinaryTree( arr)
         self.root = self.createCompleteBinaryTreeUtil(arr, 0)
     end
@@ -99,7 +100,7 @@ class Tree
         counter = [0]
         self.nthPostOrderUtil(self.root, index, counter)
     end
-	
+
     def nthPostOrderUtil( node,  index,  counter)  # post order
         if (node != nil)
             self.nthPostOrderUtil(node.left, index, counter)
@@ -110,12 +111,12 @@ class Tree
             end
         end
     end
-	
+
     def printInOrder()
         self.printInOrderUtil(self.root)
         print("\n")
     end
-	
+
     def printInOrderUtil( node)  # In order
         if (node != nil)
             self.printInOrderUtil(node.left)
@@ -308,7 +309,7 @@ class Tree
         end
         return node
     end
-	
+
     def findMinNode( curr)
         node = curr
         if (node == nil)
@@ -494,17 +495,17 @@ class Tree
     end
 
     def numLeafNodes()
-        return self.maxLengthPathBTUtil(self.root)
+        return self.numLeafNodesUtil(self.root)
     end
 
-    def maxLengthPathBTUtil( curr)
+    def numLeafNodesUtil( curr)
         if (curr == nil)
             return 0
         end
         if (curr.left == nil && curr.right == nil)
             return 1
         else
-            return (self.maxLengthPathBTUtil(curr.right) + self.maxLengthPathBTUtil(curr.left))
+            return (self.numLeafNodesUtil(curr.right) + self.numLeafNodesUtil(curr.left))
         end
     end
 
@@ -820,12 +821,12 @@ class Tree
         end
         return curr
     end
-	
+
     def printInRange( min,  max)
         self.printInRangeUtil(self.root, min, max)
         print("\n")
     end
-	
+
     def printInRangeUtil( root,  min,  max)
         if (root == nil)
             return
@@ -836,7 +837,7 @@ class Tree
         end
         self.printInRangeUtil(root.right, min, max)
     end
-	
+
     def floorBST( val)
         curr = self.root
         floor = 9999999
@@ -853,7 +854,7 @@ class Tree
         end
         return floor
     end
-	
+
     def ceilBST( val)
         curr = self.root
         ceil = -9999999
@@ -870,12 +871,12 @@ class Tree
         end
         return ceil
     end
-	
+
     def findMaxBT()
         ans = self.findMaxBTUtil(self.root)
         return ans
     end
-	
+
     def findMaxBTUtil( curr)
         if (curr == nil)
             return -9999999
@@ -891,11 +892,11 @@ class Tree
         end
         return max
     end
-	
+
     def searchBT( value)
         return self.searchBTUtil(self.root, value)
     end
-	
+
     def searchBTUtil( curr,  value)
         if (curr == nil)
             return false
@@ -905,11 +906,11 @@ class Tree
         end
         return false
     end
-	
+
     def createBinarySearchTree( arr)
         self.root = self.createBinarySearchTreeUtil(arr, 0, arr.length - 1)
     end
-	
+
     def createBinarySearchTreeUtil( arr,  startI,  endI)
         if (startI > endI)
             return nil
@@ -920,7 +921,7 @@ class Tree
         curr.right = self.createBinarySearchTreeUtil(arr, mid + 1, endI)
         return curr
     end
-	
+
     def isBSTArray( preorder)
         size = preorder.length
         stk =  []
@@ -935,7 +936,7 @@ class Tree
             # First left child values will be popped
             # Last popped value will be the root.
             while (stk.length() > 0 && stk[stk.length() -1] < value) 
-				root = stk.pop()
+                root = stk.pop()
             end
             # add current value to the stack.
             stk.push(value)
@@ -945,45 +946,51 @@ class Tree
     end
 end
 
+def main0()
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createCompleteBinaryTree(arr)
+    t.printPreOrder()
+        # 1 2 4 8 9 5 10 3 6 7 
+    t.printPostOrder()
+        # 8 9 4 10 5 2 6 7 3 1 
+    t.printInOrder()
+        # 8 4 9 2 10 5 1 6 3 7 
+    t.iterativePreOrder()
+    # 1 2 4 8 9 5 10 3 6 7 
+    t.iterativePostOrder()
+    # 8 9 4 10 5 2 6 7 3 1 
+    t.iterativeInOrder()
+    # 8 4 9 2 10 5 1 6 3 7 
+    t.printBreadthFirst()
+    # 1 2 3 4 5 6 7 8 9 10 
+    t.printDepthFirst()
+    # 1 3 7 6 2 5 10 4 9 8
+    t.printLevelOrderLineByLine()
+    # 1 
+    # 2 3 
+    # 4 5 6 7 
+    # 8 9 10 
+    t.printLevelOrderLineByLine2()
+    # 1 
+    # 2 3 
+    # 4 5 6 7 
+    # 8 9 10 
+end 
+
 def main1()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createCompleteBinaryTree(arr)
-	t.printPreOrder()
-	# 1 2 4 8 9 5 10 3 6 7 
-	t.printPostOrder()
-	# 8 9 4 10 5 2 6 7 3 1 
-	t.printInOrder()
-	# 8 4 9 2 10 5 1 6 3 7 
-	t.iterativePreOrder()
-	# 1 2 4 8 9 5 10 3 6 7 
-	t.iterativePostOrder()
-	# 8 9 4 10 5 2 6 7 3 1 
-	t.iterativeInOrder()
-	# 8 4 9 2 10 5 1 6 3 7 
-	t.printBreadthFirst()
-	# 1 2 3 4 5 6 7 8 9 10 
-	t.printDepthFirst()
-	# 1 3 7 6 2 5 10 4 9 8
-	t.printLevelOrderLineByLine()
-	# 1 
-	# 2 3 
-	# 4 5 6 7 
-	# 8 9 10 
-	t.printLevelOrderLineByLine2()
-	# 1 
-	# 2 3 
-	# 4 5 6 7 
-	# 8 9 10 
-	t.printSpiralTree()
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createCompleteBinaryTree(arr)
+    t.printSpiralTree()
 	# 1 2 3 7 6 5 4 8 9 10 
-	t.nthInOrder(2)
-	t.nthPostOrder(2)
-	t.nthPreOrder(2)
+    t.nthInOrder(2)
+    t.nthPostOrder(2)
+    t.nthPreOrder(2)
 	# 4
 	# 9
 	# 2
-	t.printAllPath()
+    t.printAllPath()
     # [1, 3, 7]
     # [1, 3, 6]
     # [1, 2, 5, 10]
@@ -992,43 +999,44 @@ def main1()
 end
 
 def main2()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createCompleteBinaryTree(arr)
-	print(t.numNodes(),"\n")
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createCompleteBinaryTree(arr)
+    print(t.numNodes(),"\n")
 	# 10
-	print(t.sumAllBT(),"\n")
+    print(t.sumAllBT(),"\n")
 	# 55
-	print(t.numLeafNodes(),"\n")
+    print(t.numLeafNodes(),"\n")
 	# 5
-	print(t.numFullNodesBT(),"\n")
+    print(t.numFullNodesBT(),"\n")
 	# 4
-	print(t.searchBT(9),"\n")
+    print(t.searchBT(9),"\n")
 	# true
-	print(t.findMaxBT(),"\n")
+    print(t.findMaxBT(),"\n")
 	# 10
-	print(t.treeDepth(),"\n")
+    print(t.treeDepth(),"\n")
 	# 4
-	print(t.maxLengthPathBT(),"\n")
-    # 5
+    print(t.maxLengthPathBT(),"\n")
+    # 6
 end
 
 def main3()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createCompleteBinaryTree(arr)
-	t2 = t.copyTree()
-	t2.printInOrder()
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createCompleteBinaryTree(arr)
+    t2 = t.copyTree()
+    t.printInOrder()
+    t2.printInOrder()
 	# 8 4 9 2 10 5 1 6 3 7 
-	t3 = t.copyMirrorTree()
-	t3.printInOrder()
+    t3 = t.copyMirrorTree()
+    t3.printInOrder()
 	# 7 3 6 1 5 10 2 9 4 8
-	print(t.isEqual(t2),"\n")
+    print(t.isEqual(t2),"\n")
 	# true
-	print(t.isHeap(),"\n")
+    print(t.isHeap(),"\n")
 	print(t.isHeap2(),"\n")
 	print(t.isCompleteTree(),"\n")
-	print(t.isCompleteTree2(),"\n")
+    print(t.isCompleteTree2(),"\n")
     # true
     # true
     # true
@@ -1036,42 +1044,42 @@ def main3()
 end
 
 def main4()
-	t = Tree.new()
-	t.insert(6)
-	t.insert(4)
-	t.insert(2)
-	t.insert(5)
-	t.insert(1)
-	t.insert(3)
-	t.insert(8)
-	t.insert(7)
-	t.insert(9)
-	t.insert(10)
-	t.printInOrder()
+    t = Tree.new()
+    t.insert(6)
+    t.insert(4)
+    t.insert(2)
+    t.insert(5)
+    t.insert(1)
+    t.insert(3)
+    t.insert(8)
+    t.insert(7)
+    t.insert(9)
+    t.insert(10)
+    t.printInOrder()
 	# 1 2 3 4 5 6 7 8 9 10 
-	print(t.find(3),"\n")
-	print(t.find(16),"\n")
+    print(t.find(3),"\n")
+    print(t.find(16),"\n")
 	# true
 	# false
-	print(t.isBST(),"\n")
+    print(t.isBST(),"\n")
 	print(t.isBST2(),"\n")
-	print(t.isBST3(),"\n")
+    print(t.isBST3(),"\n")
     # true
     # true
     # true
 end
 
 def main5()
-	t = Tree.new()
-	t.insert(2)
-	t.insert(1)
-	t.insert(3)
-	t.insert(4)
-	print("Before delete operation.","\n")
-	t.printInOrder()
-	t.deleteNode(2)
-	print("After delete operation.","\n")
-	t.printInOrder()
+    t = Tree.new()
+    t.insert(2)
+    t.insert(1)
+    t.insert(3)
+    t.insert(4)
+    print("Before delete operation.","\n")
+    t.printInOrder()
+    t.deleteNode(2)
+    print("After delete operation.","\n")
+    t.printInOrder()
 end
 # Before delete operation.
 # 1 2 3 4 
@@ -1079,14 +1087,14 @@ end
 # 1 3 4
 
 def main6()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createBinarySearchTree(arr)
-	print(t.findMin(),"\n")
-	print(t.findMax(),"\n")
-	t.lcaBST(3, 4)
-	t.lcaBST(1, 4)
-	t.lcaBST(10, 4)
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createBinarySearchTree(arr)
+    print(t.findMin(),"\n")
+    print(t.findMax(),"\n")
+    t.lcaBST(3, 4)
+    t.lcaBST(1, 4)
+    t.lcaBST(10, 4)
 end
 # 1
 # 10
@@ -1095,36 +1103,37 @@ end
 # lca is :5
 
 def main7()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createBinarySearchTree(arr)
-	t.printInOrder()
-	t.printInRange(4, 7)
-	t.trimOutsideRange(4, 7)
-	t.printInOrder()
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createBinarySearchTree(arr)
+    t.printInOrder()
+    t.printInRange(4, 7)
+    t.trimOutsideRange(4, 7)
+    t.printInOrder()
 end
 # 1 2 3 4 5 6 7 8 9 10 
 # 4 5 6 7 
 # 4 5 6 7
 
 def main8()
-	t = Tree.new()
-	arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	t.createBinarySearchTree(arr)
-	print(t.ancestor(1, 10).value,"\n")
-	# 5
-	print(t.ceilBST(5.5),"\n")
+    t = Tree.new()
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t.createBinarySearchTree(arr)
+    print(t.ancestor(1, 10).value,"\n")
+    # 5
+    print(t.ceilBST(5.5),"\n")
 	# 6
-	print(t.floorBST(5.5),"\n")
+    print(t.floorBST(5.5),"\n")
 	# 5
-	arr1 = [5, 2, 4, 6, 9, 10]
-	arr2 = [5, 2, 6, 4, 7, 9, 10]
-	print(t.isBSTArray(arr1),"\n")
-	print(t.isBSTArray(arr2),"\n")
+    arr1 = [5, 2, 4, 6, 9, 10]
+    arr2 = [5, 2, 6, 4, 7, 9, 10]
+    print(t.isBSTArray(arr1),"\n")
+    print(t.isBSTArray(arr2),"\n")
     # true
     # false
 end
-	
+
+main0()
 main1()
 main2()
 main3()

@@ -41,13 +41,18 @@ class Queue
 end
 
 # Testing code
-q = Queue.new()
-q.add(1)
-q.add(2)
-q.add(3)
-size = q.size()
-i = 0
-while i < size
-  print "Dequeue : " , q.remove(), "\n"
-  i += 1
-end
+que = Queue.new()
+que.add(1)
+que.add(2)
+que.add(3)
+print("isEmpty : ", que.empty(), "\n");
+print("size : ", que.size(), "\n");
+print("Queue remove : ", que.remove(), "\n");
+print("Queue remove : ", que.remove(), "\n");
+
+=begin 
+isEmpty : false
+size : 3
+Queue remove : 1
+Queue remove : 2
+=end
