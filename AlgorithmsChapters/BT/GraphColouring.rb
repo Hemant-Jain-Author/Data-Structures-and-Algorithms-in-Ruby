@@ -91,18 +91,15 @@ def graphColouring( graph,  vCount,  m)
 end
 
 
-graph =[
-[false, true, false, false, true],
-[true, false, true, false, true],
-[false, true, false, true, true],
-[false, false, true, false, true],
-[true, true, true, true, false]]
-
+graph =[[false, true, false, false, true],
+        [true, false, true, false, true],
+        [false, true, false, true, true],
+        [false, false, true, false, true],
+        [true, true, true, true, false]]
 v = 5 # Number of vertices
 m = 4 # Number of colours
-if (!graphColouring2(graph,v, m))
-	print("Solution does not exist","\n")
-end
+graphColouring2(graph,v, m))
+
 
 if (!graphColouring(graph, v, m))
 	print("Solution does not exist","\n")
