@@ -376,23 +376,17 @@ def sortK( arr,  size,  k)
 		pq.add(arr[i])
 		i += 1
 	end
-	output = Array.new(size){0}
 	index = 0
 	i = k
 	while (i < size)
-		output[index] = pq.remove()
+		arr[index] = pq.remove()
 		index += 1
 		pq.add(arr[i])
 		i += 1
 	end
 	while (pq.size() > 0) 
-		output[index] = pq.remove()
+		arr[index] = pq.remove()
 		index += 1
-	end
-	i = 0
-	while (i < size)
-		arr[i] = output[i]
-		i += 1
 	end
 end
 
@@ -405,7 +399,7 @@ def main5()
 	print(arr)
 end
 
-# 1 4 5 9 10 50
+# [1, 4, 5, 9, 10, 50]
 
 main1()
 main2()
